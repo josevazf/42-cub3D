@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/04/30 19:03:25 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/04/30 19:09:46 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,3 +83,9 @@ int	key_events(int key, t_data *data);
 
 // draw.c
 void	put_pixel(t_img *img, int x, int y, int color);
+
+// utils.c
+void	clean_screen(t_data *data);
+
+// error.c
+
