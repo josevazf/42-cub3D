@@ -3,3 +3,6 @@
 .nfs*
 /objs
 *.o
+*.a
+/minilibx-linux
+cub3d

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:56:30 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/04/30 18:57:47 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:22:16 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	esc_key(t_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 		data->win_ptr = NULL;
 		free(data->mlx_ptr);
-		//ft_free_map(data->map);
+		ft_free_map(data->map);
 		exit (EXIT_SUCCESS);
 	}
 	return (SUCCESS);
@@ -33,8 +33,8 @@ int	key_events(int key, t_data *data)
 {
 	if (key == XK_w || key == XK_a || key == XK_s || key == XK_d)
 		move_player(data, key); // TO DO
-	if (key == XK_Left || key == XK_Right)
-		look_left_right(data, key); // TO DO
+/* 	if (key == XK_Left || key == XK_Right)
+		look_left_right(data, key); // TO DO */
 	if (key == XK_Escape)
 		esc_key(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 

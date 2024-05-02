@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2024/04/30 18:58:02 by jrocha-v         ###   ########.fr        #
+#    Updated: 2024/05/02 17:05:36 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,12 @@ MK_FLAG			= --no-print-directory
 RM				= rm -rf
 
 SRCS			= 	main.c \
-					events.c
+					init.c 	\
+					events.c \
+					minimap.c \
+					draw.c \
+					utils.c \
+					error.c
 
 # Substitute .c with .o 
 OBJS			= $(SRCS:%.c=$(OBJS_DIR)/%.o)
@@ -50,18 +55,19 @@ $(LIBFT):
 	echo "Compiling necessary libs..."
 	$(MAKE) $(MK_FLAG) -C $(LIBFT_DIR)
 
-$(LIBMLX):
-	echo "Compiling necessary libs..."
-	$(MAKE) $(MK_FLAG) -C $(LIBMLX_DIR)
+#$(LIBMLX):
+#	echo "Compiling necessary libs..."
+#	$(MAKE) $(MK_FLAG) -C $(LIBMLX_DIR)
 
 #remove .o files
 clean:
 	$(RM) $(OBJS_DIR)
 	$(MAKE) clean -C $(LIBFT_DIR)
-	$(MAKE) clean -C $(LIBMLX_DIR)
+#$(MAKE) clean -C $(LIBMLX_DIR)
 
 fclean: clean
-	$(RM) $(NAME) $(LIBFT) $(LIBMLX)
+#$(RM) $(NAME) $(LIBFT) $(LIBMLX)
+	$(RM) $(NAME) $(LIBFT)
 
 #reset - remove and recompile
 re: fclean
