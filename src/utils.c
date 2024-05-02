@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:08:08 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/04/30 19:08:57 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/02 21:27:20 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,52 @@ void	clean_screen(t_data *data)
 		while (++j < WIN_H)
 			put_pixel(&data->img, i, j, CLR_BLACK);
 	}
+}
+
+/* Get direction to draw line */
+int	get_slope(int p1, int p2)
+{
+	if (p1 < p2)
+		return (1);
+	return (-1);
+}
+
+/* Convert degrees to radians */
+double	get_rad(double deg)
+{
+	#include <math.h>
+
+	return (deg * M_PI / 180.0);
+}
+
+/* Get center point for x ->(t = 0) else y */
+float	get_average(t_data *data, int t)
+{
+	float	v1;
+	float	v2;
+	float	v3;
+	float	v4;
+
+	if (t == 0)
+	{
+		v1 = (float)data->map[0][0].x;
+		v2 = (float)data->map[0][data->map_w - 1].x;
+		v3 = (float)data->map[data->map_h - 1][0].x;
+		v4 = (float)data->map[data->map_h - 1][data->map_w - 1].x;
+	}
+	else
+	{
+		v1 = (float)data->map[0][0].y;
+		v2 = (float)data->map[0][data->map_w - 1].y;
+		v3 = (float)data->map[data->map_h - 1][0].y;
+		v4 = (float)data->map[data->map_h - 1][data->map_w - 1].y;
+	}
+	return ((v1 + v2 + v3 + v4) / 4);
+}
+
+/* Get center of map representation */
+void	get_map_center(t_data *data)
+{
+	data->c_pos_x = get_average(data, 0);
+	data->c_pos_y = get_average(data, 1);
 }

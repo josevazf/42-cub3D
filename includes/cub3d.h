@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/02 18:26:25 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/02 22:21:29 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ typedef struct s_data
 	int			trs_y;
 	int			c_pos_x;
 	int			c_pos_y;
+	int			err;
+	int			x1;
+	int			y1;
 	char		*map_name;
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -96,15 +99,35 @@ int		esc_key(t_data *data);
 int		key_events(int key, t_data *data);
 
 // minimap.c
+void	set_map(t_data *data);
 void	process_minimap(t_data *data);
-void	draw_player(t_data *data);
+void	set_coordinates(t_data *data);
+void	scale_map(t_data *data, double factor);
+void	translate_center(t_data *data, int i, int j);
+void	fit_to_window(t_data *data, double angle);
+
+
+// player.c
 void	move_player(t_data *data, int key);
+void	draw_player(t_data *data);
 
 // draw.c
+void	hex_to_rgb(int hex_color, t_cube *point);
+int		get_pnt_color(t_cube *p1, t_cube *p2, float pos, int len);
 void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_map(t_data *data);
+void	vertical_lines(t_data *data);
+void	horizontal_lines(t_data *data);
+void	draw_lines(t_cube *p1, t_cube *p2, t_data *data, int i);
+
 
 // utils.c
 void	clean_screen(t_data *data);
+int		get_slope(int p1, int p2);
+double	get_rad(double deg);
+float	get_average(t_data *data, int t);
+void	get_map_center(t_data *data);
+
 
 // error.c
 int		fd_error(int fd);

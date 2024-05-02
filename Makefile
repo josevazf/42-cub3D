@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2024/05/02 17:05:36 by jrocha-v         ###   ########.fr        #
+#    Updated: 2024/05/02 21:21:31 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ RM				= rm -rf
 SRCS			= 	main.c \
 					init.c 	\
 					events.c \
+					player.c \
 					minimap.c \
 					draw.c \
 					utils.c \
