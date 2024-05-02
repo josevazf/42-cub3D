@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 22:23:12 by jrocha-v          #+#    #+#              #
-#    Updated: 2024/04/30 18:35:27 by jrocha-v         ###   ########.fr        #
+#    Updated: 2024/05/02 18:19:25 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRCS		= ft_atoi.c \
 			  ft_int_max.c \
 			  ft_nbrlen.c \
 			  ft_check_ext.c \
+			  ft_safe_malloc.c \
 			  ft_strcmp.c \
 			  ft_strpbrk.c \
 			  ft_strldup.c \

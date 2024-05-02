@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:26:26 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/04/30 18:35:01 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:20:13 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ long				ft_atol(const char *nstr);
 unsigned long long	ft_atoll(const char *nstr);
 int					*ft_split_ints(char const *s, char c);
 long				*ft_split_longs(char const *s, char c);
+void				*ft_safe_malloc(size_t bytes);
 
 // List manipulation
 t_list				*ft_lstnew(void *content);
