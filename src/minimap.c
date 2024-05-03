@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/03 12:38:57 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:59:36 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void	set_cube_vertex(t_data *data)
 	int		offset;
 	t_cube	**cube;
 
-	i = 0;
-	j = 0;
+	i = -1;
+	j = -1;
 	cube = data->map;
 	offset = data->mm_spc / 2;
-	while (i < cube[i][j].data->map_h - 1)
+	while (++i < data->map_h)
 	{
-		j = 0;
-		while (j < cube[i][j].data->map_w - 1)
+		j = -1;
+		while (++j < data->map_w)
 		{
 			cube[i][j].v1.x = cube[i][j].cnt.x - offset;
 			cube[i][j].v1.y = cube[i][j].cnt.y - offset;
@@ -56,9 +56,7 @@ void	set_cube_vertex(t_data *data)
 			cube[i][j].v3.y = cube[i][j].cnt.y + offset;
 			cube[i][j].v4.x = cube[i][j].cnt.x - offset;
 			cube[i][j].v4.y = cube[i][j].cnt.y + offset;
-			j++;
 		}
-		i++;
 	}
 }
 
