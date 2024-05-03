@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:56:30 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/02 18:22:16 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:09:48 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	esc_key(t_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 		data->win_ptr = NULL;
 		free(data->mlx_ptr);
+		free(data->map_name);
 		ft_free_map(data->map);
 		exit (EXIT_SUCCESS);
 	}
