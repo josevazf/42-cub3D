@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/03 12:33:43 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:06:48 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ void	paint_square(t_cube *cube)
 	{
 		y = -1;
 		while (++y < height)
+		{
 			put_pixel(&cube->data->img, cube->v1.x + x, cube->v1.y + y, cube->clr);
+			if (x == 0 || y == 0 || x == width - 1 || y == height - 1)
+				put_pixel(&cube->data->img, cube->v1.x + x - 1, cube->v1.y + y, CLR_BLACK);
+		}
 	}
 }
 

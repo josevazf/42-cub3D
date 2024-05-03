@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/03 12:26:29 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:07:39 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_player(t_data *data)
 		j = 10;
 		while (--j > 0)
 		{
-			put_pixel(&data->img, data->player.px - i, data->player.py - j, CLR_NEON);
+			put_pixel(&data->img, data->player.px - i, data->player.py - j, CLR_RED);
 		}
 	}
 }
