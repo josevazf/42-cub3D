@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:08:08 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/02 21:27:20 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:33:17 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,17 @@ float	get_average(t_data *data, int t)
 
 	if (t == 0)
 	{
-		v1 = (float)data->map[0][0].x;
-		v2 = (float)data->map[0][data->map_w - 1].x;
-		v3 = (float)data->map[data->map_h - 1][0].x;
-		v4 = (float)data->map[data->map_h - 1][data->map_w - 1].x;
+		v1 = (float)data->map[0][0].cnt.x;
+		v2 = (float)data->map[0][data->map_w - 1].cnt.x;
+		v3 = (float)data->map[data->map_h - 1][0].cnt.x;
+		v4 = (float)data->map[data->map_h - 1][data->map_w - 1].cnt.x;
 	}
 	else
 	{
-		v1 = (float)data->map[0][0].y;
-		v2 = (float)data->map[0][data->map_w - 1].y;
-		v3 = (float)data->map[data->map_h - 1][0].y;
-		v4 = (float)data->map[data->map_h - 1][data->map_w - 1].y;
+		v1 = (float)data->map[0][0].cnt.y;
+		v2 = (float)data->map[0][data->map_w - 1].cnt.y;
+		v3 = (float)data->map[data->map_h - 1][0].cnt.y;
+		v4 = (float)data->map[data->map_h - 1][data->map_w - 1].cnt.y;
 	}
 	return ((v1 + v2 + v3 + v4) / 4);
 }

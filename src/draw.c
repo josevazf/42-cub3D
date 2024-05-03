@@ -6,14 +6,23 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/02 22:20:10 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:33:43 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/* Put a pixel on the screen */
+void	put_pixel(t_img *img, int x, int y, int color)
+{
+	int	offset;
+
+	offset = (img->line_len * y) + (x * (img->bpp / 8));
+	*((unsigned int *)(offset + img->mlx_pixel_addr)) = color;
+}
+
 /* Converts hex RGB representation to each value of r, g and b */
-void	hex_to_rgb(int hex_color, t_cube *point)
+void	hex_to_rgb(int hex_color, t_point *point)
 {
 	point->rgb.r = (hex_color >> 16) & 0xFF;
 	point->rgb.g = (hex_color >> 8) & 0xFF;
@@ -21,7 +30,7 @@ void	hex_to_rgb(int hex_color, t_cube *point)
 }
 
 /* Get the color for the gradient point between p1 and p2*/
-int		get_pnt_color(t_cube *p1, t_cube *p2, float pos, int len)
+/* int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len)
 {
 	int		r;
 	int		g;
@@ -40,31 +49,54 @@ int		get_pnt_color(t_cube *p1, t_cube *p2, float pos, int len)
 		b = p1->rgb.b + ((p2->rgb.b - p1->rgb.b) * ratio);
 		return (r << 16 | g << 8 | b);
 	}
-}
+} */
 
-/* Put a pixel on the screen */
-void	put_pixel(t_img *img, int x, int y, int color)
+void	paint_square(t_cube *cube)
 {
-	int	offset;
+	int	x;
+	int	y;
+	int	width;
+	int	height;
 
-	offset = (img->line_len * y) + (x * (img->bpp / 8));
-	*((unsigned int *)(offset + img->mlx_pixel_addr)) = color;
+	x = -1;
+	y = -1;
+	width = abs(cube->v3.x - cube->v1.x);
+	height = abs(cube->v3.y - cube->v1.y);
+	while (++x < width)
+	{
+		y = -1;
+		while (++y < height)
+			put_pixel(&cube->data->img, cube->v1.x + x, cube->v1.y + y, cube->clr);
+	}
 }
 
 /* Draw map by vertical and horizontal lines */
-void	draw_map(t_data *data)
+void	draw_minimap(t_data *data)
 {
-	vertical_lines(data);
+	int	i;
+	int	j;
+
+	i = -1;
+	j = -1;
+	while (++i < data->map_h)
+	{
+		j = -1;
+		while (++j < (data->map_w))
+		{
+			paint_square(&data->map[i][j]);
+		}
+	}
+/* 	vertical_lines(data);
 	horizontal_lines(data);
 	if (data->x1 > 0 && data->x1 < WIN_W - 5 && data->y1 > 0 && 
 		data->y1 < WIN_H - 5)
-		put_pixel(&data->img, data->map[data->map_h - 1][data->map_w - 1].x, 
-			data->map[data->map_h - 1][data->map_w - 1].y, 
-			data->map[data->map_h - 1][data->map_w - 1].clr);
+		put_pixel(&data->img, data->map[data->map_h - 1][data->map_w - 1].cnt.x, 
+			data->map[data->map_h - 1][data->map_w - 1].cnt.y, 
+			data->map[data->map_h - 1][data->map_w - 1].clr); */
 }
 
 /* Define and draw vertical lines */
-void	vertical_lines(t_data *data)
+/* void	vertical_lines(t_data *data)
 {
 	int	i;
 	int	j;
@@ -76,15 +108,15 @@ void	vertical_lines(t_data *data)
 		j = -1;
 		while (++j < (data->map_w))
 		{
-			data->x1 = data->map[i][j].x;
-			data->y1 = data->map[i][j].y;
+			data->x1 = data->map[i][j].cnt.x;
+			data->y1 = data->map[i][j].cnt.y;
 			draw_lines(&data->map[i][j], &data->map[i + 1][j], data, -1);
 		}
 	}
-}
+} */
 
 /* Define and draw horizontal lines */
-void	horizontal_lines(t_data *data)
+/* void	horizontal_lines(t_data *data)
 {
 	int	i;
 	int	j;
@@ -96,15 +128,15 @@ void	horizontal_lines(t_data *data)
 		i = -1;
 		while (++i < data->map_h)
 		{
-			data->x1 = data->map[i][j].x;
-			data->y1 = data->map[i][j].y;
+			data->x1 = data->map[i][j].cnt.x;
+			data->y1 = data->map[i][j].cnt.y;
 			draw_lines(&data->map[i][j], &data->map[i][j + 1], data, -1);
 		}
 	}
-}
+} */
 
 /* Draw lines with gradient between p1 and p2 */
-void	draw_lines(t_cube *p1, t_cube *p2, t_data *data, int i)
+/* void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 {
 	int	dx;
 	int	dy;
@@ -131,4 +163,4 @@ void	draw_lines(t_cube *p1, t_cube *p2, t_data *data, int i)
 			data->y1 += get_slope(data->y1, p2->y);
 		}
 	}
-}
+} */

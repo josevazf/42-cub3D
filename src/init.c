@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/02 22:18:47 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 11:47:47 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,20 @@ void	fill_map(t_cube *map, char *line, t_data *data)
 	nums = ft_split(line, ' ');
 	while (nums[++i])
 	{
-		map[i].x = 0;
-		map[i].y = 0;
-		if (!ft_strncmp(nums[i], "0", 1))
+		map[i].cnt.x = 0;
+		map[i].cnt.y = 0;
+		if (!ft_strncmp(nums[i], "0", 1) || ft_strncmp(nums[i], "1", 1))
+		{
+			map[i].cube_type = OPEN;
 			map[i].clr = CLR_WHITE;
+			
+		}
 		else if (!ft_strncmp(nums[i], "1", 1))
+		{
+			map[i].cube_type = CLOSED;
 			map[i].clr = CLR_BLUE;
+		}
+		map[i].data = data;
 		free(nums[i]);
 	}
 	free(nums);

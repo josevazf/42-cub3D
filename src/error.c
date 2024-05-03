@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:58:21 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/02 18:17:53 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 09:12:02 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	fd_error(int fd)
 {
 	if (fd == -1)
-		ft_error("fdf: file error", ERROR);
+		ft_error("cub3D: file error", ERROR);
 	return (SUCCESS);
 }
 

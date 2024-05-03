@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/02 22:22:42 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:26:29 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	move_player(t_data *data, int key)
 {
 	clean_screen(data);
-	draw_map(data);
+	draw_minimap(data);
 	if (key == XK_w)
 		data->player.py -= 5;
 	else if (key == XK_s)

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/02 22:21:29 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:32:32 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define ERROR 1
 # define SUCCESS 0
 
-# define WIN_W 1024
-# define WIN_H 512
+# define WIN_W 1280
+# define WIN_H 720
 
 # define CLR_RED			0xFF0000
 # define CLR_GREEN			0x00FF00
@@ -32,6 +32,14 @@
 # define CLR_WHITE			0xFFFFFF
 # define CLR_BLACK			0x000000
 # define CLR_NEON			0xFF10F0
+
+typedef struct s_data	t_data;
+
+enum e_CubeType
+{
+	OPEN,
+	CLOSED,
+};
 
 typedef struct s_img
 {
@@ -49,12 +57,25 @@ typedef struct s_color
 	int			b;
 }	t_color;
 
-typedef struct s_cube
+typedef struct s_point
 {
 	int			x;
 	int			y;
 	int			clr;
 	t_color		rgb;
+}	t_point;
+
+typedef struct s_cube
+{
+	t_point			cnt;
+	t_point			v1;
+	t_point			v2;
+	t_point			v3;
+	t_point			v4;
+	int				clr;
+	t_color			rgb;
+	enum e_CubeType cube_type;
+	t_data			*data;
 }	t_cube;
 
 typedef struct s_player
@@ -62,6 +83,7 @@ typedef struct s_player
 	double		px;
 	double		py;
 	t_cube		ps;
+	t_data		*data;
 }	t_player;
 
 typedef struct s_data
@@ -75,6 +97,7 @@ typedef struct s_data
 	int			err;
 	int			x1;
 	int			y1;
+	int			mm_spc;
 	char		*map_name;
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -101,6 +124,7 @@ int		key_events(int key, t_data *data);
 // minimap.c
 void	set_map(t_data *data);
 void	process_minimap(t_data *data);
+void	set_cube_vertex(t_data *data);
 void	set_coordinates(t_data *data);
 void	scale_map(t_data *data, double factor);
 void	translate_center(t_data *data, int i, int j);
@@ -112,13 +136,14 @@ void	move_player(t_data *data, int key);
 void	draw_player(t_data *data);
 
 // draw.c
-void	hex_to_rgb(int hex_color, t_cube *point);
-int		get_pnt_color(t_cube *p1, t_cube *p2, float pos, int len);
 void	put_pixel(t_img *img, int x, int y, int color);
-void	draw_map(t_data *data);
-void	vertical_lines(t_data *data);
-void	horizontal_lines(t_data *data);
-void	draw_lines(t_cube *p1, t_cube *p2, t_data *data, int i);
+void	hex_to_rgb(int hex_color, t_point *point);
+//int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
+void	paint_square(t_cube *cube);
+void	draw_minimap(t_data *data);
+//void	vertical_lines(t_data *data);
+//void	horizontal_lines(t_data *data);
+//void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
 
 
 // utils.c

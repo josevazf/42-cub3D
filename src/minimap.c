@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/02 22:25:35 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:38:57 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,66 @@ void	set_map(t_data *data)
 void	process_minimap(t_data *data)
 {
 	set_map(data);
-	draw_map(data);
+	draw_minimap(data);
 	draw_player(data);
 	return ;
 }
 
-/* Set coordinates for standard map values */
+/* Set coordinates for each cube vertex point */
+void	set_cube_vertex(t_data *data)
+{
+	int		i;
+	int		j;
+	int		offset;
+	t_cube	**cube;
+
+	i = 0;
+	j = 0;
+	cube = data->map;
+	offset = data->mm_spc / 2;
+	while (i < cube[i][j].data->map_h - 1)
+	{
+		j = 0;
+		while (j < cube[i][j].data->map_w - 1)
+		{
+			cube[i][j].v1.x = cube[i][j].cnt.x - offset;
+			cube[i][j].v1.y = cube[i][j].cnt.y - offset;
+			cube[i][j].v2.x = cube[i][j].cnt.x + offset;
+			cube[i][j].v2.y = cube[i][j].cnt.y - offset;
+			cube[i][j].v3.x = cube[i][j].cnt.x + offset;
+			cube[i][j].v3.y = cube[i][j].cnt.y + offset;
+			cube[i][j].v4.x = cube[i][j].cnt.x - offset;
+			cube[i][j].v4.y = cube[i][j].cnt.y + offset;
+			j++;
+		}
+		i++;
+	}
+}
+
+/* Set coordinates for each cube center point */
 void	set_coordinates(t_data *data)
 {
 	int	spc_h;
 	int	spc_w;
-	int	spacing;
 	int	i;
 	int	j;
 
 	i = -1;
 	j = -1;
-	spc_w = (WIN_W - 10) / (data->map_w - 1);
-	spc_h = (WIN_H - 10) / (data->map_h - 1);
+	spc_w = (WIN_W - 50) / (data->map_w - 1);
+	spc_h = (WIN_H - 50) / (data->map_h - 1);
 	if ((spc_h * (data->map_h - 1) >= WIN_H) || 
 		(spc_h * (data->map_w - 1) >= WIN_W))
-		spacing = spc_w;
+		data->mm_spc = spc_w;
 	else
-		spacing = spc_h;
+		data->mm_spc = spc_h;
 	while (++i < data->map_h)
 	{
 		j = -1;
 		while (++j < data->map_w)
 		{
-			data->map[i][j].x = 10 + (j * spacing);
-			data->map[i][j].y = 10 + (i * spacing);
+			data->map[i][j].cnt.x = 50 + (j * data->mm_spc);
+			data->map[i][j].cnt.y = 50 + (i * data->mm_spc);
 		}
 	}
 }
@@ -73,8 +103,8 @@ void	scale_map(t_data *data, double factor)
 		j = -1;
 		while (++j < data->map_w)
 		{
-			data->map[i][j].x = (double)data->map[i][j].x * factor;
-			data->map[i][j].y = (double)data->map[i][j].y * factor;
+			data->map[i][j].cnt.x = (double)data->map[i][j].cnt.x * factor;
+			data->map[i][j].cnt.y = (double)data->map[i][j].cnt.y * factor;
 		}
 	}
 	//data->scale_ratio = factor;
@@ -102,30 +132,31 @@ void	translate_center(t_data *data, int i, int j)
 		j = -1;
 		while (++j < data->map_w)
 		{
-			data->map[i][j].x = data->map[i][j].x + move_x;
-			data->map[i][j].y = data->map[i][j].y + move_y;
+			data->map[i][j].cnt.x = data->map[i][j].cnt.x + move_x;
+			data->map[i][j].cnt.y = data->map[i][j].cnt.y + move_y;
 		}
 	}
 	get_map_center(data);
 }
 
-/* Fit isometric view to window */
+/* Fit map view to window */
 void	fit_to_window(t_data *data, double angle)
 {
 	double	ratio;
 
 	(void)angle;
 	ratio = 1;
-	while ((data->map[data->map_h - 1][data->map_w - 1].y - 
-		data->map[0][0].y >= WIN_H - 300))
+	while ((data->map[data->map_h - 1][data->map_w - 1].cnt.y - 
+		data->map[0][0].cnt.y >= WIN_H - 100))
 	{
-		if (data->map[data->map_h - 1][data->map_w - 1].y - 
-		data->map[0][0].y >= WIN_H - 300)
+		if (data->map[data->map_h - 1][data->map_w - 1].cnt.y - 
+		data->map[0][0].cnt.y >= WIN_H - 100)
 			scale_map(data, pow(0.9, ratio));
-		else if (data->map[data->map_h - 1][data->map_w - 1].y - 
-		data->map[0][0].y <= WIN_H / 2)
+		else if (data->map[data->map_h - 1][data->map_w - 1].cnt.y - 
+		data->map[0][0].cnt.y <= WIN_H / 2)
 			scale_map(data, pow(1.1, ratio));
 		translate_center(data, -1, -1);
 		ratio = ratio + 1;
 	}
+	set_cube_vertex(data);
 }
