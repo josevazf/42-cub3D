@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/13 17:45:33 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:15:01 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,11 @@ void	process_minimap(t_data *data)
 }
 
 /* Set coordinates for each cube vertex point */
-void	set_cube_vertex(t_data *data)
+void	set_cube_vertex(t_data *data, int i, int j)
 {
-	int		i;
-	int		j;
 	int		offset;
 	t_cube	**cube;
 
-	i = -1;
-	j = -1;
 	cube = data->map;
 	offset = data->mm_spc / 2;
 	while (++i < data->map_h)
@@ -48,6 +44,8 @@ void	set_cube_vertex(t_data *data)
 		j = -1;
 		while (++j < data->map_w)
 		{
+			cube[i][j].x = i;
+			cube[i][j].y = j;
 			cube[i][j].v1.x = cube[i][j].cnt.x - offset;
 			cube[i][j].v1.y = cube[i][j].cnt.y - offset;
 			cube[i][j].v2.x = cube[i][j].cnt.x + offset;
@@ -156,5 +154,5 @@ void	fit_to_window(t_data *data, double angle)
 		translate_center(data, -1, -1);
 		ratio = ratio + 1;
 	}
-	set_cube_vertex(data);
+	set_cube_vertex(data, -1, -1);
 }

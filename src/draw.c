@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/13 16:45:17 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:45:12 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,6 @@ void	hex_to_rgb(int hex_color, t_point *point)
 	point->rgb.g = (hex_color >> 8) & 0xFF;
 	point->rgb.b = (hex_color & 0xFF);
 }
-
-/* Get the color for the gradient point between p1 and p2*/
-/* int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len)
-{
-	int		r;
-	int		g;
-	int		b;
-	float	ratio;
-
-	ratio = pos / (float)len;
-	hex_to_rgb(p1->clr, p1);
-	hex_to_rgb(p2->clr, p2);
-	if ((p1->clr == p2->clr) || len == 0)
-		return (p1->clr);
-	else
-	{
-		r = p1->rgb.r + ((p2->rgb.r - p1->rgb.r) * ratio);
-		g = p1->rgb.g + ((p2->rgb.g - p1->rgb.g) * ratio);
-		b = p1->rgb.b + ((p2->rgb.b - p1->rgb.b) * ratio);
-		return (r << 16 | g << 8 | b);
-	}
-} */
 
 void	paint_square(t_cube *cube)
 {
@@ -84,7 +62,14 @@ void	draw_minimap(t_data *data)
 	{
 		j = -1;
 		while (++j < (data->map_w))
+		{
 			paint_square(&data->map[i][j]);
+			put_pixel(&data->img, data->map[i][j].v1.x, data->map[i][j].v1.y, CLR_GREEN);
+			//put_pixel(&data->img, data->map[i][j].v2.x, data->map[i][j].v2.y, CLR_GREEN);
+			put_pixel(&data->img, data->map[i][j].v3.x, data->map[i][j].v3.y, CLR_GREEN);
+			//put_pixel(&data->img, data->map[i][j].v4.x, data->map[i][j].v4.y, CLR_GREEN);
+			
+		}
 	}
 /* 	vertical_lines(data);
 	horizontal_lines(data);

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/13 17:50:56 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:28:47 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <X11/keysym.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <math.h>
 
 # define ERROR 1
@@ -39,7 +40,7 @@
 // Game settings
 # define FOV_ANG (60 * (M_PI / 180))
 # define NUM_RAYS WIN_W
-# define MV_SPD 2
+# define MV_SPD 1
 # define ROT_SPD (3 * (M_PI / 180))
 
 typedef struct s_data	t_data;
@@ -95,6 +96,8 @@ typedef struct s_cube
 	t_point			v3;
 	t_point			v4;
 	int				clr;
+	int				x;
+	int				y;
 	t_color			rgb;
 	t_CubeType		cube_type;
 	t_data			*data;
@@ -149,7 +152,7 @@ void	input_router(t_data *data);
 // minimap.c
 void	set_map(t_data *data);
 void	process_minimap(t_data *data);
-void	set_cube_vertex(t_data *data);
+void	set_cube_vertex(t_data *data, int i, int j);
 void	set_coordinates(t_data *data);
 void	scale_map(t_data *data, double factor);
 void	translate_center(t_data *data, int i, int j);
@@ -157,6 +160,8 @@ void	fit_to_window(t_data *data, double angle);
 
 
 // player.c
+t_cube	player_cube_position(t_data *data, double px, double py);
+bool	is_valid_cube(t_data *data, double mx, double my);
 void	move_player(t_data *data, int key);
 void	draw_player(t_data *data);
 
