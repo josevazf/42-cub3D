@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:08:08 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/13 11:23:56 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:49:18 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ double	get_rad(double deg)
 	#include <math.h>
 
 	return (deg * M_PI / 180.0);
+}
+
+double	get_deg(double rad)
+{
+	#include <math.h>
+
+	return (rad * 180.0 / M_PI);
+
 }
 
 /* Get center point for x ->(t = 0) else y */

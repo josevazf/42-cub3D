@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/13 11:23:22 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:50:56 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@
 # define CLR_NEON			0xFF10F0
 
 // Game settings
+# define FOV_ANG (60 * (M_PI / 180))
+# define NUM_RAYS WIN_W
 # define MV_SPD 2
+# define ROT_SPD (3 * (M_PI / 180))
 
 typedef struct s_data	t_data;
 
@@ -101,6 +104,7 @@ typedef struct s_player
 {
 	double		px;
 	double		py;
+	double		rot_ang;
 	t_cube		ps;
 	t_key		key;
 	t_data		*data;
@@ -126,8 +130,6 @@ typedef struct s_data
 	t_cube		**map;
 	t_player	player;
 }	t_data;
-
-#endif
 
 // main.c
 
@@ -166,13 +168,14 @@ void	paint_square(t_cube *cube);
 void	draw_minimap(t_data *data);
 //void	vertical_lines(t_data *data);
 //void	horizontal_lines(t_data *data);
-//void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
+void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
 
 
 // utils.c
 void	clean_screen(t_data *data);
 int		get_slope(int p1, int p2);
 double	get_rad(double deg);
+double	get_deg(double rad);
 float	get_average(t_data *data, int t);
 void	get_map_center(t_data *data);
 
@@ -181,3 +184,5 @@ void	get_map_center(t_data *data);
 int		fd_error(int fd);
 int		args_error(void);
 void	ft_free_map(t_cube **matrix);
+
+#endif

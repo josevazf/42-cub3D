@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/03 14:17:00 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:45:17 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,32 +135,31 @@ void	draw_minimap(t_data *data)
 	}
 } */
 
-/* Draw lines with gradient between p1 and p2 */
-/* void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
+/* Draw lines between p1 and p2 */
+void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 {
 	int	dx;
 	int	dy;
 
-	dx = abs(p2->x - data->x1);
-	dy = abs(p2->y - data->y1);
+	dx = abs(p2->x - p1->x);
+	dy = abs(p2->y - p1->y);
 	data->err = dx - dy;
 	while (++i < ft_int_max(dx, dy))
 	{
-		if (data->x1 > 0 && data->x1 < WIN_W - 5 && data->y1 > 0 && 
-			data->y1 < WIN_H - 5)
-			put_pixel(&data->img, data->x1, data->y1, get_pnt_color(p1, p2, i, 
-					ft_int_max(dx, dy)));
-		if (data->x1 == p2->x && data->y1 == p2->y)
+		if (p1->x > 0 && p1->x < WIN_W - 5 && p1->y > 0 && 
+			p1->y < WIN_H - 5)
+			put_pixel(&data->img, p1->x, p1->y, CLR_GREEN);
+		if (p1->x == p2->x && p1->y == p2->y)
 			break ;
 		if (2 * data->err > -dy)
 		{
 			data->err -= dy;
-			data->x1 += get_slope(data->x1, p2->x);
+			p1->x += get_slope(p1->x, p2->x);
 		}
 		if (2 * data->err < dx)
 		{
 			data->err += dx;
-			data->y1 += get_slope(data->y1, p2->y);
+			p1->y += get_slope(p1->y, p2->y);
 		}
 	}
-} */
+}

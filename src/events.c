@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:56:30 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/13 11:24:47 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:53:08 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,8 @@ void	input_router(t_data *data)
 		move_player(data, XK_a);
 	if (data->key.d)
 		move_player(data, XK_d);
+	if (data->key.left)
+		move_player(data, XK_Left);
+	if (data->key.right)
+		move_player(data, XK_Right);
 }
