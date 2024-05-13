@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/03 11:47:47 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:13:38 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	fill_map(t_cube *map, char *line, t_data *data)
 		else if (!ft_strncmp(nums[i], "1", 1))
 		{
 			map[i].cube_type = CLOSED;
-			map[i].clr = CLR_BLUE;
+			map[i].clr = CLR_SILK;
 		}
 		map[i].data = data;
 		free(nums[i]);

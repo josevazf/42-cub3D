@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/03 13:06:48 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:17:00 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,19 @@ void	paint_square(t_cube *cube)
 {
 	int	x;
 	int	y;
-	int	width;
-	int	height;
+	int	size;
 
 	x = -1;
 	y = -1;
-	width = abs(cube->v3.x - cube->v1.x);
-	height = abs(cube->v3.y - cube->v1.y);
-	while (++x < width)
+	size = ft_int_max(abs(cube->v3.x - cube->v1.x), abs(cube->v3.y - cube->v1.y));
+	while (++x < size)
 	{
 		y = -1;
-		while (++y < height)
+		while (++y < size)
 		{
 			put_pixel(&cube->data->img, cube->v1.x + x, cube->v1.y + y, cube->clr);
-			if (x == 0 || y == 0 || x == width - 1 || y == height - 1)
-				put_pixel(&cube->data->img, cube->v1.x + x - 1, cube->v1.y + y, CLR_BLACK);
+			if (x == 0 || x == size - 1 || y == 0 || y == size - 1)
+				put_pixel(&cube->data->img, cube->v1.x + x, cube->v1.y + y, CLR_BLACK);
 		}
 	}
 }
@@ -86,9 +84,7 @@ void	draw_minimap(t_data *data)
 	{
 		j = -1;
 		while (++j < (data->map_w))
-		{
 			paint_square(&data->map[i][j]);
-		}
 	}
 /* 	vertical_lines(data);
 	horizontal_lines(data);

@@ -6,11 +6,19 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:37:56 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/03 09:25:55 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:19:30 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	run_game(t_data *data)
+{
+	input_router(data);
+	process_minimap(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+	return (SUCCESS);
+}
 
 int	main(int argc, char **argv)
 {
@@ -33,10 +41,10 @@ int	main(int argc, char **argv)
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WIN_W, WIN_H);
 	data.img.mlx_pixel_addr = mlx_get_data_addr(data.img.mlx_img, 
 			&data.img.bpp, &data.img.line_len, &data.img.endian);
-	process_minimap(&data);
-	mlx_hook(data.win_ptr, 17, 0, esc_key, &data);
-	mlx_key_hook(data.win_ptr, key_events, &data);
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
+	mlx_hook(data.win_ptr, 2, 1L << 0, &key_press, &data);
+	mlx_hook(data.win_ptr, 3, 1L << 1, &key_release, &data);
+	mlx_hook(data.win_ptr, 17, 1L << 0, &free_game, &data);
+	mlx_loop_hook(data.mlx_ptr, &run_game, &data);
 	mlx_loop(data.mlx_ptr);
 	return (SUCCESS);
 }

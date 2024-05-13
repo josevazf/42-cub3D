@@ -6,14 +6,52 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:56:30 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/03 13:09:48 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:24:47 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/* Set flag for key release */
+int	key_release(int key, t_data *data)
+{
+	if (key == XK_w)
+		data->key.w = 0;
+	else if (key == XK_a)
+		data->key.a = 0;
+	else if (key == XK_s)
+		data->key.s = 0;
+	else if (key == XK_d)
+		data->key.d = 0;
+	else if (key == XK_Left)
+		data->key.left = 0;
+	else if (key == XK_Right)
+		data->key.right = 0;
+	else if (key == XK_Escape)
+		data->key.esc += 1;
+	return (0);
+}
+
+/* Set flag for key press */
+int	key_press(int key, t_data *data)
+{
+	if (key == XK_w)
+		data->key.w = 1;
+	else if (key == XK_a)
+		data->key.a = 1;
+	else if (key == XK_s)
+		data->key.s = 1;
+	else if (key == XK_d)
+		data->key.d = 1;
+	else if (key == XK_Left)
+		data->key.left = 1;
+	else if (key == XK_Right)
+		data->key.right = 1;
+	return (0);
+}
+
 /* Esc-Press - close window and free all memory */
-int	esc_key(t_data *data)
+int	free_game(t_data *data)
 {
 	if (data)
 	{
@@ -29,16 +67,17 @@ int	esc_key(t_data *data)
 	return (SUCCESS);
 }
 
-/* Trigger key press events */
-int	key_events(int key, t_data *data)
+/* Route key events */
+void	input_router(t_data *data)
 {
-	if (key == XK_w || key == XK_a || key == XK_s || key == XK_d)
-		move_player(data, key); // TO DO
-/* 	if (key == XK_Left || key == XK_Right)
-		look_left_right(data, key); // TO DO */
-	if (key == XK_Escape)
-		esc_key(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 
-		0, 0);
-	return (SUCCESS);
+	if (data->key.esc >= 1)
+		free_game(data);
+	if (data->key.w)
+		move_player(data, XK_w);
+	if (data->key.s)
+		move_player(data, XK_s);
+	if (data->key.a)
+		move_player(data, XK_a);
+	if (data->key.d)
+		move_player(data, XK_d);
 }

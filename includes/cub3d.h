@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/03 12:32:32 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:23:22 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,29 @@
 # define ERROR 1
 # define SUCCESS 0
 
+// Window settings
 # define WIN_W 1280
 # define WIN_H 720
 
 # define CLR_RED			0xFF0000
+# define CLR_PERSIAN		0xCA3433
 # define CLR_GREEN			0x00FF00
 # define CLR_BLUE			0x0000FF
+# define CLR_SILK			0x488AC7
 # define CLR_WHITE			0xFFFFFF
 # define CLR_BLACK			0x000000
 # define CLR_NEON			0xFF10F0
 
+// Game settings
+# define MV_SPD 2
+
 typedef struct s_data	t_data;
 
-enum e_CubeType
+typedef enum s_CubeType
 {
 	OPEN,
 	CLOSED,
-};
+}	t_CubeType;
 
 typedef struct s_img
 {
@@ -49,6 +55,19 @@ typedef struct s_img
 	int			line_len;
 	int			endian;
 }	t_img;
+
+typedef struct s_key
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	esc;
+	int	up;
+	int	left;
+	int	down;
+	int	right;
+}	t_key;
 
 typedef struct s_color
 {
@@ -74,7 +93,7 @@ typedef struct s_cube
 	t_point			v4;
 	int				clr;
 	t_color			rgb;
-	enum e_CubeType cube_type;
+	t_CubeType		cube_type;
 	t_data			*data;
 }	t_cube;
 
@@ -83,6 +102,7 @@ typedef struct s_player
 	double		px;
 	double		py;
 	t_cube		ps;
+	t_key		key;
 	t_data		*data;
 }	t_player;
 
@@ -101,6 +121,7 @@ typedef struct s_data
 	char		*map_name;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	t_key		key;
 	t_img		img;
 	t_cube		**map;
 	t_player	player;
@@ -118,8 +139,10 @@ void	fill_map(t_cube *map, char *line, t_data *data);
 void	process_map(char *file_name, t_data *data);
 
 // events.c
-int		esc_key(t_data *data);
-int		key_events(int key, t_data *data);
+int		free_game(t_data *data);
+int		key_release(int key, t_data *data);
+int		key_press(int key, t_data *data);
+void	input_router(t_data *data);
 
 // minimap.c
 void	set_map(t_data *data);
