@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2024/05/14 16:05:47 by jrocha-v         ###   ########.fr        #
+#    Updated: 2024/05/14 17:48:36 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS			= 	main.c \
 					minimap.c \
 					map_utils.c \
 					draw.c \
+					draw_utils.c \
 					utils.c \
 					error.c
 

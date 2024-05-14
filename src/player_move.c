@@ -6,11 +6,19 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:58:59 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 17:34:06 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:39:10 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/* Check collisions between Player movement and closed cubes */
+bool	is_valid_cube(t_data *data, double mx, double my)
+{
+	if (player_cube_position(data, mx, my).cube_type == CLOSED)
+		return (false);
+	return (true);
+}
 
 /* Move forward `W` or backwards `S` */
 void	move_linear(t_data *data, int key)

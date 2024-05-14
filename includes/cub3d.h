@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 17:34:35 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:46:40 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,22 +185,27 @@ void	set_coordinates(t_data *data);
 
 // player.c
 t_cube	player_cube_position(t_data *data, double px, double py);
-bool	is_valid_cube(t_data *data, double mx, double my);
 void	move_player(t_data *data, int key);
 void	set_player_pos(t_data *data);
-void	draw_player(t_data *data);
+
 
 // player_move.c
+bool	is_valid_cube(t_data *data, double mx, double my);
 void	move_linear(t_data *data, int key);
 void	move_sides(t_data *data, int key);
 void	move_player(t_data *data, int key);
 
 // draw.c
+void	draw_direction(t_data *data);
+void	draw_player(t_data *data);
+void	draw_minimap(t_data *data);
+
+// draw_utils.c
 void	put_pixel(t_img *img, int x, int y, int color);
 void	hex_to_rgb(int hex_color, t_point *point);
 //int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
 void	paint_square(t_cube *cube);
-void	draw_minimap(t_data *data);
+
 //void	vertical_lines(t_data *data);
 //void	horizontal_lines(t_data *data);
 void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
