@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/13 18:28:04 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:39:06 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_data(t_data *data)
 	data->y1 = 0;
 	data->c_pos_x = WIN_W / 2;
 	data->c_pos_y = WIN_H / 2;
+	data->init = true;
 	data->player.px = data->c_pos_x;
 	data->player.py = data->c_pos_y;
 	data->player.rot_ang = (M_PI / 2) * 3;

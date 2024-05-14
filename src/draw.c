@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/13 19:45:12 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:10:48 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	paint_square(t_cube *cube)
 
 	x = -1;
 	y = -1;
-	size = ft_int_max(abs(cube->v3.x - cube->v1.x), abs(cube->v3.y - cube->v1.y));
+	size = cube->data->mm_spc;
 	while (++x < size)
 	{
 		y = -1;
@@ -62,14 +62,7 @@ void	draw_minimap(t_data *data)
 	{
 		j = -1;
 		while (++j < (data->map_w))
-		{
 			paint_square(&data->map[i][j]);
-			put_pixel(&data->img, data->map[i][j].v1.x, data->map[i][j].v1.y, CLR_GREEN);
-			//put_pixel(&data->img, data->map[i][j].v2.x, data->map[i][j].v2.y, CLR_GREEN);
-			put_pixel(&data->img, data->map[i][j].v3.x, data->map[i][j].v3.y, CLR_GREEN);
-			//put_pixel(&data->img, data->map[i][j].v4.x, data->map[i][j].v4.y, CLR_GREEN);
-			
-		}
 	}
 /* 	vertical_lines(data);
 	horizontal_lines(data);
@@ -120,7 +113,7 @@ void	draw_minimap(t_data *data)
 	}
 } */
 
-/* Draw lines between p1 and p2 */
+/* Draw line from `p1` to `p2`. Variable `i` has to be `-1` */
 void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 {
 	int	dx;

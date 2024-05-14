@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/13 19:24:54 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:19:52 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ t_cube	player_cube_position(t_data *data, double px, double py)
 		j = -1;
 		while (++j < data->map_w)
 		{
-			if (px <= data->map[i][j].v3.x && \
-				px >= data->map[i][j].v1.x && \
-				py <= data->map[i][j].v3.y && \
-				py >= data->map[i][j].v1.y)
+			if (px >= data->map[i][j].v1.x && \
+				py >= data->map[i][j].v1.y && \
+				px <= data->map[i][j].v3.x && \
+				py <= data->map[i][j].v3.y)
 			return (data->map[i][j]);
 		}
 	}

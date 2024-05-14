@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/13 19:28:47 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:18:04 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@
 # define WIN_H 720
 
 # define CLR_RED			0xFF0000
+# define CLR_ROSYBROWN		0xBC8F8F
 # define CLR_PERSIAN		0xCA3433
 # define CLR_GREEN			0x00FF00
 # define CLR_BLUE			0x0000FF
 # define CLR_SILK			0x488AC7
 # define CLR_WHITE			0xFFFFFF
 # define CLR_BLACK			0x000000
+# define CLR_OLIVE			0x808000
+# define CLR_TEAL			0x008080
 # define CLR_NEON			0xFF10F0
 
 // Game settings
@@ -125,6 +128,7 @@ typedef struct s_data
 	int			x1;
 	int			y1;
 	int			mm_spc;
+	bool		init;
 	char		*map_name;
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -183,6 +187,7 @@ double	get_rad(double deg);
 double	get_deg(double rad);
 float	get_average(t_data *data, int t);
 void	get_map_center(t_data *data);
+void	print_cube_coords(t_data *data);
 
 
 // error.c
