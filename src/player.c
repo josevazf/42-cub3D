@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 15:19:16 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:32:43 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,47 +39,6 @@ bool	is_valid_cube(t_data *data, double mx, double my)
 	if (player_cube_position(data, mx, my).cube_type == CLOSED)
 		return (false);
 	return (true);
-}
-
-void	move_player(t_data *data, int key)
-{
-	clean_screen(data);
-	draw_minimap(data);
-	if (key == XK_w && is_valid_cube(data, \
-		data->player.px + cos(data->player.rot_ang) * MV_SPD, \
-		data->player.py + sin(data->player.rot_ang) * MV_SPD))
-	{
-		data->player.px += cos(data->player.rot_ang) * MV_SPD;
-		data->player.py += sin(data->player.rot_ang) * MV_SPD;
-	}
-	else if (key == XK_s)
-	{
-		data->player.px -= cos(data->player.rot_ang) * MV_SPD;
-		data->player.py -= sin(data->player.rot_ang) * MV_SPD;
-	}
-	else if (key == XK_a)
-	{
-		data->player.px += cos(data->player.rot_ang) * MV_SPD;
-		data->player.py -= sin(data->player.rot_ang) * MV_SPD;
-	}
-	else if (key == XK_d)
-	{
-		data->player.px += cos((2 * M_PI) - data->player.rot_ang) * MV_SPD;
-		data->player.py += sin((2 * M_PI) - data->player.rot_ang) * MV_SPD;
-	}
-	else if (key == XK_Left)
-	{
-		data->player.rot_ang -= ROT_SPD;
-		if (data->player.rot_ang < 0)
-			data->player.rot_ang += 2 * M_PI;		
-	}
-	else if (key == XK_Right)
-	{
-		data->player.rot_ang += ROT_SPD;
-		if (data->player.rot_ang >= 2 * M_PI)
-			data->player.rot_ang -= 2 * M_PI;
-	}
-	draw_player(data);
 }
 
 void	draw_direction(t_data *data)
