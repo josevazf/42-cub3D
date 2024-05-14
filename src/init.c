@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 13:39:06 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:17:08 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,32 @@ void	create_map(t_data *data)
 		data->map[i] = ft_safe_malloc(sizeof(t_cube) * (data->map_w + 1));
 }
 
+enum s_cubeStart	get_player_start_dir(char dir, t_data *data)
+{
+	if (dir == 'N')
+	{
+		data->player.rot_ang = (M_PI / 2) * 3;
+		return (N);
+	}
+	else if (dir == 'S')
+	{
+		data->player.rot_ang = (M_PI / 2) * 1;
+		return (S);
+	}
+	else if (dir == 'E')
+	{
+		data->player.rot_ang = (M_PI / 2) * 2;
+		return (E);
+	}
+	else if (dir == 'W')
+	{
+		data->player.rot_ang = 0;
+		return (W);
+	}
+	else
+		return (FALSE);
+}
+
 /* Fill the matrix representation of the map with info for each cube */
 void	fill_map(t_cube *map, char *line, t_data *data)
 {
@@ -79,16 +105,23 @@ void	fill_map(t_cube *map, char *line, t_data *data)
 	{
 		map[i].cnt.x = 0;
 		map[i].cnt.y = 0;
-		if (!ft_strncmp(nums[i], "0", 1) || ft_strncmp(nums[i], "1", 1))
+		if (!ft_strncmp(nums[i], "0", 1))
 		{
 			map[i].cube_type = OPEN;
+			map[i].cube_start = FALSE;
 			map[i].clr = CLR_WHITE;
-			
 		}
 		else if (!ft_strncmp(nums[i], "1", 1))
 		{
 			map[i].cube_type = CLOSED;
+			map[i].cube_start = FALSE;
 			map[i].clr = CLR_SILK;
+		}
+		else if (ft_strncmp(nums[i], "0", 1) && ft_strncmp(nums[i], "1", 1))
+		{
+			map[i].cube_type = OPEN;
+			map[i].cube_start = get_player_start_dir(nums[i][0], data);
+			map[i].clr = CLR_WHITE;
 		}
 		map[i].data = data;
 		free(nums[i]);

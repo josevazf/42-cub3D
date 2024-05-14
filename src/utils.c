@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:08:08 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 12:10:13 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:19:00 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,31 @@ void	get_map_center(t_data *data)
 	data->c_pos_y = get_average(data, 1);
 }
 
+int		get_cube_center(t_cube *cube, int t)
+{
+	int	v1;
+	int	v2;
+	int	v3;
+	int	v4;
+
+	if (t == 0)
+	{
+		v1 = cube->v1.x;
+		v2 = cube->v2.x;
+		v3 = cube->v3.x;
+		v4 = cube->v4.x;
+	}
+	else
+	{
+		v1 = cube->v1.y;
+		v2 = cube->v2.y;
+		v3 = cube->v3.y;
+		v4 = cube->v4.y;
+	}
+	return ((v1 + v2 + v3 + v4) / 4);
+}
+
+/* Print all cubes vertices coordinates */
 void	print_cube_coords(t_data *data)
 {
 		int	i;

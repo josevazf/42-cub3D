@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 12:18:04 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:16:46 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,20 @@
 
 typedef struct s_data	t_data;
 
-typedef enum s_CubeType
+typedef enum s_cubeType
 {
 	OPEN,
 	CLOSED,
-}	t_CubeType;
+}	t_cubeType;
+
+typedef enum s_cubeStart
+{
+	FALSE,
+	N,
+	S,
+	E,
+	W,
+}	t_cubeStart;
 
 typedef struct s_img
 {
@@ -102,7 +111,8 @@ typedef struct s_cube
 	int				x;
 	int				y;
 	t_color			rgb;
-	t_CubeType		cube_type;
+	t_cubeType		cube_type;
+	t_cubeStart		cube_start;
 	t_data			*data;
 }	t_cube;
 
@@ -111,7 +121,7 @@ typedef struct s_player
 	double		px;
 	double		py;
 	double		rot_ang;
-	t_cube		ps;
+	t_cube		c_pos;
 	t_key		key;
 	t_data		*data;
 }	t_player;
@@ -144,6 +154,7 @@ typedef struct s_data
 void	init_data(t_data *data);
 void	get_dimensions(char *file_name, t_data *data);
 void	create_map(t_data *data);
+enum s_cubeStart	get_player_start_dir(char dir, t_data *data);
 void	fill_map(t_cube *map, char *line, t_data *data);
 void	process_map(char *file_name, t_data *data);
 
@@ -167,6 +178,7 @@ void	fit_to_window(t_data *data, double angle);
 t_cube	player_cube_position(t_data *data, double px, double py);
 bool	is_valid_cube(t_data *data, double mx, double my);
 void	move_player(t_data *data, int key);
+void	set_player_pos(t_data *data);
 void	draw_player(t_data *data);
 
 // draw.c
@@ -187,6 +199,7 @@ double	get_rad(double deg);
 double	get_deg(double rad);
 float	get_average(t_data *data, int t);
 void	get_map_center(t_data *data);
+int		get_cube_center(t_cube *cube, int t);
 void	print_cube_coords(t_data *data);
 
 
