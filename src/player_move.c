@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:58:59 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/15 11:36:51 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:53:24 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* Check collisions between Player movement and closed cubes */
 bool	is_valid_cube(t_data *data, double mx, double my)
 {
-	data->player.c_pos = player_cube_position(data, mx, my);
+	data->player.c_pos = point_cube_position(data, mx, my);
 	if (data->player.c_pos.cube_type == CLOSED)
 		return (false);
 	return (true);
@@ -55,12 +55,12 @@ void	move_sides(t_data *data, int key)
 	if (key == XK_a)
 	{
 		angle -= (M_PI / 2);
-		angle = get_wrapped_angle(angle);
+		angle = wrap_angle(angle);
 	}
 	else
 	{
 		angle += (M_PI / 2);
-		angle = get_wrapped_angle(angle);
+		angle = wrap_angle(angle);
 	}
 	px = data->player.px + cos(angle) * MV_SPD;
 	py = data->player.py + sin(angle) * MV_SPD;
@@ -77,12 +77,12 @@ void	move_rotate(t_data *data, int key)
 	if (key == XK_Left)
 	{
 		data->player.rot_ang -= ROT_SPD;
-		data->player.rot_ang = get_wrapped_angle(data->player.rot_ang);
+		data->player.rot_ang = wrap_angle(data->player.rot_ang);
 	}
 	else
 	{
 		data->player.rot_ang += ROT_SPD;
-		data->player.rot_ang = get_wrapped_angle(data->player.rot_ang);
+		data->player.rot_ang = wrap_angle(data->player.rot_ang);
 	}
 }
 

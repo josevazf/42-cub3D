@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 17:51:25 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:13:11 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ enum s_cubeStart	get_player_start_dir(char dir, t_data *data)
 		return (FALSE);
 }
 
-/* Return the Cube where the Player is positioned */
-t_cube	player_cube_position(t_data *data, double px, double py)
+/* Return the Cube where the point is positioned */
+t_cube	point_cube_position(t_data *data, double x, double y)
 {
 	int i;
 	int j;
@@ -52,10 +52,10 @@ t_cube	player_cube_position(t_data *data, double px, double py)
 		j = -1;
 		while (++j < data->map_w)
 		{
-			if (px >= data->map[i][j].v1.x && \
-				py >= data->map[i][j].v1.y && \
-				px <= data->map[i][j].v3.x && \
-				py <= data->map[i][j].v3.y)
+			if (x >= data->map[i][j].v1.x && \
+				y >= data->map[i][j].v1.y && \
+				x <= data->map[i][j].v3.x && \
+				y <= data->map[i][j].v3.y)
 			return (data->map[i][j]);
 		}
 	}

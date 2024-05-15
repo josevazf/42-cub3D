@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:37:56 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 12:11:46 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:44:00 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	(void)argc;
+/* 
 	if (argc != 2 || ft_check_ext(argv[1], ".cub"))
-		args_error();
+		args_error(); */
 	process_map(argv[1], &data);
 	data.map_name = ft_strjoin("[padaria]   Cub3D: ", argv[1]);
 	data.mlx_ptr = mlx_init();
