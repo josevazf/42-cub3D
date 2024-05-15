@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:58:59 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 17:39:10 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:30:07 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	move_sides(t_data *data, int key)
 	double py;
 	double angle;
 
+	(void)key;
 	angle = data->player.rot_ang;
 	if (key == XK_a)
 	{
@@ -72,7 +73,7 @@ void	move_sides(t_data *data, int key)
 	}
 }
 
-/* Function to trigger Player movement */
+/* Function to trigger Player movement */ 
 void	move_player(t_data *data, int key)
 {
 	clean_screen(data);
@@ -93,5 +94,4 @@ void	move_player(t_data *data, int key)
 		if (data->player.rot_ang >= 2 * M_PI)
 			data->player.rot_ang -= 2 * M_PI;
 	}
-	draw_player(data);
 }

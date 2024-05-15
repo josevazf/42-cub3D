@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 15:51:12 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:11:45 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	process_minimap(t_data *data)
 	set_map(data);
 	draw_minimap(data);
 	draw_player(data);
+	draw_rays(data);
 	return ;
 }
 

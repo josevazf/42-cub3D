@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 17:46:40 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:43:29 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@
 
 // Game settings
 # define FOV_ANG (60 * (M_PI / 180))
-# define NUM_RAYS WIN_W
+# define RAY_WIDTH 1
+# define NUM_RAYS (WIN_W / RAY_WIDTH)
 # define MV_SPD 1
 # define ROT_SPD (3 * (M_PI / 180))
 
@@ -149,11 +150,11 @@ typedef struct s_data
 	char		*map_name;
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_key		key;
-	t_img		img;
-	t_cube		**map;
 	t_rays		*rays;
 	t_player	player;
+	t_cube		**map;
+	t_key		key;
+	t_img		img;
 }	t_data;
 
 // main.c
@@ -162,7 +163,6 @@ typedef struct s_data
 void	init_data(t_data *data);
 void	get_dimensions(char *file_name, t_data *data);
 void	create_map(t_data *data);
-enum s_cubeStart	get_player_start_dir(char dir, t_data *data);
 void	fill_map(t_cube *map, char *line, t_data *data);
 void	process_map(char *file_name, t_data *data);
 
@@ -184,10 +184,9 @@ void	set_coordinates(t_data *data);
 //void	fit_to_window(t_data *data, double angle);
 
 // player.c
-t_cube	player_cube_position(t_data *data, double px, double py);
-void	move_player(t_data *data, int key);
-void	set_player_pos(t_data *data);
-
+enum s_cubeStart	get_player_start_dir(char dir, t_data *data);
+t_cube				player_cube_position(t_data *data, double px, double py);
+void				set_player_pos(t_data *data);
 
 // player_move.c
 bool	is_valid_cube(t_data *data, double mx, double my);
@@ -203,12 +202,15 @@ void	draw_minimap(t_data *data);
 // draw_utils.c
 void	put_pixel(t_img *img, int x, int y, int color);
 void	hex_to_rgb(int hex_color, t_point *point);
-//int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
 void	paint_square(t_cube *cube);
-
+void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
+//int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
 //void	vertical_lines(t_data *data);
 //void	horizontal_lines(t_data *data);
-void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
+
+// raycasting.c
+void	cast_rays(t_data *data);
+void	draw_rays(t_data *data);
 
 // utils.c
 void	clean_screen(t_data *data);

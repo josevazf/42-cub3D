@@ -6,11 +6,38 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 17:45:32 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:51:25 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/* Get Player starting direction */
+enum s_cubeStart	get_player_start_dir(char dir, t_data *data)
+{
+	if (dir == 'N')
+	{
+		data->player.rot_ang = (M_PI / 2) * 3;
+		return (N);
+	}
+	else if (dir == 'S')
+	{
+		data->player.rot_ang = (M_PI / 2) * 1;
+		return (S);
+	}
+	else if (dir == 'E')
+	{
+		data->player.rot_ang = (M_PI / 2) * 2;
+		return (E);
+	}
+	else if (dir == 'W')
+	{
+		data->player.rot_ang = 0;
+		return (W);
+	}
+	else
+		return (FALSE);
+}
 
 /* Return the Cube where the Player is positioned */
 t_cube	player_cube_position(t_data *data, double px, double py)

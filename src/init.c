@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 15:17:08 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:03:32 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_data(t_data *data)
 	data->player.px = data->c_pos_x;
 	data->player.py = data->c_pos_y;
 	data->player.rot_ang = (M_PI / 2) * 3;
+	data->rays = ft_safe_malloc(sizeof(t_rays) * NUM_RAYS);
 }
 
 /* Get outter dimensions of the map, w (width) and h (height)*/
@@ -64,32 +65,6 @@ void	create_map(t_data *data)
 	data->map = ft_safe_malloc(sizeof(t_cube *) * (data->map_h + 1));
 	while (++i < data->map_h)
 		data->map[i] = ft_safe_malloc(sizeof(t_cube) * (data->map_w + 1));
-}
-
-enum s_cubeStart	get_player_start_dir(char dir, t_data *data)
-{
-	if (dir == 'N')
-	{
-		data->player.rot_ang = (M_PI / 2) * 3;
-		return (N);
-	}
-	else if (dir == 'S')
-	{
-		data->player.rot_ang = (M_PI / 2) * 1;
-		return (S);
-	}
-	else if (dir == 'E')
-	{
-		data->player.rot_ang = (M_PI / 2) * 2;
-		return (E);
-	}
-	else if (dir == 'W')
-	{
-		data->player.rot_ang = 0;
-		return (W);
-	}
-	else
-		return (FALSE);
 }
 
 /* Fill the matrix representation of the map with info for each cube */

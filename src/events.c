@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:56:30 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/13 17:53:08 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:01:37 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	free_game(t_data *data)
 		data->win_ptr = NULL;
 		free(data->mlx_ptr);
 		free(data->map_name);
+		free(data->rays);
 		ft_free_map(data->map);
 		exit (EXIT_SUCCESS);
 	}
