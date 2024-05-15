@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:58:59 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/15 09:30:07 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:36:51 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /* Check collisions between Player movement and closed cubes */
 bool	is_valid_cube(t_data *data, double mx, double my)
 {
-	if (player_cube_position(data, mx, my).cube_type == CLOSED)
+	data->player.c_pos = player_cube_position(data, mx, my);
+	if (data->player.c_pos.cube_type == CLOSED)
 		return (false);
 	return (true);
 }
@@ -50,19 +51,16 @@ void	move_sides(t_data *data, int key)
 	double py;
 	double angle;
 
-	(void)key;
 	angle = data->player.rot_ang;
 	if (key == XK_a)
 	{
 		angle -= (M_PI / 2);
-		if (angle < 0)
-			angle += 2 * M_PI;
+		angle = get_wrapped_angle(angle);
 	}
 	else
 	{
 		angle += (M_PI / 2);
-		if (angle >= 2 * M_PI)
-			angle -= 2 * M_PI;
+		angle = get_wrapped_angle(angle);
 	}
 	px = data->player.px + cos(angle) * MV_SPD;
 	py = data->player.py + sin(angle) * MV_SPD;
@@ -70,6 +68,21 @@ void	move_sides(t_data *data, int key)
 	{
 		data->player.px = px;
 		data->player.py = py;
+	}
+}
+
+/* Move Player FOV left or right */
+void	move_rotate(t_data *data, int key)
+{
+	if (key == XK_Left)
+	{
+		data->player.rot_ang -= ROT_SPD;
+		data->player.rot_ang = get_wrapped_angle(data->player.rot_ang);
+	}
+	else
+	{
+		data->player.rot_ang += ROT_SPD;
+		data->player.rot_ang = get_wrapped_angle(data->player.rot_ang);
 	}
 }
 
@@ -82,16 +95,6 @@ void	move_player(t_data *data, int key)
 		move_linear(data, key);
 	else if (key == XK_a || key == XK_d)
 		move_sides(data, key);
-	else if (key == XK_Left)
-	{
-		data->player.rot_ang -= ROT_SPD;
-		if (data->player.rot_ang < 0)
-			data->player.rot_ang += 2 * M_PI;		
-	}
-	else if (key == XK_Right)
-	{
-		data->player.rot_ang += ROT_SPD;
-		if (data->player.rot_ang >= 2 * M_PI)
-			data->player.rot_ang -= 2 * M_PI;
-	}
+	else if (key == XK_Left || key == XK_Right)
+		move_rotate(data, key);
 }

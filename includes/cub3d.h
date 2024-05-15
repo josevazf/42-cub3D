@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/15 09:43:29 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:57:45 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define CLR_NEON			0xFF10F0
 
 // Game settings
+# define SIZE 64
 # define FOV_ANG (60 * (M_PI / 180))
 # define RAY_WIDTH 1
 # define NUM_RAYS (WIN_W / RAY_WIDTH)
@@ -80,9 +81,7 @@ typedef struct s_key
 	int	s;
 	int	d;
 	int	esc;
-	int	up;
 	int	left;
-	int	down;
 	int	right;
 }	t_key;
 
@@ -103,9 +102,13 @@ typedef struct s_point
 
 typedef struct s_rays
 {
-	int			length;
 	int			height;
-	double		direction;
+	int			distance;
+	int			x_hit;
+	int			y_hit;
+	bool		is_up;
+	bool		is_right;
+	double		angle;
 }	t_rays;
 
 typedef struct s_cube
@@ -116,8 +119,8 @@ typedef struct s_cube
 	t_point			v3;
 	t_point			v4;
 	int				clr;
-	int				x;
-	int				y;
+	int				row;
+	int				col;
 	t_color			rgb;
 	t_cubeType		cube_type;
 	t_cubeStart		cube_start;
@@ -192,7 +195,11 @@ void				set_player_pos(t_data *data);
 bool	is_valid_cube(t_data *data, double mx, double my);
 void	move_linear(t_data *data, int key);
 void	move_sides(t_data *data, int key);
+void	move_rotate(t_data *data, int key);
 void	move_player(t_data *data, int key);
+
+// player_utils.c
+double	get_wrapped_angle(double angle);
 
 // draw.c
 void	draw_direction(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 18:11:45 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:31:36 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	process_minimap(t_data *data)
 	draw_minimap(data);
 	draw_player(data);
 	draw_rays(data);
+	//printf("player_cube[%d][%d]\n", data->player.c_pos.row, data->player.c_pos.col);
 	return ;
 }
 
@@ -41,7 +42,7 @@ void	set_coordinates(t_data *data)
 
 	i = -1;
 	j = -1;
-	data->mm_spc = 64;
+	data->mm_spc = SIZE;
 	while (++i < data->map_h)
 	{
 		j = -1;
@@ -64,8 +65,8 @@ void	set_cube_vertex(t_data *data, int i, int j)
 		j = -1;
 		while (++j < data->map_w)
 		{
-			cube[i][j].x = i;
-			cube[i][j].y = j;
+			cube[i][j].row = i;
+			cube[i][j].col = j;
 			cube[i][j].v2.x = cube[i][j].v1.x + data->mm_spc;
 			cube[i][j].v2.y = cube[i][j].v1.y;
 			cube[i][j].v3.x = cube[i][j].v2.x;

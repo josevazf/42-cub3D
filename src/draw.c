@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:43:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 17:47:33 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:38:01 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ void	draw_player(t_data *data)
 	{
 		j = 10;
 		while (--j > 0)
-		{
 			put_pixel(&data->img, (data->player.px + 5) - i, (data->player.py + 5) - j, CLR_PERSIAN);
-		}
 	}
 }
