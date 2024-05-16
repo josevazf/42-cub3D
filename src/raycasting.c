@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/16 12:46:48 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:13:10 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,31 @@ int		distance_between_points(int x1, int y1, int x2, int y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
-void	get_final_hit(t_data *data, t_rays *rays)
+void	get_final_hit(t_data *data, t_rays *rays, int h_dist, int v_dist)
 {
-	int	horizontal_dist;
-	int	vertical_dist;
-
-	(void)data;
 	if (rays->hwall_hit)
-		horizontal_dist = distance_between_points(data->player.px, data->player.py, rays->xh_hit, rays->yh_hit);
+		h_dist = distance_between_points(data->player.px, \
+			data->player.py, rays->xh_hit, rays->yh_hit);
 	else
-		horizontal_dist = INT_MAX;
+		h_dist = INT_MAX;
 	if (rays->vwall_hit)
-		vertical_dist = distance_between_points(data->player.px, data->player.py, rays->xv_hit, rays->yv_hit);
+		v_dist = distance_between_points(data->player.px, \
+			data->player.py, rays->xv_hit, rays->yv_hit);
 	else
-		vertical_dist = INT_MAX;
-	if (horizontal_dist < vertical_dist)
+		v_dist = INT_MAX;
+	if (h_dist <= v_dist)
 	{
 		rays->x_hit = rays->xh_hit;
 		rays->y_hit = rays->yh_hit;
+		rays->distance = h_dist;
+		rays->hit_vert = false;
 	}
 	else
 	{
 		rays->x_hit = rays->xv_hit;
 		rays->y_hit = rays->yv_hit;
+		rays->distance = v_dist;
+		rays->hit_vert = true;
 	}
 }
 
@@ -84,7 +86,7 @@ void	vertical_grid_hit(t_data *data, t_rays *rays)
 	{
 		x_hit = data->player.c_pos.v2.x;
 		if (rays->is_up)
-			y_hit = data->player.py - (x_hit - data->player.px) * tan(rays->angle);
+			y_hit = data->player.py - (x_hit - data->player.px) * tan((2 * M_PI) - rays->angle);
 		else
 			y_hit = data->player.py + (x_hit - data->player.px) * tan(rays->angle);
 	}
@@ -94,7 +96,7 @@ void	vertical_grid_hit(t_data *data, t_rays *rays)
 		if (rays->is_up)
 			y_hit = data->player.py - (data->player.px - x_hit) * tan(rays->angle);
 		else
-			y_hit = data->player.py + (data->player.px - x_hit) * tan(rays->angle);
+			y_hit = data->player.py + (data->player.px - x_hit) * tan((2 * M_PI) - rays->angle);
 		x_step *= -1;
 	}
 	if (y_step > 0 && rays->is_up)
@@ -186,7 +188,9 @@ void	cast_rays(t_data *data)
 		data->rays[i].y_hit = 0;
 		horizontal_grid_hit(data, &data->rays[i]);
 		vertical_grid_hit(data, &data->rays[i]);
-		get_final_hit(data, &data->rays[i]);
+		get_final_hit(data, &data->rays[i], 0, 0);
+		printf("RAY[%d]", i);
+		printf("\tangle: %f\tdistance: %d\n", data->rays[i].angle, data->rays[i].distance);
 	}
 }
 

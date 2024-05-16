@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:58:59 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/15 16:53:24 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:44:57 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* Check collisions between Player movement and closed cubes */
 bool	is_valid_cube(t_data *data, double mx, double my)
 {
-	data->player.c_pos = point_cube_position(data, mx, my);
+	data->player.c_pos = point_cube_position_player(data, mx, my);
 	if (data->player.c_pos.cube_type == CLOSED)
 		return (false);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/16 12:47:25 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:05:26 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define SIZE 64
 
 # define FOV_ANG (60 * (M_PI / 180))
-# define RAY_WIDTH 10
+# define RAY_WIDTH 50
 # define NUM_RAYS (WIN_W / RAY_WIDTH)
 # define MV_SPD 1
 # define ROT_SPD (3 * (M_PI / 180))
@@ -112,6 +112,7 @@ typedef struct s_rays
 	int			yh_hit;
 	int			xv_hit;
 	int			yv_hit;
+	bool		hit_vert;
 	bool		hwall_hit;
 	bool		vwall_hit;
 	bool		is_up;
@@ -196,6 +197,7 @@ void	set_coordinates(t_data *data);
 
 // player.c
 enum s_cubeStart	get_player_start_dir(char dir, t_data *data);
+t_cube				point_cube_position_player(t_data *data, double x, double y);
 t_cube				point_cube_position(t_data *data, double x, double y);
 void				set_player_pos(t_data *data);
 
