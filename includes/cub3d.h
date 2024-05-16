@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/15 16:53:04 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/16 12:10:39 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <math.h>
+# include <limits.h>
 
 # define ERROR 1
 # define SUCCESS 0
@@ -107,6 +108,12 @@ typedef struct s_rays
 	int			distance;
 	int			x_hit;
 	int			y_hit;
+	int			xh_hit;
+	int			yh_hit;
+	int			xv_hit;
+	int			yv_hit;
+	bool		hwall_hit;
+	bool		vwall_hit;
 	bool		is_up;
 	bool		is_right;
 	double		angle;
