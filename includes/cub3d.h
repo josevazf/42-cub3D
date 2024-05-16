@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/16 12:10:39 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/16 12:47:25 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define SIZE 64
 
 # define FOV_ANG (60 * (M_PI / 180))
-# define RAY_WIDTH 50
+# define RAY_WIDTH 10
 # define NUM_RAYS (WIN_W / RAY_WIDTH)
 # define MV_SPD 1
 # define ROT_SPD (3 * (M_PI / 180))

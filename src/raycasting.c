@@ -6,12 +6,16 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/16 12:27:12 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/16 12:46:48 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int		distance_between_points(int x1, int y1, int x2, int y2)
+{
+	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+}
 void	get_final_hit(t_data *data, t_rays *rays)
 {
 	int	horizontal_dist;
@@ -19,11 +23,11 @@ void	get_final_hit(t_data *data, t_rays *rays)
 
 	(void)data;
 	if (rays->hwall_hit)
-		horizontal_dist = sqrt((rays->xh_hit * rays->xh_hit) + (rays->yh_hit * rays->yh_hit));		
+		horizontal_dist = distance_between_points(data->player.px, data->player.py, rays->xh_hit, rays->yh_hit);
 	else
 		horizontal_dist = INT_MAX;
 	if (rays->vwall_hit)
-		vertical_dist = sqrt((rays->xv_hit * rays->xv_hit) + (rays->yv_hit * rays->yv_hit));
+		vertical_dist = distance_between_points(data->player.px, data->player.py, rays->xv_hit, rays->yv_hit);
 	else
 		vertical_dist = INT_MAX;
 	if (horizontal_dist < vertical_dist)
@@ -50,7 +54,10 @@ void	vertical_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 		next_x++;
 	else
 		next_x--;
-	while (!rays->vwall_hit && next_x >= 5 && next_x <= WIN_W && next_y >= 5 && next_y <= WIN_H)
+	while (!rays->vwall_hit && next_x >= data->map[0][0].v1.x + 5 && \
+			next_x <= data->map[0][data->map_w - 1].v2.x - 5 && \
+			next_y >= data->map[0][0].v1.y + 5 && \
+			next_y <= data->map[data->map_h - 1][0].v3.y - 5)
 	{
 		if (point_cube_position(data, next_x, next_y).cube_type == 1)
 		{
@@ -111,7 +118,10 @@ void	horizontal_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 		next_y--;
 	else
 		next_y++;
-	while (!rays->hwall_hit && next_x >= 5 && next_x <= WIN_W && next_y >= 5 && next_y <= WIN_H)
+	while (!rays->hwall_hit && next_x >= data->map[0][0].v1.x + 5 && \
+			next_x <= data->map[0][data->map_w - 1].v2.x - 5 && \
+			next_y >= data->map[0][0].v1.y + 5 && \
+			next_y <= data->map[data->map_h - 1][0].v3.y - 5)
 	{
 		if (point_cube_position(data, next_x, next_y).cube_type == 1)
 		{
@@ -161,7 +171,7 @@ void	cast_rays(t_data *data)
 	
 	i = -1;
 	ray_angle = wrap_angle(data->player.rot_ang - (FOV_ANG / 2));
-	while (++i < 1)
+	while (++i < NUM_RAYS)
 	{
 		data->rays[i].angle = wrap_angle(ray_angle + ((FOV_ANG / NUM_RAYS) * i));
 		data->rays[i].is_up = true;
@@ -190,7 +200,7 @@ void	draw_rays(t_data *data)
 	cast_rays(data);
 	ray_start.x = data->player.px;
 	ray_start.y = data->player.py;
-	while (++i < 1)
+	while (++i < NUM_RAYS)
 	{
 		ray_end.x = data->rays[i].x_hit;
 		ray_end.y = data->rays[i].y_hit;

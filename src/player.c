@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/16 12:25:25 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/16 12:34:33 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,6 @@ t_cube	point_cube_position(t_data *data, double x, double y)
 
 	i = -1;
 	j = -1;
-	printf("X: %f\n", x);
-	printf("Y: %f\n\n", y);
-	if (x <= data->map[0][0].v1.x + 5)
-		x = data->map[0][0].v1.x + 5;
-	else if (x >= data->map[0][data->map_w - 1].v2.x - 5)
-		x = data->map[0][data->map_w - 1].v2.x - 5;
-	if (y <= data->map[0][0].v1.y + 5)
-		y = data->map[0][0].v1.y + 5;
-	else if (y >= data->map[data->map_h - 1][0].v3.y - 5)
-		y = data->map[data->map_h - 1][0].v3.y - 5;
-	printf("X after: %f\n", x);
-	printf("Y after: %f\n\n", y);
 	while (++i < data->map_h)
 	{
 		j = -1;
