@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:37:56 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/15 15:44:00 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:09:12 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int	run_game(t_data *data)
 {
 	input_router(data);
+	cast_rays(data);
+	render_walls(data);
 	process_minimap(data);
-	//printf("ANGLE: %f\n\n", data->player.rot_ang);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (SUCCESS);
 }

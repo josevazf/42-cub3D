@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/20 14:03:49 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:08:09 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* Create the first output image in isometric perspective */
 void	set_map(t_data *data)
 {
-	clean_screen(data);
+	//clean_screen(data);
 	data->c_pos_x = WIN_W / 2;
 	data->c_pos_y = WIN_H / 2;
 	set_coordinates(data);

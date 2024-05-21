@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/21 17:05:12 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:44:58 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,9 @@ void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
 // raycasting.c
 void	cast_rays(t_data *data);
 void	draw_rays(t_data *data);
+
+// walls.c
+void	render_walls(t_data *data);
 
 // utils.c
 void	clean_screen(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/21 16:51:58 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:29:44 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	vertical_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 	next_x = rays->xv_hit;
 	next_y = rays->yv_hit;
 	if (rays->is_right)
-		dec = 5;
+		dec = 10;
 	else
-		dec = -5;
+		dec = -10;
 	while (!rays->vwall_hit && next_x >= data->map[0][0].v1.x + 5 && \
 			next_x <= data->map[0][data->map_w - 1].v2.x - 5 && \
 			next_y >= data->map[0][0].v1.y + 5 && \
@@ -201,16 +201,15 @@ void	draw_rays(t_data *data)
 	t_point	ray_end;
 	
 	i = -1;
-	cast_rays(data);
 	ray_start.x = data->player.px * MM_SCALE;
 	ray_start.y = data->player.py * MM_SCALE;
 	while (++i < NUM_RAYS)
 	{
 		ray_end.x = data->rays[i].x_hit * MM_SCALE;
 		ray_end.y = data->rays[i].y_hit * MM_SCALE;
-		put_pixel(&data->img, ray_end.x, ray_end.y, CLR_RED);
-		//draw_lines(&ray_end, &ray_start, data, -1);
-		if (i == 0 || i == NUM_RAYS - 1)
-			draw_lines(&ray_end, &ray_start, data, -1);	
+		//put_pixel(&data->img, ray_end.x, ray_end.y, CLR_RED);
+		draw_lines(&ray_end, &ray_start, data, -1);
+		/* if (i == 0 || i == NUM_RAYS - 1)
+			draw_lines(&ray_end, &ray_start, data, -1);	 */
 	}
 }
