@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:58:59 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/16 15:44:57 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 13:56:05 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	move_linear(t_data *data, int key)
 	}
 }
 
-/* Move to the left side `A` or to the right side `D` */
-void	move_sides(t_data *data, int key)
+/* Strafe to the left `A` or to the right `D` */
+void	move_strafe(t_data *data, int key)
 {
 	double px;
 	double py;
@@ -94,7 +94,7 @@ void	move_player(t_data *data, int key)
 	if (key == XK_w || key == XK_s)
 		move_linear(data, key);
 	else if (key == XK_a || key == XK_d)
-		move_sides(data, key);
+		move_strafe(data, key);
 	else if (key == XK_Left || key == XK_Right)
 		move_rotate(data, key);
 }

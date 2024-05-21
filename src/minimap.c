@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/15 10:31:36 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:03:49 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	set_coordinates(t_data *data)
 		j = -1;
 		while (++j < data->map_w)
 		{
-			data->map[i][j].v1.x = 50 + j * data->mm_spc;
-			data->map[i][j].v1.y = 50 + i * data->mm_spc;
+			data->map[i][j].v1.x = j * data->mm_spc;
+			data->map[i][j].v1.y = i * data->mm_spc;
 		}
 	}
 }

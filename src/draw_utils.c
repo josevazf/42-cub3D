@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/15 09:40:46 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:40:09 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 	{
 		if (p1->x > 0 && p1->x < WIN_W - 5 && p1->y > 0 && 
 			p1->y < WIN_H - 5)
-			put_pixel(&data->img, p1->x, p1->y, CLR_ROSYBROWN);
+			put_pixel(&data->img, p1->x, p1->y, CLR_RED);
 		if (p1->x == p2->x && p1->y == p2->y)
 			break ;
 		if (2 * data->err > -dy)

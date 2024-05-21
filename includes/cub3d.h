@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/16 16:05:26 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 13:57:40 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@
 // Game settings
 # define SIZE 64
 
-# define FOV_ANG (60 * (M_PI / 180))
-# define RAY_WIDTH 50
+/* # define FOV_ANG (60 * (M_PI / 180)) */
+# define FOV_ANG 1.0472
+# define RAY_WIDTH 1
 # define NUM_RAYS (WIN_W / RAY_WIDTH)
+/* # define NUM_RAYS 20 */
 # define MV_SPD 1
 # define ROT_SPD (3 * (M_PI / 180))
 
@@ -204,7 +206,7 @@ void				set_player_pos(t_data *data);
 // player_move.c
 bool	is_valid_cube(t_data *data, double mx, double my);
 void	move_linear(t_data *data, int key);
-void	move_sides(t_data *data, int key);
+void	move_strafe(t_data *data, int key);
 void	move_rotate(t_data *data, int key);
 void	move_player(t_data *data, int key);
 
