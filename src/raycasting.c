@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/21 12:04:35 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:09:33 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	vertical_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 	int		next_y;
 	int		dec;
 	
-	rays->vwall_hit = false;
 	next_x = rays->xv_hit;
 	next_y = rays->yv_hit;
 	if (rays->is_right)
@@ -62,7 +61,7 @@ void	vertical_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 			next_y >= data->map[0][0].v1.y + 5 && \
 			next_y <= data->map[data->map_h - 1][0].v3.y - 5)
 	{
-		if (point_cube_position(data, next_x + dec, next_y).cube_type == 1)
+		if (point_cube_position(data, next_x + dec, next_y).cube_type == CLOSED)
 		{
 			rays->vwall_hit = true;
 			rays->xv_hit = next_x;
@@ -100,9 +99,7 @@ void	vertical_grid_hit(t_data *data, t_rays *rays)
 			y_hit = data->player.py + (data->player.px - x_hit) * tan((2 * M_PI) - rays->angle);
 		x_step *= -1;
 	}
-	if (y_step > 0 && rays->is_up)
-		y_step *= -1;
-	if (y_step < 0 && !rays->is_up)
+	if ((y_step > 0 && rays->is_up) || (y_step < 0 && !rays->is_up))
 		y_step *= -1;
 	rays->xv_hit = x_hit;
 	rays->yv_hit = y_hit;
@@ -115,7 +112,6 @@ void	horizontal_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 	int		next_y;
 	int 	dec;
 	
-	rays->hwall_hit = false;
 	next_x = rays->xh_hit;
 	next_y = rays->yh_hit;
 	if (rays->is_up)
@@ -159,9 +155,7 @@ void	horizontal_grid_hit(t_data *data, t_rays *rays)
 		y_hit = floor(data->player.py / SIZE) * SIZE + SIZE;
 		x_hit = data->player.px + (y_hit - data->player.py) / tan(rays->angle);
 	}
-	if (x_step > 0 && !rays->is_right)
-		x_step *= -1;
-	if (x_step < 0 && rays->is_right)
+	if ((x_step > 0 && !rays->is_right) || (x_step < 0 && rays->is_right))
 		x_step *= -1;
 	rays->xh_hit = x_hit;
 	rays->yh_hit = y_hit;
@@ -184,6 +178,8 @@ void	cast_rays(t_data *data)
 			data->rays[i].is_up = false;
 		if (data->rays[i].angle > (M_PI / 2) && data->rays[i].angle < (1.5 * M_PI))
 			data->rays[i].is_right = false;
+		data->rays[i].hwall_hit = false;
+		data->rays[i].vwall_hit = false;
 		data->rays[i].distance = 0;
 		data->rays[i].height = 0;
 		data->rays[i].x_hit = 0;

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/21 13:57:40 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:10:50 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define SUCCESS 0
 
 // Window settings
-# define WIN_W 1280
-# define WIN_H 720
+# define WIN_W 1024
+# define WIN_H 768
 
 # define CLR_RED			0xFF0000
 # define CLR_ROSYBROWN		0xBC8F8F
@@ -42,6 +42,7 @@
 # define CLR_NEON			0xFF10F0
 
 // Game settings
+# define MM_SCALE 0.5
 # define SIZE 64
 
 /* # define FOV_ANG (60 * (M_PI / 180)) */
@@ -199,7 +200,6 @@ void	set_coordinates(t_data *data);
 
 // player.c
 enum s_cubeStart	get_player_start_dir(char dir, t_data *data);
-t_cube				point_cube_position_player(t_data *data, double x, double y);
 t_cube				point_cube_position(t_data *data, double x, double y);
 void				set_player_pos(t_data *data);
 

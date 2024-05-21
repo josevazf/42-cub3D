@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/16 15:54:31 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 14:55:18 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,49 +40,11 @@ enum s_cubeStart	get_player_start_dir(char dir, t_data *data)
 }
 
 /* Return the Cube where the point is positioned */
-t_cube	point_cube_position_player(t_data *data, double x, double y)
-{
-	int i;
-	int j;
-
-	i = -1;
-	j = -1;
-	while (++i < data->map_h)
-	{
-		j = -1;
-		while (++j < data->map_w)
-		{
-			if (x >= data->map[i][j].v1.x && \
-				y >= data->map[i][j].v1.y && \
-				x <= data->map[i][j].v3.x && \
-				y <= data->map[i][j].v3.y)
-			return (data->map[i][j]);
-		}
-	}
-	return (data->map[i][j]);
-}
-
-/* Return the Cube where the point is positioned */
 t_cube	point_cube_position(t_data *data, double x, double y)
 {
-	int i;
-	int j;
-
-	i = -1;
-	j = -1;
-	while (++i < data->map_h)
-	{
-		j = -1;
-		while (++j < data->map_w)
-		{
-			if (x >= data->map[i][j].v1.x && \
-				y >= data->map[i][j].v1.y && \
-				x <= data->map[i][j].v3.x && \
-				y <= data->map[i][j].v3.y )
-			return (data->map[i][j]);
-		}
-	}
-	return (data->map[i][j]);
+	x = floor(x / SIZE);
+	y = floor(y / SIZE);
+	return (data->map[(int)y][(int)x]);
 }
 
 /* Set initial Player position in the map */
