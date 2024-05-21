@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/21 15:10:50 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:05:12 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,15 @@
 # define CLR_NEON			0xFF10F0
 
 // Game settings
-# define MM_SCALE 0.5
+# define MM_SCALE 0.2
 # define SIZE 64
-
 /* # define FOV_ANG (60 * (M_PI / 180)) */
 # define FOV_ANG 1.0472
 # define RAY_WIDTH 1
 # define NUM_RAYS (WIN_W / RAY_WIDTH)
 /* # define NUM_RAYS 20 */
 # define MV_SPD 1
-# define ROT_SPD (3 * (M_PI / 180))
+# define ROT_SPD (2 * (M_PI / 180))
 
 typedef struct s_data	t_data;
 

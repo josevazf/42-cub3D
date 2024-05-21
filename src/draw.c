@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:43:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/15 11:38:01 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:20:31 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,19 @@ void	draw_player(t_data *data)
 	int	i;
 	int	j;
 	
-	i = 10;
-	j = 10;
-	draw_direction(data);
+	i = 3;
+	j = 3;
+	//draw_direction(data);
 	if (data->init == true)
 	{
 		set_player_pos(data);
 		data->init = false;
 	}
 	//data->player.c_pos = player_cube_position(data, data->player.px, data->player.py);
-	while (--i > 0)
+	while (--i > -3)
 	{
-		j = 10;
-		while (--j > 0)
-			put_pixel(&data->img, (data->player.px + 5) - i, (data->player.py + 5) - j, CLR_PERSIAN);
+		j = 3;
+		while (--j > -3)
+			put_pixel(&data->img, data->player.px * MM_SCALE - i, data->player.py * MM_SCALE - j, CLR_PERSIAN);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/21 15:09:33 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:51:58 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,8 @@ void	cast_rays(t_data *data)
 		vertical_grid_hit(data, &data->rays[i]);
 		get_final_hit(data, &data->rays[i], 0, 0);
 		printf("RAY[%d]", i);
-		printf("\thit_x: %d\thit_y: %d\n", data->rays[i].x_hit, data->rays[i].y_hit);
+		printf("\tangle_diff:: %f\n", data->rays[i + 1].angle - data->rays[i].angle);
+		//printf("\thit_x: %d\thit_y: %d\n", data->rays[i].x_hit, data->rays[i].y_hit);
 		//printf("\tangle: %f\tdistance: %d\n", data->rays[i].angle, data->rays[i].distance);
 	}
 }
@@ -201,12 +202,15 @@ void	draw_rays(t_data *data)
 	
 	i = -1;
 	cast_rays(data);
-	ray_start.x = data->player.px;
-	ray_start.y = data->player.py;
+	ray_start.x = data->player.px * MM_SCALE;
+	ray_start.y = data->player.py * MM_SCALE;
 	while (++i < NUM_RAYS)
 	{
-		ray_end.x = data->rays[i].x_hit;
-		ray_end.y = data->rays[i].y_hit;
-		draw_lines(&ray_end, &ray_start, data, -1);
+		ray_end.x = data->rays[i].x_hit * MM_SCALE;
+		ray_end.y = data->rays[i].y_hit * MM_SCALE;
+		put_pixel(&data->img, ray_end.x, ray_end.y, CLR_RED);
+		//draw_lines(&ray_end, &ray_start, data, -1);
+		if (i == 0 || i == NUM_RAYS - 1)
+			draw_lines(&ray_end, &ray_start, data, -1);	
 	}
 }

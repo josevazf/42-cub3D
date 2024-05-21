@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/20 14:40:09 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:06:52 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ void	paint_square(t_cube *cube)
 
 	x = -1;
 	y = -1;
-	size = cube->data->mm_spc;
+	size = cube->data->mm_spc * MM_SCALE;
 	while (++x < size)
 	{
 		y = -1;
 		while (++y < size)
 		{
-			put_pixel(&cube->data->img, cube->v1.x + x, cube->v1.y + y, cube->clr);
-			if (x == 0 || x == size - 1 || y == 0 || y == size - 1)
-				put_pixel(&cube->data->img, cube->v1.x + x, cube->v1.y + y, CLR_BLACK);
+			put_pixel(&cube->data->img, (cube->v1.x * MM_SCALE) + x, (cube->v1.y * MM_SCALE) + y, cube->clr);
+			if (x == 0 || x == (size - 1) * MM_SCALE || y == 0 || y == (size - 1) * MM_SCALE)
+				put_pixel(&cube->data->img, (cube->v1.x * MM_SCALE) + x, (cube->v1.y * MM_SCALE) + y, CLR_BLACK);
 		}
 	}
 }
