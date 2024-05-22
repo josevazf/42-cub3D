@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/21 17:44:58 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:19:37 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define RAY_WIDTH 1
 # define NUM_RAYS (WIN_W / RAY_WIDTH)
 /* # define NUM_RAYS 20 */
+# define CLS_MARGIN 10
 # define MV_SPD 1
 # define ROT_SPD (2 * (M_PI / 180))
 
