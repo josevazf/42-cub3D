@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:23:26 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/21 18:11:17 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:59:19 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ void	render_walls(t_data *data)
 		line_start.y = (WIN_H / 2) + (data->rays[i].height / 2);
 		line_end.x = i + 1;
 		line_end.y = (WIN_H / 2) - (data->rays[i].height / 2);
+/* 		if (!data->rays[i].hit_vert && data->rays[i].is_up)
+			line_start.clr = CLR_BLUE; 							// N
+		else if (!data->rays[i].hit_vert && !data->rays[i].is_up)
+			line_start.clr = CLR_ROSYBROWN;						// S
+		else if (data->rays[i].hit_vert && data->rays[i].is_right)
+			line_start.clr = CLR_OLIVE;							// E
+		else if (!data->rays[i].hit_vert && !data->rays[i].is_right)
+			line_start.clr = CLR_TEAL;		 */					// W
 		draw_lines(&line_start, &line_end, data, -1);
 	}
 }

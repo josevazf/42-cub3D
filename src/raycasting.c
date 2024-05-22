@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/21 18:29:44 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:02:59 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	get_final_hit(t_data *data, t_rays *rays, int h_dist, int v_dist)
 			data->player.py, rays->xv_hit, rays->yv_hit);
 	else
 		v_dist = INT_MAX;
-	if (h_dist <= v_dist)
+	if (h_dist < v_dist)
 	{
 		rays->x_hit = rays->xh_hit;
 		rays->y_hit = rays->yh_hit;
@@ -50,13 +50,12 @@ void	vertical_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 	int		next_y;
 	int		dec;
 	
+	dec = -1;
 	next_x = rays->xv_hit;
 	next_y = rays->yv_hit;
 	if (rays->is_right)
-		dec = 10;
-	else
-		dec = -10;
-	while (!rays->vwall_hit && next_x >= data->map[0][0].v1.x + 5 && \
+		dec = 1;
+	while (next_x >= data->map[0][0].v1.x + 5 && \
 			next_x <= data->map[0][data->map_w - 1].v2.x - 5 && \
 			next_y >= data->map[0][0].v1.y + 5 && \
 			next_y <= data->map[data->map_h - 1][0].v3.y - 5)
@@ -82,23 +81,12 @@ void	vertical_grid_hit(t_data *data, t_rays *rays)
 
 	x_step = SIZE;
 	y_step = SIZE * tan(rays->angle);
+	x_hit = floor(data->player.px / SIZE) * SIZE;
 	if (rays->is_right)
-	{
 		x_hit = floor(data->player.px / SIZE) * SIZE + SIZE;
-		if (rays->is_up)
-			y_hit = data->player.py - (x_hit - data->player.px) * tan((2 * M_PI) - rays->angle);
-		else
-			y_hit = data->player.py + (x_hit - data->player.px) * tan(rays->angle);
-	}
 	else
-	{
-		x_hit = floor(data->player.px / SIZE) * SIZE;
-		if (rays->is_up)
-			y_hit = data->player.py - (data->player.px - x_hit) * tan(rays->angle);
-		else
-			y_hit = data->player.py + (data->player.px - x_hit) * tan((2 * M_PI) - rays->angle);
 		x_step *= -1;
-	}
+	y_hit = data->player.py + (x_hit - data->player.px) * tan(rays->angle);
 	if ((y_step > 0 && rays->is_up) || (y_step < 0 && !rays->is_up))
 		y_step *= -1;
 	rays->xv_hit = x_hit;
@@ -112,13 +100,12 @@ void	horizontal_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 	int		next_y;
 	int 	dec;
 	
+	dec = 1;
 	next_x = rays->xh_hit;
 	next_y = rays->yh_hit;
 	if (rays->is_up)
-		dec = -5;
-	else
-		dec = 5;
-	while (!rays->hwall_hit && next_x >= data->map[0][0].v1.x + 5 && \
+		dec = -1;
+	while (next_x >= data->map[0][0].v1.x + 5 && \
 			next_x <= data->map[0][data->map_w - 1].v2.x - 5 && \
 			next_y >= data->map[0][0].v1.y + 5 && \
 			next_y <= data->map[data->map_h - 1][0].v3.y - 5)
@@ -147,14 +134,11 @@ void	horizontal_grid_hit(t_data *data, t_rays *rays)
 	if (rays->is_up)
 	{
 		y_hit = floor(data->player.py / SIZE) * SIZE;
-		x_hit = data->player.px + (data->player.py - y_hit) / tan((2 * M_PI) - rays->angle);
 		y_step *= -1;
 	}
 	else
-	{
 		y_hit = floor(data->player.py / SIZE) * SIZE + SIZE;
-		x_hit = data->player.px + (y_hit - data->player.py) / tan(rays->angle);
-	}
+	x_hit = data->player.px + (y_hit - data->player.py) / tan(rays->angle);
 	if ((x_step > 0 && !rays->is_right) || (x_step < 0 && rays->is_right))
 		x_step *= -1;
 	rays->xh_hit = x_hit;
@@ -171,24 +155,32 @@ void	cast_rays(t_data *data)
 	ray_angle = data->player.rot_ang - (FOV_ANG / 2);
 	while (++i < NUM_RAYS)
 	{
-		data->rays[i].angle = wrap_angle(ray_angle + ((FOV_ANG / NUM_RAYS) * i));
+		ray_angle += FOV_ANG / NUM_RAYS;
+		//data->rays[i].angle = wrap_angle(ray_angle + ((FOV_ANG / NUM_RAYS) * i));
+		data->rays[i].angle = wrap_angle(ray_angle);		
 		data->rays[i].is_up = true;
-		data->rays[i].is_right = true;	
+		data->rays[i].is_right = true;
 		if (data->rays[i].angle > 0 && data->rays[i].angle < M_PI)
 			data->rays[i].is_up = false;
-		if (data->rays[i].angle > (M_PI / 2) && data->rays[i].angle < (1.5 * M_PI))
+		if (data->rays[i].angle > (0.5 * M_PI) && data->rays[i].angle < (1.5 * M_PI))
 			data->rays[i].is_right = false;
+		data->rays[i].hit_vert = false;
 		data->rays[i].hwall_hit = false;
 		data->rays[i].vwall_hit = false;
 		data->rays[i].distance = 0;
 		data->rays[i].height = 0;
+		data->rays[i].xh_hit = 0;
+		data->rays[i].yh_hit = 0;
+		data->rays[i].xv_hit = 0;
+		data->rays[i].yv_hit = 0;
 		data->rays[i].x_hit = 0;
 		data->rays[i].y_hit = 0;
 		horizontal_grid_hit(data, &data->rays[i]);
 		vertical_grid_hit(data, &data->rays[i]);
 		get_final_hit(data, &data->rays[i], 0, 0);
-		printf("RAY[%d]", i);
-		printf("\tangle_diff:: %f\n", data->rays[i + 1].angle - data->rays[i].angle);
+		//printf("RAY[%d]", i);
+		//printf("\thit_vertical? %d\n", data->rays[i].hit_vert);
+		//printf("\tangle_diff: %f\n", data->rays[i + 1].angle - data->rays[i].angle);
 		//printf("\thit_x: %d\thit_y: %d\n", data->rays[i].x_hit, data->rays[i].y_hit);
 		//printf("\tangle: %f\tdistance: %d\n", data->rays[i].angle, data->rays[i].distance);
 	}
@@ -207,9 +199,6 @@ void	draw_rays(t_data *data)
 	{
 		ray_end.x = data->rays[i].x_hit * MM_SCALE;
 		ray_end.y = data->rays[i].y_hit * MM_SCALE;
-		//put_pixel(&data->img, ray_end.x, ray_end.y, CLR_RED);
 		draw_lines(&ray_end, &ray_start, data, -1);
-		/* if (i == 0 || i == NUM_RAYS - 1)
-			draw_lines(&ray_end, &ray_start, data, -1);	 */
 	}
 }

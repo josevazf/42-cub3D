@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/22 11:19:37 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:52:05 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 // Game settings
 # define MM_SCALE 0.2
 # define SIZE 64
-/* # define FOV_ANG (60 * (M_PI / 180)) */
-# define FOV_ANG 1.0472
+# define FOV_ANG (60 * (M_PI / 180))
+//# define FOV_ANG 1.0472
 # define RAY_WIDTH 1
 # define NUM_RAYS (WIN_W / RAY_WIDTH)
 /* # define NUM_RAYS 20 */
