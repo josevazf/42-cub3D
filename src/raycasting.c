@@ -6,17 +6,17 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/22 17:02:59 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:01:29 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		distance_between_points(int x1, int y1, int x2, int y2)
+static double	distance_between_points(double x1, double y1, double x2, double y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
-void	get_final_hit(t_data *data, t_rays *rays, int h_dist, int v_dist)
+void	get_final_hit(t_data *data, t_rays *rays, double h_dist, double v_dist)
 {
 	if (rays->hwall_hit)
 		h_dist = distance_between_points(data->player.px, \
@@ -46,8 +46,8 @@ void	get_final_hit(t_data *data, t_rays *rays, int h_dist, int v_dist)
 
 void	vertical_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 {
-	int 	next_x;
-	int		next_y;
+	double 	next_x;
+	double	next_y;
 	int		dec;
 	
 	dec = -1;
@@ -74,10 +74,10 @@ void	vertical_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 
 void	vertical_grid_hit(t_data *data, t_rays *rays)
 {
-	int	x_step;
-	int	y_step;
-	int x_hit;
-	int y_hit;
+	double	x_step;
+	double	y_step;
+	double	x_hit;
+	double	y_hit;
 
 	x_step = SIZE;
 	y_step = SIZE * tan(rays->angle);
@@ -94,11 +94,11 @@ void	vertical_grid_hit(t_data *data, t_rays *rays)
 	vertical_wall_hit(data, rays, x_step, y_step);
 }
 
-void	horizontal_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
+void	horizontal_wall_hit(t_data *data, t_rays *rays, double x_step, double y_step)
 {
-	int 	next_x;
-	int		next_y;
-	int 	dec;
+	double 	next_x;
+	double	next_y;
+	int		dec;
 	
 	dec = 1;
 	next_x = rays->xh_hit;
@@ -124,10 +124,10 @@ void	horizontal_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 
 void	horizontal_grid_hit(t_data *data, t_rays *rays)
 {
-	int	x_step;
-	int	y_step;
-	int x_hit;
-	int y_hit;
+	double	x_step;
+	double	y_step;
+	double	x_hit;
+	double	y_hit;
 
 	y_step = SIZE;
 	x_step = SIZE / tan(rays->angle);
@@ -152,7 +152,7 @@ void	cast_rays(t_data *data)
 	double	ray_angle;
 	
 	i = -1;
-	ray_angle = data->player.rot_ang - (FOV_ANG / 2);
+	ray_angle = data->player.rot_ang - (FOV_ANG / 2.0);
 	while (++i < NUM_RAYS)
 	{
 		ray_angle += FOV_ANG / NUM_RAYS;

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/22 13:52:05 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:04:06 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@
 # define CLR_NEON			0xFF10F0
 
 // Game settings
-# define MM_SCALE 0.2
+# define MM_SCALE (double)0.2
 # define SIZE 64
-# define FOV_ANG (60 * (M_PI / 180))
+# define FOV_ANG (double)(60.0 * (M_PI / 180.0))
 //# define FOV_ANG 1.0472
 # define RAY_WIDTH 1
 # define NUM_RAYS (WIN_W / RAY_WIDTH)
 /* # define NUM_RAYS 20 */
-# define CLS_MARGIN 10
+# define CLS_MARGIN (double)10.0
 # define MV_SPD 1
-# define ROT_SPD (2 * (M_PI / 180))
+# define ROT_SPD (double)(2.0 * (M_PI / 180.0))
 
 typedef struct s_data	t_data;
 
@@ -107,14 +107,14 @@ typedef struct s_point
 
 typedef struct s_rays
 {
-	int			height;
-	int			distance;
-	int			x_hit;
-	int			y_hit;
-	int			xh_hit;
-	int			yh_hit;
-	int			xv_hit;
-	int			yv_hit;
+	double		height;
+	double		distance;
+	double		x_hit;
+	double		y_hit;
+	double		xh_hit;
+	double		yh_hit;
+	double		xv_hit;
+	double		yv_hit;
 	bool		hit_vert;
 	bool		hwall_hit;
 	bool		vwall_hit;
