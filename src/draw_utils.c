@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/22 15:45:37 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:16:20 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	paint_square(t_cube *cube)
 
 	x = -1;
 	y = -1;
-	size = cube->data->mm_spc * MM_SCALE;
+	size = SIZE * MM_SCALE;
 	while (++x <= size)
 	{
 		y = -1;
@@ -56,14 +56,14 @@ void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 	int	dx;
 	int	dy;
 
-	dx = abs(p2->x - p1->x);
-	dy = abs(p2->y - p1->y);
+	dx = fabs(p2->x - p1->x);
+	dy = fabs(p2->y - p1->y);
 	data->err = dx - dy;
 	while (++i < ft_int_max(dx, dy))
 	{
 		if (p1->x > 0 && p1->x < WIN_W - 5 && p1->y > 0 && 
 			p1->y < WIN_H - 5)
-			put_pixel(&data->img, p1->x, p1->y, p1->clr);
+			put_pixel(&data->img, p1->x, p1->y, CLR_NEON);
 		if (p1->x == p2->x && p1->y == p2->y)
 			break ;
 		if (2 * data->err > -dy)

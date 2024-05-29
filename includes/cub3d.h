@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/29 13:04:06 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:12:15 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@
 # define CLR_NEON			0xFF10F0
 
 // Game settings
-# define MM_SCALE (double)0.2
-# define SIZE 64
+# define MM_SCALE 0.2
+# define SIZE 64.0
 # define FOV_ANG (double)(60.0 * (M_PI / 180.0))
 //# define FOV_ANG 1.0472
 # define RAY_WIDTH 1
 # define NUM_RAYS (WIN_W / RAY_WIDTH)
 /* # define NUM_RAYS 20 */
-# define CLS_MARGIN (double)10.0
+# define CLS_MARGIN 10.0
 # define MV_SPD 1
 # define ROT_SPD (double)(2.0 * (M_PI / 180.0))
 
@@ -81,13 +81,13 @@ typedef struct s_img
 
 typedef struct s_key
 {
-	int	w;
-	int	a;
-	int	s;
-	int	d;
-	int	esc;
-	int	left;
-	int	right;
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			esc;
+	int			left;
+	int			right;
 }	t_key;
 
 typedef struct s_color
@@ -99,8 +99,8 @@ typedef struct s_color
 
 typedef struct s_point
 {
-	int			x;
-	int			y;
+	double		x;
+	double		y;
 	int			clr;
 	t_color		rgb;
 }	t_point;
@@ -133,7 +133,6 @@ typedef struct s_cube
 	int				clr;
 	int				row;
 	int				col;
-	t_color			rgb;
 	t_cubeType		cube_type;
 	t_cubeStart		cube_start;
 	t_data			*data;
@@ -151,16 +150,17 @@ typedef struct s_player
 
 typedef struct s_data
 {
+	int			clr_ceiling;
+	int			clr_floor;
 	int			map_w;
 	int			map_h;
 	int			trs_x;
 	int			trs_y;
-	int			c_pos_x;
-	int			c_pos_y;
+	double		c_pos_x;
+	double		c_pos_y;
 	int			err;
 	int			x1;
 	int			y1;
-	int			mm_spc;
 	bool		init;
 	char		*map_name;
 	void		*mlx_ptr;
@@ -192,11 +192,6 @@ void	set_map(t_data *data);
 void	process_minimap(t_data *data);
 void	set_cube_vertex(t_data *data, int i, int j);
 void	set_coordinates(t_data *data);
-
-// map_utils.c
-//void	scale_map(t_data *data, double factor);
-//void	translate_center(t_data *data, int i, int j);
-//void	fit_to_window(t_data *data, double angle);
 
 // player.c
 enum s_cubeStart	get_player_start_dir(char dir, t_data *data);

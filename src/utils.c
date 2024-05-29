@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:08:08 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 15:19:00 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:05:38 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,10 @@ void	print_cube_coords(t_data *data)
 		while (++j < (data->map_w))
 		{
 			printf("CUBE[%d,%d]\n", i , j);
-			printf("V1->(%d, %d)\n", data->map[i][j].v1.x, data->map[i][j].v1.y);
-			printf("V2->(%d, %d)\n", data->map[i][j].v2.x, data->map[i][j].v2.y);
-			printf("V3->(%d, %d)\n", data->map[i][j].v3.x, data->map[i][j].v3.y);
-			printf("V4->(%d, %d)\n", data->map[i][j].v4.x, data->map[i][j].v4.y);
+			printf("V1->(%f, %f)\n", data->map[i][j].v1.x, data->map[i][j].v1.y);
+			printf("V2->(%f, %f)\n", data->map[i][j].v2.x, data->map[i][j].v2.y);
+			printf("V3->(%f, %f)\n", data->map[i][j].v3.x, data->map[i][j].v3.y);
+			printf("V4->(%f, %f)\n", data->map[i][j].v4.x, data->map[i][j].v4.y);
 		}
 		printf("^^^^^^^^^^^^^^^\n");
 	}

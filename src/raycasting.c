@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/29 13:01:29 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:14:33 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static double	distance_between_points(double x1, double y1, double x2, double y2
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
+
 void	get_final_hit(t_data *data, t_rays *rays, double h_dist, double v_dist)
 {
 	if (rays->hwall_hit)
@@ -76,21 +77,17 @@ void	vertical_grid_hit(t_data *data, t_rays *rays)
 {
 	double	x_step;
 	double	y_step;
-	double	x_hit;
-	double	y_hit;
 
 	x_step = SIZE;
 	y_step = SIZE * tan(rays->angle);
-	x_hit = floor(data->player.px / SIZE) * SIZE;
+	rays->xv_hit = floor(data->player.px / SIZE) * SIZE;
 	if (rays->is_right)
-		x_hit = floor(data->player.px / SIZE) * SIZE + SIZE;
+		rays->xv_hit = floor(data->player.px / SIZE) * SIZE + SIZE;
 	else
 		x_step *= -1;
-	y_hit = data->player.py + (x_hit - data->player.px) * tan(rays->angle);
+	rays->yv_hit = data->player.py + (rays->xv_hit - data->player.px) * tan(rays->angle);
 	if ((y_step > 0 && rays->is_up) || (y_step < 0 && !rays->is_up))
 		y_step *= -1;
-	rays->xv_hit = x_hit;
-	rays->yv_hit = y_hit;
 	vertical_wall_hit(data, rays, x_step, y_step);
 }
 
@@ -126,23 +123,19 @@ void	horizontal_grid_hit(t_data *data, t_rays *rays)
 {
 	double	x_step;
 	double	y_step;
-	double	x_hit;
-	double	y_hit;
 
 	y_step = SIZE;
 	x_step = SIZE / tan(rays->angle);
 	if (rays->is_up)
 	{
-		y_hit = floor(data->player.py / SIZE) * SIZE;
+		rays->yh_hit = floor(data->player.py / SIZE) * SIZE;
 		y_step *= -1;
 	}
 	else
-		y_hit = floor(data->player.py / SIZE) * SIZE + SIZE;
-	x_hit = data->player.px + (y_hit - data->player.py) / tan(rays->angle);
+		rays->yh_hit = floor(data->player.py / SIZE) * SIZE + SIZE;
+	rays->xh_hit = data->player.px + (rays->yh_hit - data->player.py) / tan(rays->angle);
 	if ((x_step > 0 && !rays->is_right) || (x_step < 0 && rays->is_right))
 		x_step *= -1;
-	rays->xh_hit = x_hit;
-	rays->yh_hit = y_hit;
 	horizontal_wall_hit(data, rays, x_step, y_step);
 }
 
@@ -156,7 +149,6 @@ void	cast_rays(t_data *data)
 	while (++i < NUM_RAYS)
 	{
 		ray_angle += FOV_ANG / NUM_RAYS;
-		//data->rays[i].angle = wrap_angle(ray_angle + ((FOV_ANG / NUM_RAYS) * i));
 		data->rays[i].angle = wrap_angle(ray_angle);		
 		data->rays[i].is_up = true;
 		data->rays[i].is_right = true;

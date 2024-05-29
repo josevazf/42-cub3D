@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/22 16:21:24 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:18:44 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 /* Set vars to standard values */
 void	init_data(t_data *data)
 {
+	data->clr_ceiling = CLR_ROSYBROWN;
+	data->clr_floor = CLR_TEAL;
 	data->map_h = 0;
 	data->map_w = 0;
 	data->trs_x = 0;
@@ -22,8 +24,8 @@ void	init_data(t_data *data)
 	data->err = 0;
 	data->x1 = 0;
 	data->y1 = 0;
-	data->c_pos_x = WIN_W / 2;
-	data->c_pos_y = WIN_H / 2;
+	data->c_pos_x = WIN_W / 2.0;
+	data->c_pos_y = WIN_H / 2.0;
 	data->init = true;
 	data->key.esc = 0;
 	data->key.w = 0;
@@ -34,7 +36,7 @@ void	init_data(t_data *data)
 	data->key.right = 0;
 	data->player.px = data->c_pos_x;
 	data->player.py = data->c_pos_y;
-	data->player.rot_ang = (M_PI / 2) * 3;
+	data->player.rot_ang = (M_PI / 2.0) * 3.0;
 	data->rays = ft_safe_malloc(sizeof(t_rays) * NUM_RAYS);
 }
 
@@ -97,7 +99,7 @@ void	fill_map(t_cube *map, char *line, t_data *data)
 		{
 			map[i].cube_type = CLOSED;
 			map[i].cube_start = FALSE;
-			map[i].clr = CLR_SILK;
+			map[i].clr = CLR_BLACK;
 		}
 		else if (ft_strncmp(nums[i], "0", 1) && ft_strncmp(nums[i], "1", 1))
 		{
