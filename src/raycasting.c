@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/29 15:14:33 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:08:54 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	vertical_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 	next_y = rays->yv_hit;
 	if (rays->is_right)
 		dec = 1;
-	while (next_x >= data->map[0][0].v1.x + 5 && \
-			next_x <= data->map[0][data->map_w - 1].v2.x - 5 && \
-			next_y >= data->map[0][0].v1.y + 5 && \
-			next_y <= data->map[data->map_h - 1][0].v3.y - 5)
+	while (next_x >= 5 && \
+			next_x <= data->map_w * SIZE - 5 && \
+			next_y >= 5 && \
+			next_y <= data->map_h * SIZE - 5)
 	{
 		if (point_cube_position(data, next_x + dec, next_y).cube_type == CLOSED)
 		{
@@ -102,10 +102,10 @@ void	horizontal_wall_hit(t_data *data, t_rays *rays, double x_step, double y_ste
 	next_y = rays->yh_hit;
 	if (rays->is_up)
 		dec = -1;
-	while (next_x >= data->map[0][0].v1.x + 5 && \
-			next_x <= data->map[0][data->map_w - 1].v2.x - 5 && \
-			next_y >= data->map[0][0].v1.y + 5 && \
-			next_y <= data->map[data->map_h - 1][0].v3.y - 5)
+	while (next_x >= 5 && \
+			next_x <= data->map_w * SIZE - 5 && \
+			next_y >= 5 && \
+			next_y <= data->map_h * SIZE - 5)
 	{
 		if (point_cube_position(data, next_x, next_y + dec).cube_type == 1)
 		{

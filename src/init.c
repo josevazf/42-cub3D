@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/29 17:18:44 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:06:33 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,13 @@ void	create_map(t_data *data)
 }
 
 /* Fill the matrix representation of the map with info for each cube */
-void	fill_map(t_cube *map, char *line, t_data *data)
+void	fill_map(t_cube *map, char *line, t_data *data, int i)
 {
 	char	**nums;
-	int		i;
 
-	(void)data;
-	i = -1;
 	nums = ft_split(line, ' ');
 	while (nums[++i])
 	{
-		map[i].cnt.x = 0;
-		map[i].cnt.y = 0;
 		if (!ft_strncmp(nums[i], "0", 1))
 		{
 			map[i].cube_type = OPEN;
@@ -129,7 +124,7 @@ void	process_map(char *file_name, t_data *data)
 	while (++i < data->map_h)
 	{
 		line = get_next_line(fd);
-		fill_map(data->map[i], line, data);
+		fill_map(data->map[i], line, data, -1);
 		free(line);
 	}
 	line = get_next_line(fd);

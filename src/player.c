@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/21 14:55:18 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:13:59 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,9 @@ void	set_player_pos(t_data *data)
 		{
 			if (data->map[i][j].cube_start != FALSE)
 			{
-				//printf("player.cube[%d][%d]\n", i, j);
 				data->player.c_pos = data->map[i][j];
-				data->player.px = get_cube_center(&data->player.c_pos, 0);
-				//printf("cube.cx: %f\n", data->player.px);
-				data->player.py = get_cube_center(&data->player.c_pos, 1);
-				//printf("cube.cy: %f\n", data->player.py);
+				data->player.px = (j * SIZE) + (SIZE / 2);
+				data->player.py = (i * SIZE) + (SIZE / 2);
 				return ;
 			}
 		}

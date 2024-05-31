@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:43:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/21 17:20:31 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:04:09 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_minimap(t_data *data)
 	{
 		j = -1;
 		while (++j < (data->map_w))
-			paint_square(&data->map[i][j]);
+			paint_square(&data->map[i][j], j * (int)SIZE, i * (int)SIZE);
 	}
 }
 

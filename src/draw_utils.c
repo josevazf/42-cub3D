@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/29 17:16:20 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:04:33 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	hex_to_rgb(int hex_color, t_point *point)
 	point->rgb.b = (hex_color & 0xFF);
 }
 
-void	paint_square(t_cube *cube)
+void	paint_square(t_cube *cube, int  start_x, int start_y)
 {
 	int	x;
 	int	y;
@@ -43,7 +43,7 @@ void	paint_square(t_cube *cube)
 		y = -1;
 		while (++y <= size)
 		{
-			put_pixel(&cube->data->img, (cube->v1.x * MM_SCALE) + x, (cube->v1.y * MM_SCALE) + y, cube->clr);
+			put_pixel(&cube->data->img, (start_x * MM_SCALE) + x, (start_y * MM_SCALE) + y, cube->clr);
 			/* if (x == 0 || x == (size - 1) * MM_SCALE || y == 0 || y == (size - 1) * MM_SCALE)
 				put_pixel(&cube->data->img, (cube->v1.x * MM_SCALE) + x, (cube->v1.y * MM_SCALE) + y, CLR_BLACK); */
 		}

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/29 15:12:15 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:14:44 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,6 @@ typedef struct s_rays
 
 typedef struct s_cube
 {
-	t_point			cnt;
-	t_point			v1;
-	t_point			v2;
-	t_point			v3;
-	t_point			v4;
 	int				clr;
 	int				row;
 	int				col;
@@ -144,7 +139,6 @@ typedef struct s_player
 	double		py;
 	double		rot_ang;
 	t_cube		c_pos;
-	t_key		key;
 	t_data		*data;
 }	t_player;
 
@@ -178,7 +172,7 @@ typedef struct s_data
 void	init_data(t_data *data);
 void	get_dimensions(char *file_name, t_data *data);
 void	create_map(t_data *data);
-void	fill_map(t_cube *map, char *line, t_data *data);
+void	fill_map(t_cube *map, char *line, t_data *data, int i);
 void	process_map(char *file_name, t_data *data);
 
 // events.c
@@ -188,10 +182,7 @@ int		key_press(int key, t_data *data);
 void	input_router(t_data *data);
 
 // minimap.c
-void	set_map(t_data *data);
 void	process_minimap(t_data *data);
-void	set_cube_vertex(t_data *data, int i, int j);
-void	set_coordinates(t_data *data);
 
 // player.c
 enum s_cubeStart	get_player_start_dir(char dir, t_data *data);
@@ -216,7 +207,7 @@ void	draw_minimap(t_data *data);
 // draw_utils.c
 void	put_pixel(t_img *img, int x, int y, int color);
 void	hex_to_rgb(int hex_color, t_point *point);
-void	paint_square(t_cube *cube);
+void	paint_square(t_cube *cube, int start_x, int start_y);
 void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
 //int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
 //void	vertical_lines(t_data *data);
@@ -234,10 +225,7 @@ void	clean_screen(t_data *data);
 int		get_slope(int p1, int p2);
 double	get_rad(double deg);
 double	get_deg(double rad);
-float	get_average(t_data *data, int t);
-void	get_map_center(t_data *data);
-int		get_cube_center(t_cube *cube, int t);
-void	print_cube_coords(t_data *data);
+
 
 // error.c
 int		fd_error(int fd);
