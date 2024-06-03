@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/03 20:02:17 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:06:12 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,6 @@ void	vertical_wall_hit(t_data *data, t_rays *rays, double x_step, double y_step)
 			rays->yv_hit = next_y;
 			break ;
 		}
-/* 		printf("VER->next_x: %f\n", next_x);
-		printf("VER->next_y: %f\n", next_y);
-		printf("VER->x_step: %f\n", x_step);
-		printf("VER->y_step: %f\n", y_step); */
 		next_x += x_step;
 		next_y += y_step;
 	}
@@ -120,10 +116,6 @@ void	horizontal_wall_hit(t_data *data, t_rays *rays, double x_step, double y_ste
 			rays->yh_hit = next_y;
 			break ;
 		}
-/* 		printf("HOR->next_x: %f\n", next_x);
-		printf("HOR->next_y: %f\n", next_y);
-		printf("HOR->x_step: %f\n", x_step);
-		printf("HOR->y_step: %f\n", y_step); */
 		next_x += x_step;
 		next_y += y_step;
 	}

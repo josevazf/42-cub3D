@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/03 19:59:05 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:06:32 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_cube	point_cube_position(t_data *data, double x, double y)
 {
 	x = floor(x / SIZE);
 	y = floor(y / SIZE);
-	//printf("cube[%d][%d]-> %d\n", (int)y, (int)x, data->map[(int)y][(int)x].cube_type);
 	return (data->map[(int)y][(int)x]);
 }
 
