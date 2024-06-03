@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/03 16:37:03 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:02:17 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	vertical_wall_hit(t_data *data, t_rays *rays, double x_step, double y_step)
 			next_y >= 0 && \
 			next_y <= data->map_h * SIZE)
 	{
-		if (point_cube_position(data, next_x + dec, next_y).cube_type == 1)
+		if (point_cube_position(data, next_x + dec, next_y).cube_type == 1 ||
+			point_cube_position(data, next_x + dec, next_y).cube_type == 2)
 		{
 			rays->vwall_hit = true;
 			rays->xv_hit = next_x;
@@ -111,7 +112,8 @@ void	horizontal_wall_hit(t_data *data, t_rays *rays, double x_step, double y_ste
 			next_y >= 0 && \
 			next_y <= data->map_h * SIZE)
 	{
-		if (point_cube_position(data, next_x, next_y + dec).cube_type == 1)
+		if (point_cube_position(data, next_x, next_y + dec).cube_type == 1 ||
+			point_cube_position(data, next_x, next_y + dec).cube_type == 2)
 		{
 			rays->hwall_hit = true;
 			rays->xh_hit = next_x;
