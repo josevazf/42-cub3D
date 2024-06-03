@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/03 16:36:23 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:02:41 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define FOV_ANG (double)(60.0 * (M_PI / 180.0))
 //# define FOV_ANG 1.0472
 # define NUM_RAYS WIN_W
-//# define NUM_RAYS 1
+//# define NUM_RAYS 5
 # define CLS_MARGIN 10.0
 # define MV_SPD 0.6
 # define ROT_SPD (double)(1.0 * (M_PI / 180.0))
@@ -59,6 +59,7 @@ typedef enum s_cubeType
 {
 	OPEN,
 	CLOSED,
+	EMPTY,
 }	t_cubeType;
 
 typedef enum s_cubeStart
