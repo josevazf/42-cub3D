@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/31 14:14:44 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:36:23 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 
 # define CLR_RED			0xFF0000
 # define CLR_ROSYBROWN		0xBC8F8F
+# define CLR_GREY			0x808080
 # define CLR_PERSIAN		0xCA3433
 # define CLR_GREEN			0x00FF00
 # define CLR_BLUE			0x0000FF
@@ -46,12 +47,11 @@
 # define SIZE 64.0
 # define FOV_ANG (double)(60.0 * (M_PI / 180.0))
 //# define FOV_ANG 1.0472
-# define RAY_WIDTH 1
-# define NUM_RAYS (WIN_W / RAY_WIDTH)
-/* # define NUM_RAYS 20 */
+# define NUM_RAYS WIN_W
+//# define NUM_RAYS 1
 # define CLS_MARGIN 10.0
-# define MV_SPD 1
-# define ROT_SPD (double)(2.0 * (M_PI / 180.0))
+# define MV_SPD 0.6
+# define ROT_SPD (double)(1.0 * (M_PI / 180.0))
 
 typedef struct s_data	t_data;
 
@@ -183,6 +183,9 @@ void	input_router(t_data *data);
 
 // minimap.c
 void	process_minimap(t_data *data);
+void	draw_direction(t_data *data);
+void	draw_player(t_data *data);
+void	draw_minimap(t_data *data);
 
 // player.c
 enum s_cubeStart	get_player_start_dir(char dir, t_data *data);
@@ -196,20 +199,12 @@ void	move_strafe(t_data *data, int key);
 void	move_rotate(t_data *data, int key);
 void	move_player(t_data *data, int key);
 
-// player_utils.c
-double	wrap_angle(double angle);
-
-// draw.c
-void	draw_direction(t_data *data);
-void	draw_player(t_data *data);
-void	draw_minimap(t_data *data);
-
 // draw_utils.c
 void	put_pixel(t_img *img, int x, int y, int color);
 void	hex_to_rgb(int hex_color, t_point *point);
 void	paint_square(t_cube *cube, int start_x, int start_y);
 void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
-//int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
+//int	get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
 //void	vertical_lines(t_data *data);
 //void	horizontal_lines(t_data *data);
 
@@ -221,6 +216,7 @@ void	draw_rays(t_data *data);
 void	render_walls(t_data *data);
 
 // utils.c
+double	wrap_angle(double angle);
 void	clean_screen(t_data *data);
 int		get_slope(int p1, int p2);
 double	get_rad(double deg);

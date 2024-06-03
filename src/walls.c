@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:23:26 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/29 17:14:24 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:20:38 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	render_walls(t_data *data)
 			else if (j > wall_end)
 				put_pixel(&data->img, i, j, data->clr_floor);
 			else
-				put_pixel(&data->img, i, j, CLR_BLUE);
+				put_pixel(&data->img, i, j, CLR_GREY);
 		}
 /* 		if (!data->rays[i].hit_vert && data->rays[i].is_up)
 			line_start.clr = CLR_BLUE; 							// N

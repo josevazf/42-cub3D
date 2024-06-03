@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/31 14:08:54 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:37:03 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	get_final_hit(t_data *data, t_rays *rays, double h_dist, double v_dist)
 			data->player.py, rays->xv_hit, rays->yv_hit);
 	else
 		v_dist = INT_MAX;
-	if (h_dist < v_dist)
+	if (h_dist <= v_dist)
 	{
 		rays->x_hit = rays->xh_hit;
 		rays->y_hit = rays->yh_hit;
@@ -45,7 +45,7 @@ void	get_final_hit(t_data *data, t_rays *rays, double h_dist, double v_dist)
 	}
 }
 
-void	vertical_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
+void	vertical_wall_hit(t_data *data, t_rays *rays, double x_step, double y_step)
 {
 	double 	next_x;
 	double	next_y;
@@ -56,18 +56,22 @@ void	vertical_wall_hit(t_data *data, t_rays *rays, int x_step, int y_step)
 	next_y = rays->yv_hit;
 	if (rays->is_right)
 		dec = 1;
-	while (next_x >= 5 && \
-			next_x <= data->map_w * SIZE - 5 && \
-			next_y >= 5 && \
-			next_y <= data->map_h * SIZE - 5)
+	while (next_x >= 0 && \
+			next_x <= data->map_w * SIZE && \
+			next_y >= 0 && \
+			next_y <= data->map_h * SIZE)
 	{
-		if (point_cube_position(data, next_x + dec, next_y).cube_type == CLOSED)
+		if (point_cube_position(data, next_x + dec, next_y).cube_type == 1)
 		{
 			rays->vwall_hit = true;
 			rays->xv_hit = next_x;
 			rays->yv_hit = next_y;
 			break ;
 		}
+/* 		printf("VER->next_x: %f\n", next_x);
+		printf("VER->next_y: %f\n", next_y);
+		printf("VER->x_step: %f\n", x_step);
+		printf("VER->y_step: %f\n", y_step); */
 		next_x += x_step;
 		next_y += y_step;
 	}
@@ -82,7 +86,7 @@ void	vertical_grid_hit(t_data *data, t_rays *rays)
 	y_step = SIZE * tan(rays->angle);
 	rays->xv_hit = floor(data->player.px / SIZE) * SIZE;
 	if (rays->is_right)
-		rays->xv_hit = floor(data->player.px / SIZE) * SIZE + SIZE;
+		rays->xv_hit += SIZE;
 	else
 		x_step *= -1;
 	rays->yv_hit = data->player.py + (rays->xv_hit - data->player.px) * tan(rays->angle);
@@ -102,10 +106,10 @@ void	horizontal_wall_hit(t_data *data, t_rays *rays, double x_step, double y_ste
 	next_y = rays->yh_hit;
 	if (rays->is_up)
 		dec = -1;
-	while (next_x >= 5 && \
-			next_x <= data->map_w * SIZE - 5 && \
-			next_y >= 5 && \
-			next_y <= data->map_h * SIZE - 5)
+	while (next_x >= 0 && \
+			next_x <= data->map_w * SIZE && \
+			next_y >= 0 && \
+			next_y <= data->map_h * SIZE)
 	{
 		if (point_cube_position(data, next_x, next_y + dec).cube_type == 1)
 		{
@@ -114,6 +118,10 @@ void	horizontal_wall_hit(t_data *data, t_rays *rays, double x_step, double y_ste
 			rays->yh_hit = next_y;
 			break ;
 		}
+/* 		printf("HOR->next_x: %f\n", next_x);
+		printf("HOR->next_y: %f\n", next_y);
+		printf("HOR->x_step: %f\n", x_step);
+		printf("HOR->y_step: %f\n", y_step); */
 		next_x += x_step;
 		next_y += y_step;
 	}
@@ -172,8 +180,10 @@ void	cast_rays(t_data *data)
 		get_final_hit(data, &data->rays[i], 0, 0);
 		//printf("RAY[%d]", i);
 		//printf("\thit_vertical? %d\n", data->rays[i].hit_vert);
+		//printf("\tis_up? %d\n", data->rays[i].is_up);
+		//printf("\tis_right? %d\n", data->rays[i].is_right);
 		//printf("\tangle_diff: %f\n", data->rays[i + 1].angle - data->rays[i].angle);
-		//printf("\thit_x: %d\thit_y: %d\n", data->rays[i].x_hit, data->rays[i].y_hit);
+		//printf("\thit_x: %f\thit_y: %f\n", data->rays[i].x_hit, data->rays[i].y_hit);
 		//printf("\tangle: %f\tdistance: %d\n", data->rays[i].angle, data->rays[i].distance);
 	}
 }
