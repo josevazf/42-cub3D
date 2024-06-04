@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/03 20:02:41 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/04 08:58:09 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ typedef struct s_img
 	int			bpp;
 	int			line_len;
 	int			endian;
+	int			width;
+	int			height;
 }	t_img;
 
 typedef struct s_key
