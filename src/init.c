@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/04 11:41:00 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/04 17:00:52 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,42 +82,38 @@ void	create_map(t_data *data)
 /* Fill the matrix representation of the map with info for each cube */
 void	fill_map(t_cube *map, char *line, t_data *data, int i)
 {
-	char	*nums;
-
-	nums = ft_strdup(line);
 	while (++i < data->map_w)
 	{
-		if (i >= (int)ft_strlen(nums) - 1 || nums[i] == ' ')
+		if (i >= (int)ft_strlen(line) - 1 || line[i] == ' ')
 		{
 			map[i].cube_type = EMPTY;
 			map[i].cube_start = FALSE;
 			map[i].clr = CLR_BLACK;
 		}
-		else if (nums[i] == '0')
+		else if (line[i] == '0')
 		{
 			map[i].cube_type = OPEN;
 			map[i].cube_start = FALSE;
 			map[i].clr = CLR_WHITE;
 		}
-		else if (nums[i] == '1')
+		else if (line[i] == '1')
 		{
 			map[i].cube_type = CLOSED;
 			map[i].cube_start = FALSE;
 			map[i].clr = CLR_BLACK;
 		}
-		else if (nums[i] != '0' && nums[i] != '1')
+		else if (line[i] != '0' && line[i] != '1')
 		{
 			map[i].cube_type = OPEN;
-			map[i].cube_start = get_player_start_dir(nums[i], data);
+			map[i].cube_start = get_player_start_dir(line[i], data);
 			map[i].clr = CLR_WHITE;
 		}
 		map[i].data = data;
 	}
-	free(nums);
 }
 
 /* Print map cube types */
-void	print_cube_coords(t_data *data)
+void	print_cube_types(t_data *data)
 {
 		int	i;
 	int	j;
@@ -157,7 +153,7 @@ void	process_map(char *file_name, t_data *data)
 		free(line);
 	}
 	line = get_next_line(fd);
-	print_cube_coords(data);
+	//print_cube_types(data);
 	free(line);
 	close(fd);
 	data->map[i] = NULL;

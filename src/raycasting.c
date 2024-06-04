@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/03 20:06:12 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:47:37 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,13 +172,6 @@ void	cast_rays(t_data *data)
 		horizontal_grid_hit(data, &data->rays[i]);
 		vertical_grid_hit(data, &data->rays[i]);
 		get_final_hit(data, &data->rays[i], 0, 0);
-		//printf("RAY[%d]", i);
-		//printf("\thit_vertical? %d\n", data->rays[i].hit_vert);
-		//printf("\tis_up? %d\n", data->rays[i].is_up);
-		//printf("\tis_right? %d\n", data->rays[i].is_right);
-		//printf("\tangle_diff: %f\n", data->rays[i + 1].angle - data->rays[i].angle);
-		//printf("\thit_x: %f\thit_y: %f\n", data->rays[i].x_hit, data->rays[i].y_hit);
-		//printf("\tangle: %f\tdistance: %d\n", data->rays[i].angle, data->rays[i].distance);
 	}
 }
 

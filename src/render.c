@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   walls.c                                            :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:23:26 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/31 15:20:38 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/04 17:00:17 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,18 @@ void	render_walls(t_data *data)
 			else if (j > wall_end)
 				put_pixel(&data->img, i, j, data->clr_floor);
 			else
-				put_pixel(&data->img, i, j, CLR_GREY);
-		}
-/* 		if (!data->rays[i].hit_vert && data->rays[i].is_up)
-			line_start.clr = CLR_BLUE; 							// N
-		else if (!data->rays[i].hit_vert && !data->rays[i].is_up)
-			line_start.clr = CLR_ROSYBROWN;						// S
-		else if (data->rays[i].hit_vert && data->rays[i].is_right)
-			line_start.clr = CLR_OLIVE;							// E
-		else if (!data->rays[i].hit_vert && !data->rays[i].is_right)
-			line_start.clr = CLR_TEAL;		 */					// W
+			{
+				if (!data->rays[i].hit_vert && data->rays[i].is_up)
+					put_pixel(&data->img, i, j, CLR_BLUE);
+				else if (!data->rays[i].hit_vert && !data->rays[i].is_up)
+					put_pixel(&data->img, i, j, CLR_ROSYBROWN);
+				else if (data->rays[i].hit_vert && data->rays[i].is_right)
+					put_pixel(&data->img, i, j, CLR_OLIVE);
+				else if (!data->rays[i].hit_vert && !data->rays[i].is_right)
+					put_pixel(&data->img, i, j, CLR_TEAL);
+			}
+			//put_pixel(&data->img, i, j, CLR_GREY);
+		}		
 		//draw_lines(&line_start, &line_end, data, -1);
 	}
 }
