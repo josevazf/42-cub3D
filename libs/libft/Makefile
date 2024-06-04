@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 22:23:12 by jrocha-v          #+#    #+#              #
-#    Updated: 2024/05/02 18:19:25 by jrocha-v         ###   ########.fr        #
+#    Updated: 2024/06/04 14:50:41 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,9 @@ SRCS		= ft_atoi.c \
 			  ft_strndup.c \
 			  ft_strupdate.c \
 			  ft_split_ints.c \
-			  ft_split_longs.c
+			  ft_split_longs.c \
+			  ft_safe_free.c
+
 
 # Substitute .c with .o 
 OBJS		= $(SRCS:%.c=$(OBJS_DIR)/%.o)
