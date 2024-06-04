@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/04 08:58:05 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/04 11:41:00 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	init_data(t_data *data)
 	data->clr_floor = 0x292929;
 	data->map_h = 0;
 	data->map_w = 0;
-	data->trs_x = 0;
-	data->trs_y = 0;
 	data->err = 0;
 	data->x1 = 0;
 	data->y1 = 0;

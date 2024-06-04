@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/31 14:49:38 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:45:42 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	int	offset;
 
 	offset = (img->line_len * y) + (x * (img->bpp / 8));
-	*((unsigned int *)(offset + img->mlx_pixel_addr)) = color;
+	*((unsigned int *)(offset + img->pixel_addr)) = color;
 }
 
 /* Converts hex RGB representation to each value of r, g and b */

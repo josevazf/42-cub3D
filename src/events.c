@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:56:30 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/14 18:01:37 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:02:40 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,24 @@ int	key_press(int key, t_data *data)
 /* Esc-Press - close window and free all memory */
 int	free_game(t_data *data)
 {
+	int	i;
+	i = -1;
 	if (data)
 	{
-		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
+		while (++i < 4)
+		{
+			if (data->txts_img[i].img)
+				mlx_destroy_image(data->mlx_ptr, data->txts_img[i].img);
+			ft_safe_free(data->txts_path[i]);
+		}
+		mlx_destroy_image(data->mlx_ptr, data->img.img);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		mlx_destroy_display(data->mlx_ptr);
 		data->win_ptr = NULL;
-		free(data->mlx_ptr);
-		free(data->map_name);
-		free(data->rays);
-		ft_free_map(data->map);
+		ft_safe_free(data->mlx_ptr);
+		ft_safe_free(data->map_name);
+		ft_safe_free(data->rays);
+		ft_free_matrix((void **)data->map);
 		exit (EXIT_SUCCESS);
 	}
 	return (SUCCESS);

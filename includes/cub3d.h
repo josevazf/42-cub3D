@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/04 08:58:09 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:33:10 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,34 @@
 
 typedef struct s_data	t_data;
 
-typedef enum s_cubeType
+typedef enum e_texture
+{
+	NO,
+	SO,
+	WE,
+	EA
+}	t_texture;
+
+typedef enum e_cubeType
 {
 	OPEN,
 	CLOSED,
-	EMPTY,
+	EMPTY
 }	t_cubeType;
 
-typedef enum s_cubeStart
+typedef enum e_cubeStart
 {
 	FALSE,
 	N,
 	S,
 	E,
-	W,
+	W
 }	t_cubeStart;
 
 typedef struct s_img
 {
-	void		*mlx_img;
-	char		*mlx_pixel_addr;
+	void		*img;
+	char		*pixel_addr;
 	int			bpp;
 	int			line_len;
 	int			endian;
@@ -147,25 +155,25 @@ typedef struct s_player
 
 typedef struct s_data
 {
+	int			err;
+	int			x1;
+	int			y1;
 	int			clr_ceiling;
 	int			clr_floor;
 	int			map_w;
 	int			map_h;
-	int			trs_x;
-	int			trs_y;
 	double		c_pos_x;
 	double		c_pos_y;
-	int			err;
-	int			x1;
-	int			y1;
-	bool		init;
+	char		*txts_path[4];
 	char		*map_name;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	bool		init;
 	t_rays		*rays;
 	t_player	player;
 	t_cube		**map;
 	t_key		key;
+	t_img		txts_img[4];
 	t_img		img;
 }	t_data;
 
@@ -191,7 +199,7 @@ void	draw_player(t_data *data);
 void	draw_minimap(t_data *data);
 
 // player.c
-enum s_cubeStart	get_player_start_dir(char dir, t_data *data);
+enum e_cubeStart	get_player_start_dir(char dir, t_data *data);
 t_cube				point_cube_position(t_data *data, double x, double y);
 void				set_player_pos(t_data *data);
 
@@ -225,10 +233,10 @@ int		get_slope(int p1, int p2);
 double	get_rad(double deg);
 double	get_deg(double rad);
 
-
 // error.c
 int		fd_error(int fd);
 int		args_error(void);
 void	ft_free_map(t_cube **matrix);
+void	ft_error_exit(char *msg, t_data *data);
 
 #endif

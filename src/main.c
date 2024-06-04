@@ -6,44 +6,70 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:37:56 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/04 11:32:48 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:52:15 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	run_game(t_data *data)
+int		run_game(t_data *data)
 {
 	input_router(data);
 	cast_rays(data);
 	render_walls(data);
 	process_minimap(data);
 	//printf("player(%f, %f)\n", data->player.px, data->player.py);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 
 		0, 0);
 	return (SUCCESS);
+}
+
+void	load_textures(t_data *data)
+{
+	int i;
+
+	i = -1;
+	data->txts_path[NO] = ft_strdup("textures/tech_1.xpm");
+	data->txts_path[SO] = ft_strdup("textures/tech_2.xpm");
+	data->txts_path[WE] = ft_strdup("textures/tech_3.xpm");
+	data->txts_path[EA] = ft_strdup("textures/tech_4.xpm");
+	while (++i < 4)
+	{
+		data->txts_img[i].img = mlx_xpm_file_to_image(data->mlx_ptr, 
+			data->txts_path[i], &data->txts_img[i].width, 
+			&data->txts_img[i].height);
+		if (!data->txts_img[i].img)
+			ft_error_exit("cub3D: failed to load textures", data);
+		data->txts_img[i].pixel_addr = mlx_get_data_addr(data->txts_img[i].img,
+			&data->txts_img[i].bpp, &data->txts_img[i].line_len,
+			&data->txts_img->endian);
+		if (!data->txts_img[i].pixel_addr)
+			ft_error_exit("cub3D: failed to get texture address", data);
+	}
 }
 
 void	init_mlx_textures(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
-	if (data->mlx_ptr == NULL)
-		ft_error("cub3D: ", ERROR);
+	if (!data->mlx_ptr)
+		ft_error_exit("cub3D: failed to initialize MLX", data);
+	load_textures(data);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_W, WIN_H, data->map_name);
-	if (data->win_ptr == NULL)
-	{
-		free(data->win_ptr);
-		ft_error("cub3D: ", ERROR);
-	}
+	if (!data->win_ptr)
+		ft_error_exit("cub3D: failed to create window", data);
 	data->img.width = WIN_W;
 	data->img.height = WIN_H;
-	data->img.mlx_img = mlx_new_image(data->mlx_ptr, data->img.width, 
+	data->img.img = mlx_new_image(data->mlx_ptr, data->img.width, 
 		data->img.height);
-	data->img.mlx_pixel_addr = mlx_get_data_addr(data->img.mlx_img, 
+	if (!data->img.img)
+		ft_error_exit("cub3D: failed to create image", data);
+	data->img.pixel_addr = mlx_get_data_addr(data->img.img, 
 		&data->img.bpp, &data->img.line_len, &data->img.endian);
+	if (!data->img.pixel_addr)
+		ft_error_exit("cub3D: failed to get image address", data);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_data	data;
 

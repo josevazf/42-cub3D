@@ -6,14 +6,14 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/03 20:06:32 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:54:05 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /* Get Player starting direction */
-enum s_cubeStart	get_player_start_dir(char dir, t_data *data)
+enum e_cubeStart	get_player_start_dir(char dir, t_data *data)
 {
 	if (dir == 'N')
 	{

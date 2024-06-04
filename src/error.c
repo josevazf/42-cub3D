@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:58:21 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/03 09:12:02 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:17:04 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,10 @@ void	ft_free_map(t_cube **matrix)
 		i++;
 	}
 	free(matrix);
+}
+
+void	ft_error_exit(char *msg, t_data *data)
+{
+	free_game(data);
+	ft_error(msg, ERROR);
 }
