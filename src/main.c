@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:37:56 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/04 15:52:15 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 08:51:08 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		run_game(t_data *data)
 {
 	input_router(data);
 	cast_rays(data);
-	render_walls(data);
+	render_walls(data, -1, -1);
 	process_minimap(data);
 	//printf("player(%f, %f)\n", data->player.px, data->player.py);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 

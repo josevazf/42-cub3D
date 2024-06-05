@@ -6,13 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/04 17:00:52 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 08:45:34 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* Set vars to standard values */
+/* Initialize vars to standard values */
 void	init_data(t_data *data)
 {
 	data->clr_ceiling = 0x292929;
@@ -158,4 +158,3 @@ void	process_map(char *file_name, t_data *data)
 	close(fd);
 	data->map[i] = NULL;
 }
-

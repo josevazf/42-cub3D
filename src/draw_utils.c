@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/04 12:45:42 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 10:23:18 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,59 @@ void	hex_to_rgb(int hex_color, t_point *point)
 	point->rgb.g = (hex_color >> 8) & 0xFF;
 	point->rgb.b = (hex_color & 0xFF);
 }
+
+/* Get the position of the point relative to total h */
+/* float	get_pnt_position(float z, t_data *data)
+{
+	float	norm;
+
+	norm = (z - data->z_min) / (data->z_max - data->z_min);
+	return (norm * data->z_range);
+} */
+
+/* Get the color for the gradient point between p1 and p2*/
+/* int	get_pnt_color(t_point *p1, t_point *p2, float pos, int len)
+{
+	int		r;
+	int		g;
+	int		b;
+	float	ratio;
+
+	ratio = pos / (float)len;
+	hex_to_rgb(p1->clr, p1);
+	hex_to_rgb(p2->clr, p2);
+	if ((p1->clr == p2->clr) || len == 0)
+		return (p1->clr);
+	else
+	{
+		r = p1->rgb.r + ((p2->rgb.r - p1->rgb.r) * ratio);
+		g = p1->rgb.g + ((p2->rgb.g - p1->rgb.g) * ratio);
+		b = p1->rgb.b + ((p2->rgb.b - p1->rgb.b) * ratio);
+		return (r << 16 | g << 8 | b);
+	}
+} */
+
+/* Get the color for all the map points given the gradient */
+/* void	make_gradient(t_data *data, int clr1, int clr2)
+{
+	int		i;
+	int		j;
+	float	pnt_pos;
+	t_point	*p1;
+	t_point	*p2;
+
+	i = -1;
+	j = -1;
+	p1 = malloc(sizeof(t_point));
+	p2 = malloc(sizeof(t_point));
+	p1->clr = clr1;
+	p2->clr = clr2;
+	pnt_pos = get_pnt_position(data->map[i][j].z, data);
+	data->map[i][j].clr = get_pnt_color(p1, p2, pnt_pos, data->z_range);
+	draw_map(data);
+	free(p1);
+	free(p2);
+} */
 
 void	paint_square(t_cube *cube, int  start_x, int start_y)
 {

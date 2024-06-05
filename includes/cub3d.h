@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/04 15:33:10 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 10:31:43 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@
 # define CLR_NEON			0xFF10F0
 
 // Game settings
-# define MM_SCALE 0.2
+# define MM_SCALE 0.1
 # define SIZE 64.0
 # define FOV_ANG (double)(60.0 * (M_PI / 180.0))
 //# define FOV_ANG 1.0472
 # define NUM_RAYS WIN_W
 //# define NUM_RAYS 5
 # define CLS_MARGIN 10.0
-# define MV_SPD 0.6
-# define ROT_SPD (double)(1.0 * (M_PI / 180.0))
+# define MV_SPD 1
+# define ROT_SPD (double)(2.0 * (M_PI / 180.0))
 
 typedef struct s_data	t_data;
 
@@ -215,16 +215,27 @@ void	put_pixel(t_img *img, int x, int y, int color);
 void	hex_to_rgb(int hex_color, t_point *point);
 void	paint_square(t_cube *cube, int start_x, int start_y);
 void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
-//int	get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
+float	get_pnt_position(float z, t_data *data);
+int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
+void	make_gradient(t_data *data, int clr1, int clr2);
+
 //void	vertical_lines(t_data *data);
 //void	horizontal_lines(t_data *data);
 
 // raycasting.c
+double	distance_between_points(double x1, double y1, double x2, double y2);
+void	get_final_hit(t_data *data, t_rays *rays, double h_dist, double v_dist);
 void	cast_rays(t_data *data);
 void	draw_rays(t_data *data);
 
+// raycasting_utils.c
+void	vertical_wall_hit(t_data *data, t_rays *rays, double x_step, double y_step);
+void	vertical_grid_hit(t_data *data, t_rays *rays);
+void	horizontal_wall_hit(t_data *data, t_rays *rays, double x_step, double y_step);
+void	horizontal_grid_hit(t_data *data, t_rays *rays);
+
 // walls.c
-void	render_walls(t_data *data);
+void	render_walls(t_data *data, int i, int j);
 
 // utils.c
 double	wrap_angle(double angle);
