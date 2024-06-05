@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 08:45:34 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:04:00 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 /* Initialize vars to standard values */
 void	init_data(t_data *data)
 {
-	data->clr_ceiling = 0x292929;
-	data->clr_floor = 0x292929;
+	data->clr_ceiling = CLR_GREY;
+	data->clr_floor = CLR_ROSYBROWN;
 	data->map_h = 0;
 	data->map_w = 0;
 	data->err = 0;

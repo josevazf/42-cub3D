@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:37:56 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 08:51:08 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:02:12 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	load_textures(t_data *data)
 	int i;
 
 	i = -1;
-	data->txts_path[NO] = ft_strdup("textures/tech_1.xpm");
-	data->txts_path[SO] = ft_strdup("textures/tech_2.xpm");
-	data->txts_path[WE] = ft_strdup("textures/tech_3.xpm");
-	data->txts_path[EA] = ft_strdup("textures/tech_4.xpm");
+	data->txts_path[NO] = ft_strdup("textures/bookshelf.xpm");
+	data->txts_path[SO] = ft_strdup("textures/bookshelf_01.xpm");
+	data->txts_path[WE] = ft_strdup("textures/bookshelf_02.xpm");
+	data->txts_path[EA] = ft_strdup("textures/bookshelf_03.xpm");
 	while (++i < 4)
 	{
 		data->txts_img[i].img = mlx_xpm_file_to_image(data->mlx_ptr, 

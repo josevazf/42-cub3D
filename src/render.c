@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:23:26 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 10:30:39 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:48:51 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,19 @@ void	render_walls(t_data *data, int i, int j)
 				put_pixel(&data->img, i, j, data->clr_floor);
 			else
 			{
-				rel_pos = floor(((j - wall_start) / (wall_end - wall_start))) * 64.0;
+				rel_pos = ((j - wall_start) / (wall_end - wall_start)) * 64.0;
 				if (!data->rays[i].hit_vert && data->rays[i].is_up) 			// NO
 					//put_pixel(&data->img, i, j, CLR_PERSIAN);
-					put_pixel(&data->img, i, j, get_texture_pixel(&data->txts_img[NO], rel_pos, (int)data->rays[i].x_hit % 64));
+					put_pixel(&data->img, i, j, get_texture_pixel(&data->txts_img[NO], (int)data->rays[i].x_hit % 64, rel_pos));
 				else if (!data->rays[i].hit_vert && !data->rays[i].is_up) 		// SO
 					//put_pixel(&data->img, i, j, CLR_BLUE);
-					put_pixel(&data->img, i, j, get_texture_pixel(&data->txts_img[SO], rel_pos, (int)data->rays[i].x_hit % 64));
+					put_pixel(&data->img, i, j, get_texture_pixel(&data->txts_img[SO], (int)data->rays[i].x_hit % 64, rel_pos));
 				else if (data->rays[i].hit_vert && data->rays[i].is_right) 		// EA
 					//put_pixel(&data->img, i, j, CLR_OLIVE);
-					put_pixel(&data->img, i, j, get_texture_pixel(&data->txts_img[EA], rel_pos, (int)data->rays[i].y_hit % 64));
+					put_pixel(&data->img, i, j, get_texture_pixel(&data->txts_img[EA], (int)data->rays[i].y_hit % 64, rel_pos));
 				else															// WE
 					//put_pixel(&data->img, i, j, CLR_GREY);
-					put_pixel(&data->img, i, j, get_texture_pixel(&data->txts_img[WE], rel_pos, (int)data->rays[i].y_hit % 64));
+					put_pixel(&data->img, i, j, get_texture_pixel(&data->txts_img[WE], (int)data->rays[i].y_hit % 64, rel_pos));
 			}
 		}
 		//draw_lines(&line_start, &line_end, data, -1);
