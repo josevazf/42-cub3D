@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 14:44:54 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:21:56 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,22 +221,22 @@ float	get_pnt_position(float z, t_data *data);
 int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
 void	make_gradient(t_data *data, int clr1, int clr2);
 
-//void	vertical_lines(t_data *data);
-//void	horizontal_lines(t_data *data);
-
-// raycasting.c
+// raycast.c
 double	distance_between_points(double x1, double y1, double x2, double y2);
 void	get_final_hit(t_data *data, t_rays *rays, double h_dist, double v_dist);
 void	cast_rays(t_data *data);
 void	draw_rays(t_data *data);
 
-// raycasting_utils.c
+// raycasting_dda.c
 void	vertical_wall_hit(t_data *data, t_rays *rays, double x_step, double y_step);
 void	vertical_grid_hit(t_data *data, t_rays *rays);
 void	horizontal_wall_hit(t_data *data, t_rays *rays, double x_step, double y_step);
 void	horizontal_grid_hit(t_data *data, t_rays *rays);
 
-// walls.c
+// render.c
+int		get_texture_pixel(t_img *img, int x, int y);
+int		fade_color(int color, double factor);
+void	draw_textured_wall(t_data *data, int i, int j);
 void	render_walls(t_data *data, int i, int j);
 
 // utils.c
@@ -249,7 +249,6 @@ double	get_deg(double rad);
 // error.c
 int		fd_error(int fd);
 int		args_error(void);
-void	ft_free_map(t_cube **matrix);
 void	ft_error_exit(char *msg, t_data *data);
 
 #endif
