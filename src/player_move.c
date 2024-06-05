@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:58:59 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 14:32:25 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:37:22 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,12 @@ void	move_rotate(t_data *data, int key)
 {
 	if (key == XK_Left)
 	{
-		data->player.rot_ang -= ROT_SPD;
+		data->player.rot_ang -= ROT_SPD * (M_PI / 180.0);
 		data->player.rot_ang = wrap_angle(data->player.rot_ang);
 	}
 	else
 	{
-		data->player.rot_ang += ROT_SPD;
+		data->player.rot_ang += ROT_SPD * (M_PI / 180.0);
 		data->player.rot_ang = wrap_angle(data->player.rot_ang);
 	}
 }

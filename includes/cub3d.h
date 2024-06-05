@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 15:21:56 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:42:14 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@
 // Game settings
 # define MM_SCALE 0.1
 # define SIZE 64.0
-# define FOV_ANG (double)(60.0 * (M_PI / 180.0))
+# define FOV_ANG 1.047197551
 //# define FOV_ANG 1.0472
 # define NUM_RAYS WIN_W
 //# define NUM_RAYS 5
 # define CLS_MARGIN 10.0
 # define MV_SPD 1
-# define ROT_SPD (double)(2.0 * (M_PI / 180.0))
+# define ROT_SPD 2.0
 
 typedef struct s_data	t_data;
 
@@ -180,25 +180,27 @@ typedef struct s_data
 }	t_data;
 
 // main.c
+int					run_game(t_data *data);
+void				load_textures(t_data *data);
 
 // init.c
-void	init_data(t_data *data);
-void	get_dimensions(char *file_name, t_data *data);
-void	create_map(t_data *data);
-void	fill_map(t_cube *map, char *line, t_data *data, int i);
-void	process_map(char *file_name, t_data *data);
+void				init_data(t_data *data);
+void				get_dimensions(char *file_name, t_data *data);
+void				create_map(t_data *data);
+void				fill_map(t_cube *map, char *line, t_data *data, int i);
+void				process_map(char *file_name, t_data *data);
 
 // events.c
-int		free_game(t_data *data);
-int		key_release(int key, t_data *data);
-int		key_press(int key, t_data *data);
-void	input_router(t_data *data);
+int					free_game(t_data *data);
+int					key_release(int key, t_data *data);
+int					key_press(int key, t_data *data);
+void				input_router(t_data *data);
 
 // minimap.c
-void	process_minimap(t_data *data);
-void	draw_direction(t_data *data);
-void	draw_player(t_data *data);
-void	draw_minimap(t_data *data);
+void				process_minimap(t_data *data);
+void				draw_direction(t_data *data);
+void				draw_player(t_data *data);
+void				draw_minimap(t_data *data);
 
 // player.c
 enum e_cubeStart	get_player_start_dir(char dir, t_data *data);
@@ -206,49 +208,53 @@ t_cube				point_cube_position(t_data *data, double x, double y);
 void				set_player_pos(t_data *data);
 
 // player_move.c
-bool	is_valid_cube(t_data *data, double mx, double my);
-void	move_linear(t_data *data, int key);
-void	move_strafe(t_data *data, int key);
-void	move_rotate(t_data *data, int key);
-void	move_player(t_data *data, int key);
+bool				is_valid_cube(t_data *data, double mx, double my);
+void				move_linear(t_data *data, int key);
+void				move_strafe(t_data *data, int key);
+void				move_rotate(t_data *data, int key);
+void				move_player(t_data *data, int key);
 
 // draw_utils.c
-void	put_pixel(t_img *img, int x, int y, int color);
-void	hex_to_rgb(int hex_color, t_point *point);
-void	paint_square(t_cube *cube, int start_x, int start_y);
-void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
-float	get_pnt_position(float z, t_data *data);
-int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
-void	make_gradient(t_data *data, int clr1, int clr2);
+void				put_pixel(t_img *img, int x, int y, int color);
+void				hex_to_rgb(int hex_color, t_point *point);
+void				paint_square(t_cube *cube, int start_x, int start_y);
+void				draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
+float				get_pnt_position(float z, t_data *data);
+int					get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
+void				make_gradient(t_data *data, int clr1, int clr2);
 
 // raycast.c
-double	distance_between_points(double x1, double y1, double x2, double y2);
-void	get_final_hit(t_data *data, t_rays *rays, double h_dist, double v_dist);
-void	cast_rays(t_data *data);
-void	draw_rays(t_data *data);
+double				distance_between_points(double x1, double y1, double x2,
+						double y2);
+void				get_final_hit(t_data *data, t_rays *rays, double h_dist,
+						double v_dist);
+void				cast_rays(t_data *data);
+void				draw_rays(t_data *data);
 
 // raycasting_dda.c
-void	vertical_wall_hit(t_data *data, t_rays *rays, double x_step, double y_step);
-void	vertical_grid_hit(t_data *data, t_rays *rays);
-void	horizontal_wall_hit(t_data *data, t_rays *rays, double x_step, double y_step);
-void	horizontal_grid_hit(t_data *data, t_rays *rays);
+void				vertical_wall_hit(t_data *data, t_rays *rays, double x_step,
+						double y_step);
+void				vertical_grid_hit(t_data *data, t_rays *rays);
+void				horizontal_wall_hit(t_data *data, t_rays *rays,
+						double x_step, double y_step);
+void				horizontal_grid_hit(t_data *data, t_rays *rays);
 
 // render.c
-int		get_texture_pixel(t_img *img, int x, int y);
-int		fade_color(int color, double factor);
-void	draw_textured_wall(t_data *data, int i, int j);
-void	render_walls(t_data *data, int i, int j);
+int					get_texture_pixel(t_img *img, int x, int y);
+int					fade_color(int color, double factor);
+void				draw_textured_wall(t_data *data, int i, int j);
+void				render_walls(t_data *data, int i, int j);
 
 // utils.c
-double	wrap_angle(double angle);
-void	clean_screen(t_data *data);
-int		get_slope(int p1, int p2);
-double	get_rad(double deg);
-double	get_deg(double rad);
+double				wrap_angle(double angle);
+void				clean_screen(t_data *data);
+int					get_slope(int p1, int p2);
+double				get_rad(double deg);
+double				get_deg(double rad);
 
 // error.c
-int		fd_error(int fd);
-int		args_error(void);
-void	ft_error_exit(char *msg, t_data *data);
+int					fd_error(int fd);
+int					args_error(void);
+void				ft_error_exit(char *msg, t_data *data);
 
 #endif
