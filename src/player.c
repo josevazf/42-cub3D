@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/04 14:54:05 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:32:41 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ t_cube	point_cube_position(t_data *data, double x, double y)
 /* Set initial Player position in the map */
 void	set_player_pos(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	j = -1;

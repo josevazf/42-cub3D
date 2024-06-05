@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/31 14:17:31 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:31:23 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	draw_direction(t_data *data)
 	t_point		dir;
 	t_point		pos;
 
-	//printf("Player (x: %f, y: %f)\n", data->player.px, data->player.py);
 	pos.x = data->player.px;
 	pos.y = data->player.py;
 	dir.x = pos.x + cos(data->player.rot_ang) * 20;
@@ -47,21 +46,20 @@ void	draw_player(t_data *data)
 {
 	int	i;
 	int	j;
-	
+
 	i = 3;
 	j = 3;
-	//draw_direction(data);
 	if (data->init == true)
 	{
 		set_player_pos(data);
 		data->init = false;
 	}
-	//data->player.c_pos = player_cube_position(data, data->player.px, data->player.py);
 	while (--i > -3)
 	{
 		j = 3;
 		while (--j > -3)
-			put_pixel(&data->img, data->player.px * MM_SCALE - i, data->player.py * MM_SCALE - j, CLR_PERSIAN);
+			put_pixel(&data->img, data->player.px * MM_SCALE - i,
+				data->player.py * MM_SCALE - j, CLR_PERSIAN);
 	}
 }
 

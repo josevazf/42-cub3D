@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:56:30 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/04 16:02:40 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:28:06 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	key_press(int key, t_data *data)
 int	free_game(t_data *data)
 {
 	int	i;
+
 	i = -1;
 	if (data)
 	{

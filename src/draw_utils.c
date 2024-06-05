@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 10:23:18 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:27:21 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	hex_to_rgb(int hex_color, t_point *point)
 	free(p2);
 } */
 
-void	paint_square(t_cube *cube, int  start_x, int start_y)
+void	paint_square(t_cube *cube, int start_x, int start_y)
 {
 	int	x;
 	int	y;
@@ -95,11 +95,8 @@ void	paint_square(t_cube *cube, int  start_x, int start_y)
 	{
 		y = -1;
 		while (++y <= size)
-		{
-			put_pixel(&cube->data->img, (start_x * MM_SCALE) + x, (start_y * MM_SCALE) + y, cube->clr);
-			/* if (x == 0 || x == (size - 1) * MM_SCALE || y == 0 || y == (size - 1) * MM_SCALE)
-				put_pixel(&cube->data->img, (cube->v1.x * MM_SCALE) + x, (cube->v1.y * MM_SCALE) + y, CLR_BLACK); */
-		}
+			put_pixel(&cube->data->img, (start_x * MM_SCALE) + x,
+				(start_y * MM_SCALE) + y, cube->clr);
 	}
 }
 
@@ -114,8 +111,8 @@ void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 	data->err = dx - dy;
 	while (++i < ft_int_max(dx, dy))
 	{
-		if (p1->x > 0 && p1->x < WIN_W - 5 && p1->y > 0 && 
-			p1->y < WIN_H - 5)
+		if (p1->x > 0 && p1->x < WIN_W - 5 && p1->y > 0
+			&& p1->y < WIN_H - 5)
 			put_pixel(&data->img, p1->x, p1->y, CLR_PERSIAN);
 		if (p1->x == p2->x && p1->y == p2->y)
 			break ;
@@ -131,43 +128,3 @@ void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 		}
 	}
 }
-
-/* Define and draw vertical lines */
-/* void	vertical_lines(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = -1;
-	while (++i < data->map_h - 1)
-	{
-		j = -1;
-		while (++j < (data->map_w))
-		{
-			data->x1 = data->map[i][j].cnt.x;
-			data->y1 = data->map[i][j].cnt.y;
-			draw_lines(&data->map[i][j], &data->map[i + 1][j], data, -1);
-		}
-	}
-} */
-
-/* Define and draw horizontal lines */
-/* void	horizontal_lines(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = -1;
-	while (++j < data->map_w - 1)
-	{
-		i = -1;
-		while (++i < data->map_h)
-		{
-			data->x1 = data->map[i][j].cnt.x;
-			data->y1 = data->map[i][j].cnt.y;
-			draw_lines(&data->map[i][j], &data->map[i][j + 1], data, -1);
-		}
-	}
-} */

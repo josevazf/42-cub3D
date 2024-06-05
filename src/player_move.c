@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:58:59 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/22 11:21:00 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:32:25 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /* Check collisions between Player movement and closed cubes */
 bool	is_valid_cube(t_data *data, double mx, double my)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = -CLS_MARGIN;
 	j = -CLS_MARGIN;
 	while (++i < CLS_MARGIN)
@@ -27,7 +27,7 @@ bool	is_valid_cube(t_data *data, double mx, double my)
 		{
 			data->player.c_pos = point_cube_position(data, mx + i, my + j);
 			if (data->player.c_pos.cube_type == CLOSED)
-				return (false);	
+				return (false);
 		}
 	}
 	return (true);
@@ -36,8 +36,8 @@ bool	is_valid_cube(t_data *data, double mx, double my)
 /* Move forward `W` or backwards `S` */
 void	move_linear(t_data *data, int key)
 {
-	double px;
-	double py;
+	double	px;
+	double	py;
 
 	if (key == XK_w)
 	{
@@ -59,9 +59,9 @@ void	move_linear(t_data *data, int key)
 /* Strafe to the left `A` or to the right `D` */
 void	move_strafe(t_data *data, int key)
 {
-	double px;
-	double py;
-	double angle;
+	double	px;
+	double	py;
+	double	angle;
 
 	angle = data->player.rot_ang;
 	if (key == XK_a)
@@ -98,7 +98,7 @@ void	move_rotate(t_data *data, int key)
 	}
 }
 
-/* Function to trigger Player movement */ 
+/* Function to trigger Player movement */
 void	move_player(t_data *data, int key)
 {
 	clean_screen(data);

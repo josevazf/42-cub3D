@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 10:31:43 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:44:54 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ typedef struct s_rays
 	double		yh_hit;
 	double		xv_hit;
 	double		yv_hit;
+	double		wall_start;
+	double		wall_end;
 	bool		hit_vert;
 	bool		hwall_hit;
 	bool		vwall_hit;

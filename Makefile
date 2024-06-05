@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2024/06/05 08:42:18 by jrocha-v         ###   ########.fr        #
+#    Updated: 2024/06/05 14:42:52 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ SRCS			= 	main.c \
 					player.c \
 					player_move.c \
 					minimap.c \
-					raycasting.c \
-					raycasting_utils.c \
+					raycast.c \
+					raycast_dda.c \
 					render.c \
 					draw_utils.c \
 					utils.c \

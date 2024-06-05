@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 13:04:00 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:52:07 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	get_dimensions(char *file_name, t_data *data)
 		data->map_h++;
 		free(line);
 	}
-	printf("width-> %d\n", data->map_w);
-	printf("height-> %d\n", data->map_h);
 	close(fd);
 }
 
@@ -72,7 +70,7 @@ void	get_dimensions(char *file_name, t_data *data)
 void	create_map(t_data *data)
 {
 	int	i;
-	
+
 	i = -1;
 	data->map = ft_safe_malloc(sizeof(t_cube *) * (data->map_h + 1));
 	while (++i < data->map_h)
@@ -84,24 +82,17 @@ void	fill_map(t_cube *map, char *line, t_data *data, int i)
 {
 	while (++i < data->map_w)
 	{
+		map[i].cube_start = FALSE;
+		map[i].clr = CLR_BLACK;
 		if (i >= (int)ft_strlen(line) - 1 || line[i] == ' ')
-		{
 			map[i].cube_type = EMPTY;
-			map[i].cube_start = FALSE;
-			map[i].clr = CLR_BLACK;
-		}
 		else if (line[i] == '0')
 		{
 			map[i].cube_type = OPEN;
-			map[i].cube_start = FALSE;
 			map[i].clr = CLR_WHITE;
 		}
 		else if (line[i] == '1')
-		{
 			map[i].cube_type = CLOSED;
-			map[i].cube_start = FALSE;
-			map[i].clr = CLR_BLACK;
-		}
 		else if (line[i] != '0' && line[i] != '1')
 		{
 			map[i].cube_type = OPEN;
@@ -109,27 +100,6 @@ void	fill_map(t_cube *map, char *line, t_data *data, int i)
 			map[i].clr = CLR_WHITE;
 		}
 		map[i].data = data;
-	}
-}
-
-/* Print map cube types */
-void	print_cube_types(t_data *data)
-{
-		int	i;
-	int	j;
-
-	i = -1;
-	j = -1;
-	while (++i < data->map_h)
-	{
-		j = -1;
-		while (++j < (data->map_w))
-		{
-			if (j == data->map_w - 1)
-				printf("[%d]\n", data->map[i][j].cube_type);
-			else
-				printf("[%d]", data->map[i][j].cube_type);	
-		}
 	}
 }
 
@@ -153,7 +123,6 @@ void	process_map(char *file_name, t_data *data)
 		free(line);
 	}
 	line = get_next_line(fd);
-	//print_cube_types(data);
 	free(line);
 	close(fd);
 	data->map[i] = NULL;

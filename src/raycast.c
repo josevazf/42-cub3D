@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 08:41:04 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:36:03 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,19 @@ void	cast_rays(t_data *data)
 {
 	int		i;
 	double	ray_angle;
-	
+
 	i = -1;
 	ray_angle = data->player.rot_ang - (FOV_ANG / 2.0);
 	while (++i < NUM_RAYS)
 	{
 		ray_angle += FOV_ANG / NUM_RAYS;
-		data->rays[i].angle = wrap_angle(ray_angle);		
+		data->rays[i].angle = wrap_angle(ray_angle);
 		data->rays[i].is_up = true;
 		data->rays[i].is_right = true;
 		if (data->rays[i].angle > 0 && data->rays[i].angle < M_PI)
 			data->rays[i].is_up = false;
-		if (data->rays[i].angle > (0.5 * M_PI) && data->rays[i].angle < (1.5 * M_PI))
+		if (data->rays[i].angle > (0.5 * M_PI)
+			&& data->rays[i].angle < (1.5 * M_PI))
 			data->rays[i].is_right = false;
 		data->rays[i].hit_vert = false;
 		data->rays[i].hwall_hit = false;
@@ -75,10 +76,10 @@ void	cast_rays(t_data *data)
 
 void	draw_rays(t_data *data)
 {
-	int i;
-	t_point ray_start;
+	int		i;
+	t_point	ray_start;
 	t_point	ray_end;
-	
+
 	i = -1;
 	ray_start.x = data->player.px * MM_SCALE;
 	ray_start.y = data->player.py * MM_SCALE;
