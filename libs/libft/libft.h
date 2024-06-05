@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:26:26 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/04 14:51:38 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:18:56 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int					*ft_split_ints(char const *s, char c);
 long				*ft_split_longs(char const *s, char c);
 void				*ft_safe_malloc(size_t bytes);
 void				ft_safe_free(void *memory);
+void				ft_perror_exit(char *str, int error);
 
 // List manipulation
 t_list				*ft_lstnew(void *content);

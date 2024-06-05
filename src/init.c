@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 14:52:07 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:20:40 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,13 @@ void	fill_map(t_cube *map, char *line, t_data *data, int i)
 }
 
 /* Get all map info */
-void	process_map(char *file_name, t_data *data)
+void	process_map(char *file_name, t_data *data, t_map *map)
 {
 	char	*line;
 	int		i;
 	int		fd;
 
+	(void)map;
 	i = -1;
 	init_data(data);
 	get_dimensions(file_name, data);

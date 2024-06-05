@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2024/06/05 14:42:52 by jrocha-v         ###   ########.fr        #
+#    Updated: 2024/06/05 17:03:08 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,18 @@ MLX_FLAGS		= -lmlx_Linux -lXext -lX11 -lm -lbsd
 MK_FLAG			= --no-print-directory
 RM				= rm -rf
 
-SRCS			= 	main.c \
+SRCS			= 	parser/free_mem.c \
+					parser/map_checkers_1.c \
+					parser/map_checkers_2.c \
+					parser/map_creators.c \
+					parser/map_parameters_checker.c \
+					parser/parser.c \
+					parser/player_utils.c \
+					parser/printers.c \
+					parser/rgb_getter.c \
+					parser/struct_init.c \
+					parser/textures_geter.c \
+					main.c \
 					init.c 	\
 					events.c \
 					player.c \

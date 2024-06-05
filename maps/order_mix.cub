@@ -1,12 +1,12 @@
-EA textures/leaves.xpm
+EA ./textures/leaves.xpm
 
 C 123,211,234
 
-NO textures/ice.xpm
-WE textures/bricks.xpm
+NO ./textures/ice.xpm
+WE ./textures/bricks.xpm
 
 F 101,183,65
-SO textures/lava.xpm
+SO ./textures/lava.xpm
 
 1111111111
 1000000001

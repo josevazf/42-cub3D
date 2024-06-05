@@ -1,7 +1,7 @@
-NO textures/tech_1.xpm
-SO textures/tech_2.xpm
-WE textures/tech_3.xpm
-EA textures/tech_4.xpm
+NO ./textures/tech_1.xpm
+SO ./textures/tech_2.xpm
+WE ./textures/tech_3.xpm
+EA ./textures/tech_4.xpm
 
 F 95,95,95
 C 113,211,244

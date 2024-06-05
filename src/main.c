@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:37:56 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 14:30:37 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:06:24 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,19 @@ void	init_mlx_textures(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	t_map	*map;
 
-	(void)argc;
-/* 
-	if (argc != 2 || ft_check_ext(argv[1], ".cub"))
-		args_error(); */
-	process_map(argv[1], &data);
+	if (argc == 1)
+		no_map_error();
+	else if (argc == 2 && is_file_extension_correct(argv[1]) == false)
+		ft_perror_exit(RED"Error\nThe executable only "
+			"accepts a \'.cub\' argument\n"RESET, 2);
+	else if (argc == 2)
+		map = parse_map(argv[1]);
+	else
+		ft_perror_exit(RED"Error\nThe executable only accepts "
+			BOLD"one"RESET RED" \'.cub\' argument\n"RESET, 2);
+	process_map(argv[1], &data, map);
 	data.map_name = ft_strjoin("[padaria]   Cub3D: ", argv[1]);
 	init_mlx_textures(&data);
 	mlx_hook(data.win_ptr, 2, 1L << 0, &key_press, &data);
