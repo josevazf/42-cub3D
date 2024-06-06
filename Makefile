@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2024/06/05 17:03:08 by jrocha-v         ###   ########.fr        #
+#    Updated: 2024/06/06 18:30:49 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,23 +71,27 @@ $(LIBFT):
 	echo "Compiling necessary libs..."
 	$(MAKE) $(MK_FLAG) -C $(LIBFT_DIR)
 
-#$(LIBMLX):
-#	echo "Compiling necessary libs..."
-#	$(MAKE) $(MK_FLAG) -C $(LIBMLX_DIR)
+$(LIBMLX):
+	echo "Compiling necessary libs..."
+	$(MAKE) $(MK_FLAG) -C $(LIBMLX_DIR)
 
 #remove .o files
 clean:
 	$(RM) $(OBJS_DIR)
 	$(MAKE) clean -C $(LIBFT_DIR)
-#$(MAKE) clean -C $(LIBMLX_DIR)
+	$(MAKE) clean -C $(LIBMLX_DIR)
 
 fclean: clean
-#$(RM) $(NAME) $(LIBFT) $(LIBMLX)
-	$(RM) $(NAME) $(LIBFT)
+	$(RM) $(NAME) $(LIBFT) $(LIBMLX)
 
 #reset - remove and recompile
 re: fclean
 	$(MAKE) all
+
+download:
+	@ wget https://cdn.intra.42.fr/document/document/22624/minilibx-linux.tgz
+	@ tar -xzf minilibx-linux.tgz -C libs
+	@ rm minilibx-linux.tgz
 
 .PHONY: all clean fclean re
 .SILENT:
