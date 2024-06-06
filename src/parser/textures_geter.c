@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_geter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:59:55 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/05 17:52:15 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:10:28 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,22 @@ static bool	is_valid_texture_path(char *path, t_map *map)
 
 char	*texture_path(int i, t_map_list *node, char *path, t_map *map)
 {
+	int	j;
+
 	i += 2;
 	while (node->row && ft_iswhitespace(node->row[i]) && \
 					(node->row + i)[0] != '\n')
 		i++;
+	j = 0;
+	while (node->row[i + j] && !ft_iswhitespace(node->row[i + j]))
+		j++;
 	if (node->row + i)
 	{
-		path = ft_strldup(node->row + i, ft_strlen(node->row) - i - 1);
+		printf("i: %d | j: %d\n", i, j);
+		printf("len: %ld\n", ft_strlen(node->row));
+		path = ft_strldup(node->row + i, \
+		ft_strlen(node->row) - (ft_strlen(node->row) - j));
+		printf("path: %s\n", path);
 		if (is_valid_texture_path(path, map) == true)
 			return (path);
 		free(path);

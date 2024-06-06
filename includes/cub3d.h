@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/06 19:10:39 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:11:16 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,8 @@ void				move_player(t_data *data, int key);
 // draw_utils.c
 int					rgb_to_int(int *color);
 void				put_pixel(t_img *img, int x, int y, int color);
-void				paint_square(t_cube *cube, int start_x, int start_y, double scale);
+void				paint_square(t_cube *cube, int start_x, int start_y,
+						double scale);
 void				draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
 
 // raycast.c
