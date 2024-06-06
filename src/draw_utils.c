@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/06 14:28:49 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:11:16 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*((unsigned int *)(offset + img->pixel_addr)) = color;
 }
 
-void	paint_square(t_cube *cube, int start_x, int start_y)
+void	paint_square(t_cube *cube, int start_x, int start_y, double scale)
 {
 	int	x;
 	int	y;
@@ -35,13 +35,13 @@ void	paint_square(t_cube *cube, int start_x, int start_y)
 
 	x = -1;
 	y = -1;
-	size = SIZE * MM_SCALE;
+	size = SIZE * scale;
 	while (++x <= size)
 	{
 		y = -1;
 		while (++y <= size)
-			put_pixel(&cube->data->img, (start_x * MM_SCALE) + x,
-				(start_y * MM_SCALE) + y, cube->clr);
+			put_pixel(&cube->data->img, (start_x * scale) + x,
+				(start_y * scale) + y, cube->clr);
 	}
 }
 

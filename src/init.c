@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/06 14:47:48 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:11:41 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /* Initialize vars to standard values */
 static void	init_data(t_data *data)
 {
+	data->mm_scale = 1.0;
 	data->map_h = 0;
 	data->map_w = 0;
 	data->err = 0;
@@ -100,6 +101,10 @@ void	process_map(char *file_name, t_data *data, t_map *map)
 	i = -1;
 	init_data(data);
 	get_dimensions(file_name, data, map);
+	if (data->map_w >= data->map_h)
+		data->mm_scale = 200 / (data->map_w * SIZE);
+	else
+		data->mm_scale = 200 / (data->map_h * SIZE);
 	create_map(data);
 	while (++i < data->map_h)
 		fill_map(data->map[i], map->map_grid[i], data, -1);

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/06 14:48:21 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:10:39 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 # define WIN_H 768
 
 // GAME SETTINGS
-# define MM_SCALE 0.1
+//# define data->mm_scale 0.1
 # define SIZE 64.0
 # define FOV_ANG 1.047197551
 # define NUM_RAYS WIN_W
@@ -198,6 +198,7 @@ typedef struct s_data
 	int			y1;
 	int			map_w;
 	int			map_h;
+	double		mm_scale;
 	double		c_pos_x;
 	double		c_pos_y;
 	char		*txts_path[4];
@@ -259,7 +260,7 @@ void				move_player(t_data *data, int key);
 // draw_utils.c
 int					rgb_to_int(int *color);
 void				put_pixel(t_img *img, int x, int y, int color);
-void				paint_square(t_cube *cube, int start_x, int start_y);
+void				paint_square(t_cube *cube, int start_x, int start_y, double scale);
 void				draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
 
 // raycast.c

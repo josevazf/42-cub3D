@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/06 14:38:34 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:06:07 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void	draw_rays(t_data *data)
 	t_point	ray_end;
 
 	i = -1;
-	ray_start.x = data->player.px * MM_SCALE;
-	ray_start.y = data->player.py * MM_SCALE;
+	ray_start.x = data->player.px * data->mm_scale;
+	ray_start.y = data->player.py * data->mm_scale;
 	while (++i < NUM_RAYS)
 	{
-		ray_end.x = data->rays[i].x_hit * MM_SCALE;
-		ray_end.y = data->rays[i].y_hit * MM_SCALE;
+		ray_end.x = data->rays[i].x_hit * data->mm_scale;
+		ray_end.y = data->rays[i].y_hit * data->mm_scale;
 		draw_lines(&ray_end, &ray_start, data, -1);
 	}
 }

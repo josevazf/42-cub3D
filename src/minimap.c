@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/06 14:33:23 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:10:53 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	draw_minimap(t_data *data)
 	{
 		j = -1;
 		while (++j < (data->map_w))
-			paint_square(&data->map[i][j], j * (int)SIZE, i * (int)SIZE);
+			paint_square(&data->map[i][j], j * (int)SIZE, i * (int)SIZE,
+				data->mm_scale);
 	}
 }
 
@@ -58,8 +59,8 @@ static void	draw_player(t_data *data)
 	{
 		j = 3;
 		while (--j > -3)
-			put_pixel(&data->img, data->player.px * MM_SCALE - i,
-				data->player.py * MM_SCALE - j, CLR_PERSIAN);
+			put_pixel(&data->img, data->player.px * data->mm_scale - i,
+				data->player.py * data->mm_scale - j, CLR_PERSIAN);
 	}
 }
 
