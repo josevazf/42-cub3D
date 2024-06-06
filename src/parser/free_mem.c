@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   free_mem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 08:50:28 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/05 17:03:56 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:36:45 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-/// @brief Frees a t_map_list linked list
-/// @param list 
 void	free_map_list(t_map_list *list)
 {
 	t_map_list	*temp;
@@ -27,8 +25,6 @@ void	free_map_list(t_map_list *list)
 	}
 }
 
-/// @brief Frees a t_map struct
-/// @param map 
 void	free_map(t_map *map)
 {
 	if (map->north_wall)
@@ -52,11 +48,6 @@ void	free_map(t_map *map)
 	free(map);
 }
 
-/// @brief Frees all allocated memory and exits the program with a custom error
-/// @param str 
-/// @param error 
-/// @param map 
-/// @param map_list 
 void	ft_perror_shutdown(char *str, int error, t_map *map)
 {
 	free_map(map);
@@ -65,12 +56,6 @@ void	ft_perror_shutdown(char *str, int error, t_map *map)
 	exit(error);
 }
 
-/// @brief Used within the rgb_char_to_int() function.
-/// @brief Frees all allocated memory and exits the program with a custom error
-/// @param str 
-/// @param error 
-/// @param map 
-/// @param map_list 
 void	ft_rgb_perror_shutdown(char *str, t_map *map, int *rgb, char**rgb_str)
 {
 	free(rgb);

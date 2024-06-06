@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:25:23 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/05 17:04:52 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:37:17 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-/// @brief Checks if the file extension is '.cub'
-/// @param argv 
-/// @return boolean
 bool	is_file_extension_correct(char *str)
 {
 	int	len;
@@ -26,8 +23,6 @@ bool	is_file_extension_correct(char *str)
 	return (true);
 }
 
-/// @brief Prints error message followed by the available default maps' name.
-/// @param  void
 void	no_map_error(void)
 {
 	printf(RED"Error\n"RESET);
@@ -39,8 +34,6 @@ void	no_map_error(void)
 	ft_perror_exit(NULL, 2);
 }
 
-/// @brief Gets all the map's information from the file
-/// @param map_file 
 t_map	*parse_map(char *map_file)
 {
 	int			map_fd;
@@ -60,5 +53,4 @@ t_map	*parse_map(char *map_file)
 	map_checker(map);
 	map_struct_printer(map);
 	return(map);
-	//free_map(map);
 }

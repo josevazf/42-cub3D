@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map_creators.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 08:47:23 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/05 17:04:23 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:36:26 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-/// @brief Creates a linked list where each node is a row of the map
-/// @param map_fd 
 t_map_list	*create_map_list_from_fd(int map_fd, t_map *map)
 {
 	char		*line;
@@ -41,9 +39,6 @@ t_map_list	*create_map_list_from_fd(int map_fd, t_map *map)
 	return (map->map_list);
 }
 
-/// @brief Checks for a wall tile in each line of the map_list
-/// @param node 
-/// @return 
 static bool	check_for_map_tile(t_map_list *node)
 {
 	int	i;
@@ -83,9 +78,6 @@ static int	count_rows_to_alloc(t_map_list *node)
 	return (ret);
 }
 
-/// @brief Creates a grid of the map
-/// @param map_list 
-/// @param map 
 char	**create_map_grid_from_list(t_map *map)
 {
 	t_map_list	*node;
