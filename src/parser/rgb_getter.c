@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_getter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 08:54:59 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/05 17:05:52 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:57:34 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,28 @@ char	*set_direction(t_direction dir_code)
 
 static int	*rgb_char_to_int(char **rgb_str, t_map *map)
 {
-	int	arr_len;
+	int	l;
 	int	*rgb;
 	int	i;
 	int	j;
 
-	arr_len = 0;
+	l = 0;
 	i = -1;
 	rgb = (int *)malloc(sizeof(int) * 3);
-	while (rgb_str[arr_len])
+	while (rgb_str[l])
 	{
 		j = -1;
-		while (rgb_str[arr_len][++j])
-			if (!ft_isdigit(rgb_str[arr_len][j]) && rgb_str[arr_len][j] != '\n')
+		while (rgb_str[l][++j])
+			if (!ft_isdigit(rgb_str[l][j]) && !ft_iswhitespace(rgb_str[l][j]))
 				ft_rgb_perror_shutdown(RED"Error\nInvalid rgb "
 					"color entered\n"RESET, map, rgb, rgb_str);
-		rgb[++i] = ft_atoi(rgb_str[arr_len]);
-		arr_len++;
-		if (arr_len > 3 || rgb[i] < 0 || rgb[i] > 255)
+		rgb[++i] = ft_atoi(rgb_str[l]);
+		l++;
+		if (l > 3 || rgb[i] < 0 || rgb[i] > 255)
 			ft_rgb_perror_shutdown(RED"Error\nInvalid rgb color "
 				"entered\n"RESET, map, rgb, rgb_str);
 	}
-	if (arr_len < 3)
+	if (l < 3)
 		ft_rgb_perror_shutdown(RED"Error\nInvalid rgb color "
 			"entered\n"RESET, map, rgb, rgb_str);
 	return (rgb);
