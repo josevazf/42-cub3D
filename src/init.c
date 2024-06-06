@@ -6,17 +6,22 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 16:20:40 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:06:45 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* Initialize vars to standard values */
-void	init_data(t_data *data)
+int		rgb_to_int(int *color)
 {
-	data->clr_ceiling = CLR_GREY;
-	data->clr_floor = CLR_ROSYBROWN;
+	return ((color[0] << 16) | (color[1] << 8) | color[2]);
+}
+
+/* Initialize vars to standard values */
+void	init_data(t_data *data, t_map *map)
+{
+	data->clr_ceiling = rgb_to_int(map->ceiling_color);
+	data->clr_floor = rgb_to_int(map->floor_color);
 	data->map_h = 0;
 	data->map_w = 0;
 	data->err = 0;
@@ -39,31 +44,21 @@ void	init_data(t_data *data)
 }
 
 /* Get outter dimensions of the map, w (width) and h (height)*/
-void	get_dimensions(char *file_name, t_data *data)
+void	get_dimensions(char *file_name, t_data *data, t_map *map)
 {
-	int		fd;
+	int		i;
 	int		temp_width;
-	char	*line;
 
+	(void)file_name;
+	i = -1;
 	temp_width = 0;
-	line = NULL;
-	fd = open(file_name, O_RDONLY, 0);
-	fd_error(fd);
-	while (1)
+	while (map->map_grid[++i])
 	{
-		line = get_next_line(fd);
-		if (!line)
-		{
-			free(line);
-			break ;
-		}
-		temp_width = ft_strlen(line) - 1;
+		temp_width = ft_strlen(map->map_grid[i]) - 1;
 		if (data->map_w <= temp_width)
 			data->map_w = temp_width;
 		data->map_h++;
-		free(line);
 	}
-	close(fd);
 }
 
 /* Create an empty matrix representation of the map */
@@ -106,25 +101,14 @@ void	fill_map(t_cube *map, char *line, t_data *data, int i)
 /* Get all map info */
 void	process_map(char *file_name, t_data *data, t_map *map)
 {
-	char	*line;
 	int		i;
-	int		fd;
 
-	(void)map;
+	data->og_map = map;
 	i = -1;
-	init_data(data);
-	get_dimensions(file_name, data);
-	fd = open(file_name, O_RDONLY, 0);
-	fd_error(fd);
+	init_data(data, map);
+	get_dimensions(file_name, data, map);
 	create_map(data);
 	while (++i < data->map_h)
-	{
-		line = get_next_line(fd);
-		fill_map(data->map[i], line, data, -1);
-		free(line);
-	}
-	line = get_next_line(fd);
-	free(line);
-	close(fd);
+		fill_map(data->map[i], map->map_grid[i], data, -1);
 	data->map[i] = NULL;
 }

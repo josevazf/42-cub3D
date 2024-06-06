@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:25:23 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/06 09:37:17 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:08:02 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ t_map	*parse_map(char *map_file)
 	close(map_fd);
 	map_fetch_struct_info(map);
 	map_checker(map);
-	map_struct_printer(map);
+	//map_struct_printer(map);
 	return(map);
 }

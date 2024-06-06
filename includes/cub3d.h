@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 17:05:10 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:07:03 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@
 # define ROT_SPD 2.0
 
 typedef struct s_data	t_data;
+typedef struct s_map	t_map;
 
 typedef enum e_direction
 {
@@ -213,6 +214,7 @@ typedef struct s_data
 	t_key		key;
 	t_img		txts_img[4];
 	t_img		img;
+	t_map		*og_map;
 }	t_data;
 
 typedef struct s_map_list
@@ -237,11 +239,12 @@ typedef struct s_map
 
 // main.c
 int					run_game(t_data *data);
-void				load_textures(t_data *data);
+void				load_textures(t_data *data, t_map *map);
+void				init_mlx_textures(t_data *data, t_map *map);
 
 // init.c
-void				init_data(t_data *data);
-void				get_dimensions(char *file_name, t_data *data);
+void				init_data(t_data *data, t_map *map);
+void				get_dimensions(char *file_name, t_data *data, t_map *map);
 void				create_map(t_data *data);
 void				fill_map(t_cube *map, char *line, t_data *data, int i);
 void				process_map(char *file_name, t_data *data, t_map *map);

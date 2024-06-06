@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:56:30 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 14:28:06 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:07:39 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	free_game(t_data *data)
 	int	i;
 
 	i = -1;
+	free_map(data->og_map);
 	if (data)
 	{
 		while (++i < 4)

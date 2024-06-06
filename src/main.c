@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:37:56 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 17:06:24 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:05:50 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int	run_game(t_data *data)
 	return (SUCCESS);
 }
 
-void	load_textures(t_data *data)
+void	load_textures(t_data *data, t_map *map)
 {
 	int	i;
 
 	i = -1;
-	data->txts_path[NO] = ft_strdup("textures/bookshelf.xpm");
-	data->txts_path[SO] = ft_strdup("textures/bookshelf_01.xpm");
-	data->txts_path[WE] = ft_strdup("textures/bookshelf_02.xpm");
-	data->txts_path[EA] = ft_strdup("textures/bookshelf_03.xpm");
+	data->txts_path[NO] = ft_strdup(map->north_wall);
+	data->txts_path[SO] = ft_strdup(map->south_wall);
+	data->txts_path[WE] = ft_strdup(map->west_wall);
+	data->txts_path[EA] = ft_strdup(map->east_wall);
 	while (++i < 4)
 	{
 		data->txts_img[i].img = mlx_xpm_file_to_image(data->mlx_ptr,
@@ -47,12 +47,12 @@ void	load_textures(t_data *data)
 	}
 }
 
-void	init_mlx_textures(t_data *data)
+void	init_mlx_textures(t_data *data, t_map *map)
 {
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		ft_error_exit("cub3D: failed to initialize MLX", data);
-	load_textures(data);
+	load_textures(data, map);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_W, WIN_H, data->map_name);
 	if (!data->win_ptr)
 		ft_error_exit("cub3D: failed to create window", data);
@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 			BOLD"one"RESET RED" \'.cub\' argument\n"RESET, 2);
 	process_map(argv[1], &data, map);
 	data.map_name = ft_strjoin("[padaria]   Cub3D: ", argv[1]);
-	init_mlx_textures(&data);
+	init_mlx_textures(&data, map);
 	mlx_hook(data.win_ptr, 2, 1L << 0, &key_press, &data);
 	mlx_hook(data.win_ptr, 3, 1L << 1, &key_release, &data);
 	mlx_hook(data.win_ptr, 17, 1L << 0, &free_game, &data);
