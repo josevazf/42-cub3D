@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:59:55 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/06 22:10:28 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:13:19 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,8 @@ char	*texture_path(int i, t_map_list *node, char *path, t_map *map)
 		j++;
 	if (node->row + i)
 	{
-		printf("i: %d | j: %d\n", i, j);
-		printf("len: %ld\n", ft_strlen(node->row));
 		path = ft_strldup(node->row + i, \
 		ft_strlen(node->row) - (ft_strlen(node->row) - j));
-		printf("path: %s\n", path);
 		if (is_valid_texture_path(path, map) == true)
 			return (path);
 		free(path);
