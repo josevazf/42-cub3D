@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/06 12:07:03 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:19:05 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@
 # define NUM_RAYS WIN_W
 //# define NUM_RAYS 5
 # define CLS_MARGIN 10.0
-# define MV_SPD 1
+# define MV_SPD 3
 # define ROT_SPD 2.0
 
 typedef struct s_data	t_data;

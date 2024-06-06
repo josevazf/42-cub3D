@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:25:23 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/06 12:08:02 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:21:57 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,9 @@ void	no_map_error(void)
 t_map	*parse_map(char *map_file)
 {
 	int			map_fd;
-	char		*address;
 	t_map		*map;
 
-	address = ft_strjoin("./maps/", map_file);
-	map_fd = open(address, O_RDONLY);
-	free(address);
+	map_fd = open(map_file, O_RDONLY);
 	if (map_fd == -1)
 		ft_perror_exit(RED"Error\nUnable to open the file\n"RESET, 2);
 	map = (t_map *)malloc(sizeof(t_map));
