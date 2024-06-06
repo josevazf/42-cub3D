@@ -6,11 +6,17 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:02:20 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 15:48:22 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:28:49 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/* Convert rgb array to int */
+int	rgb_to_int(int *color)
+{
+	return ((color[0] << 16) | (color[1] << 8) | color[2]);
+}
 
 /* Put a pixel on the screen */
 void	put_pixel(t_img *img, int x, int y, int color)

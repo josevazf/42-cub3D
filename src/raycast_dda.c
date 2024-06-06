@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_utils.c                                 :+:      :+:    :+:   */
+/*   raycast_dda.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 08:37:21 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 14:34:59 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:36:16 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	vertical_wall_hit(t_data *data, t_rays *rays, double x_step,
+static void	vertical_wall_hit(t_data *data, t_rays *rays, double x_step,
 			double y_step)
 {
 	double	next_x;
@@ -59,7 +59,7 @@ void	vertical_grid_hit(t_data *data, t_rays *rays)
 	vertical_wall_hit(data, rays, x_step, y_step);
 }
 
-void	horizontal_wall_hit(t_data *data, t_rays *rays, double x_step,
+static void	horizontal_wall_hit(t_data *data, t_rays *rays, double x_step,
 			double y_step)
 {
 	double	next_x;

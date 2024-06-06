@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:23:26 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 15:29:36 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:48:50 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	get_txt_pxl(t_img *img, int x, int y)
 		(y * img->line_len) + (x * (img->bpp / 8))));
 }
 
-int	fade_color(int color, double factor)
+static int	fade_color(int color, double factor)
 {
 	int	r;
 	int	g;
@@ -33,7 +33,7 @@ int	fade_color(int color, double factor)
 	return (r << 16 | g << 8 | b);
 }
 
-void	draw_textured_wall(t_data *data, int i, int j)
+static void	draw_textured_wall(t_data *data, int i, int j)
 {
 	double	rel_pos;
 
@@ -73,9 +73,9 @@ void	render_walls(t_data *data, int i, int j)
 		while (++j < WIN_H)
 		{
 			if (j < data->rays[i].wall_start)
-				put_pixel(&data->img, i, j, data->clr_ceiling);
+				put_pixel(&data->img, i, j, rgb_to_int(data->og_map->ceiling));
 			else if (j > data->rays[i].wall_end)
-				put_pixel(&data->img, i, j, data->clr_floor);
+				put_pixel(&data->img, i, j, rgb_to_int(data->og_map->floor));
 			else
 				draw_textured_wall(data, i, j);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_mem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 08:50:28 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/06 09:36:45 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:49:10 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,18 @@ void	free_map_list(t_map_list *list)
 
 void	free_map(t_map *map)
 {
-	if (map->north_wall)
-		free(map->north_wall);
-	if (map->south_wall)
-		free(map->south_wall);
-	if (map->east_wall)
-		free(map->east_wall);
-	if (map->west_wall)
-		free(map->west_wall);
-	if (map->floor_color)
-		free(map->floor_color);
-	if (map->ceiling_color)
-		free(map->ceiling_color);
-	if (map->starting_position)
-		free(map->starting_position);
+	ft_safe_free(map->north_wall);
+	ft_safe_free(map->south_wall);
+	ft_safe_free(map->east_wall);
+	ft_safe_free(map->west_wall);
+	ft_safe_free(map->floor);
+	ft_safe_free(map->ceiling);
+	ft_safe_free(map->starting_position);
 	if (map->map_grid)
 		ft_free_matrix((void **)map->map_grid);
 	if (map->map_list)
 		free_map_list(map->map_list);
-	free(map);
+	ft_safe_free(map);
 }
 
 void	ft_perror_shutdown(char *str, int error, t_map *map)

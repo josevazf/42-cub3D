@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 19:08:08 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/05/31 14:56:30 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:39:53 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,4 @@ int	get_slope(int p1, int p2)
 	if (p1 < p2)
 		return (1);
 	return (-1);
-}
-
-/* Convert degrees to radians */
-double	get_rad(double deg)
-{
-	return (deg * M_PI / 180.0);
-}
-
-double	get_deg(double rad)
-{
-	return (rad * 180.0 / M_PI);
 }

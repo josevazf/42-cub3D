@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 22:20:33 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/05 15:55:31 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:50:10 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	map_struct_printer(t_map *map)
 	printf("* map->east_wall: %s\n", map->east_wall);
 	printf("* map->west_wall: %s\n", map->west_wall);
 	printf("*\n");
-	printf("* map->floor_color: %d,%d,%d\n", map->floor_color[0], \
-					map->floor_color[1], map->floor_color[2]);
-	printf("* map->ceiling_color: %d,%d,%d\n", map->ceiling_color[0], \
-					map->ceiling_color[1], map->ceiling_color[2]);
+	printf("* map->floor_color: %d,%d,%d\n", map->floor[0], \
+					map->floor[1], map->floor[2]);
+	printf("* map->ceiling_color: %d,%d,%d\n", map->ceiling[0], \
+					map->ceiling[1], map->ceiling[2]);
 	printf("* \n*  *** map->map_grid ***\n* \n");
 	grid_printer(map->map_grid);
 	printf("\n*\n\\**************************************/\n");

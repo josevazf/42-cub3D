@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/06 12:19:05 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:48:21 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@
 # define ERROR 1
 # define SUCCESS 0
 
-// Window settings
-# define WIN_W 1024
-# define WIN_H 768
-
+// TEXT COLORS
 # define RESET "\033[0m"
 # define BOLD "\033[1m"
 # define FAINT "\033[2m"
@@ -61,13 +58,15 @@
 # define CLR_TEAL			0x008080
 # define CLR_NEON			0xFF10F0
 
-// Game settings
+// WINDOW SETTINGS
+# define WIN_W 1024
+# define WIN_H 768
+
+// GAME SETTINGS
 # define MM_SCALE 0.1
 # define SIZE 64.0
 # define FOV_ANG 1.047197551
-//# define FOV_ANG 1.0472
 # define NUM_RAYS WIN_W
-//# define NUM_RAYS 5
 # define CLS_MARGIN 10.0
 # define MV_SPD 3
 # define ROT_SPD 2.0
@@ -197,8 +196,6 @@ typedef struct s_data
 	int			err;
 	int			x1;
 	int			y1;
-	int			clr_ceiling;
-	int			clr_floor;
 	int			map_w;
 	int			map_h;
 	double		c_pos_x;
@@ -229,24 +226,15 @@ typedef struct s_map
 	char		*south_wall;
 	char		*east_wall;
 	char		*west_wall;
-	int			*floor_color;
-	int			*ceiling_color;
+	int			*floor;
+	int			*ceiling;
 	int			*starting_position;
 	t_direction	starting_direction;
 	char		**map_grid;
 	t_map_list	*map_list;
 }	t_map;
 
-// main.c
-int					run_game(t_data *data);
-void				load_textures(t_data *data, t_map *map);
-void				init_mlx_textures(t_data *data, t_map *map);
-
 // init.c
-void				init_data(t_data *data, t_map *map);
-void				get_dimensions(char *file_name, t_data *data, t_map *map);
-void				create_map(t_data *data);
-void				fill_map(t_cube *map, char *line, t_data *data, int i);
 void				process_map(char *file_name, t_data *data, t_map *map);
 
 // events.c
@@ -256,10 +244,9 @@ int					key_press(int key, t_data *data);
 void				input_router(t_data *data);
 
 // minimap.c
-void				process_minimap(t_data *data);
-void				draw_direction(t_data *data);
-void				draw_player(t_data *data);
 void				draw_minimap(t_data *data);
+void				draw_direction(t_data *data);
+void				process_minimap(t_data *data);
 
 // player.c
 enum e_cubeStart	get_player_start_dir(char dir, t_data *data);
@@ -267,96 +254,82 @@ t_cube				point_cube_position(t_data *data, double x, double y);
 void				set_player_pos(t_data *data);
 
 // player_move.c
-bool				is_valid_cube(t_data *data, double mx, double my);
-void				move_linear(t_data *data, int key);
-void				move_strafe(t_data *data, int key);
-void				move_rotate(t_data *data, int key);
 void				move_player(t_data *data, int key);
 
 // draw_utils.c
+int					rgb_to_int(int *color);
 void				put_pixel(t_img *img, int x, int y, int color);
 void				paint_square(t_cube *cube, int start_x, int start_y);
 void				draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
 
 // raycast.c
-double				distance_between_points(double x1, double y1, double x2,
-						double y2);
-void				get_final_hit(t_data *data, t_rays *rays, double h_dist,
-						double v_dist);
 void				cast_rays(t_data *data);
 void				draw_rays(t_data *data);
 
 // raycasting_dda.c
-void				vertical_wall_hit(t_data *data, t_rays *rays, double x_step,
-						double y_step);
 void				vertical_grid_hit(t_data *data, t_rays *rays);
-void				horizontal_wall_hit(t_data *data, t_rays *rays,
-						double x_step, double y_step);
 void				horizontal_grid_hit(t_data *data, t_rays *rays);
 
 // render.c
 int					get_txt_pxl(t_img *img, int x, int y);
-int					fade_color(int color, double factor);
-void				draw_textured_wall(t_data *data, int i, int j);
 void				render_walls(t_data *data, int i, int j);
 
 // utils.c
 double				wrap_angle(double angle);
 void				clean_screen(t_data *data);
 int					get_slope(int p1, int p2);
-double				get_rad(double deg);
-double				get_deg(double rad);
 
 // error.c
 int					fd_error(int fd);
 int					args_error(void);
 void				ft_error_exit(char *msg, t_data *data);
 
+/******************     PARSER    ************/
 // free_mem.c
-void		free_map_list(t_map_list *list);
-void		free_map(t_map *map);
-void		ft_perror_shutdown(char *str, int error, t_map *map);
-void		ft_rgb_perror_shutdown(char *str, t_map *map, \
-					int *rgb, char**rgb_str);
+void				free_map_list(t_map_list *list);
+void				free_map(t_map *map);
+void				ft_perror_shutdown(char *str, int error, t_map *map);
+void				ft_rgb_perror_shutdown(char *str, t_map *map, \
+						int *rgb, char**rgb_str);
 
 //map_checkers_1.c
-void		map_checker(t_map *map);
+void				map_checker(t_map *map);
 
 // map_checkers_2.c
-bool		is_map_closed(t_map *map);
+bool				is_map_closed(t_map *map);
 
 // visual_getters.c
-char		*set_direction(t_direction dir_code);
-char		*get_texture_path(t_map *map, t_direction dir_code);
-int			*get_rgb(t_map *map, t_direction dir_code);
+char				*set_direction(t_direction dir_code);
+char				*get_texture_path(t_map *map, t_direction dir_code);
+int					*get_rgb(t_map *map, t_direction dir_code);
 
 // map_creators.c
-t_map_list	*create_map_list_from_fd(int map_fd, t_map *map);
-char		**create_map_grid_from_list(t_map *map);
-void		reset_map_grid(t_map *map);
+t_map_list			*create_map_list_from_fd(int map_fd, t_map *map);
+char				**create_map_grid_from_list(t_map *map);
+void				reset_map_grid(t_map *map);
 
 // map_parameters_checker.c
-bool		check_for_repeated_texture_definitions(t_map *map, \
-				t_direction dir_code);
-bool		check_for_repeated_color_definitions(t_map *map, \
-				t_direction dir_code);
+bool				check_for_repeated_texture_definitions(t_map *map, \
+						t_direction dir_code);
+bool				check_for_repeated_color_definitions(t_map *map, \
+						t_direction dir_code);
 
 // parser.c
-bool		is_file_extension_correct(char *str);
-void		no_map_error(void);
-t_map		*parse_map(char *map_file);
+bool				is_file_extension_correct(char *str);
+void				no_map_error(void);
+t_map				*parse_map(char *map_file);
 
 // player_utils.c
-t_direction	starting_direction(t_map *map);
-int			*starting_coordinate(t_map *map);
+t_direction			starting_direction(t_map *map);
+int					*starting_coordinate(t_map *map);
 
 // printers.c
-void		list_printer(t_map_list *map_list);
-void		grid_printer(char **grid);
-void		map_struct_printer(t_map *map);
+void				list_printer(t_map_list *map_list);
+void				grid_printer(char **grid);
+void				map_struct_printer(t_map *map);
 
 // struct_init.c
-void		map_init(t_map	*map);
-void		map_fetch_struct_info(t_map	*map);
+void				map_init(t_map	*map);
+void				map_fetch_struct_info(t_map	*map);
 
 #endif

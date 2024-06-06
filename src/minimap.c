@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:06:02 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 14:31:23 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:33:23 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	draw_direction(t_data *data)
 }
 
 /* Draw Player representation as a filled square */
-void	draw_player(t_data *data)
+static void	draw_player(t_data *data)
 {
 	int	i;
 	int	j;

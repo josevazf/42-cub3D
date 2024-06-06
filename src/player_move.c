@@ -6,14 +6,14 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:58:59 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 15:37:22 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:35:04 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /* Check collisions between Player movement and closed cubes */
-bool	is_valid_cube(t_data *data, double mx, double my)
+static bool	is_valid_cube(t_data *data, double mx, double my)
 {
 	int	i;
 	int	j;
@@ -34,7 +34,7 @@ bool	is_valid_cube(t_data *data, double mx, double my)
 }
 
 /* Move forward `W` or backwards `S` */
-void	move_linear(t_data *data, int key)
+static void	move_linear(t_data *data, int key)
 {
 	double	px;
 	double	py;
@@ -57,7 +57,7 @@ void	move_linear(t_data *data, int key)
 }
 
 /* Strafe to the left `A` or to the right `D` */
-void	move_strafe(t_data *data, int key)
+static void	move_strafe(t_data *data, int key)
 {
 	double	px;
 	double	py;
@@ -84,7 +84,7 @@ void	move_strafe(t_data *data, int key)
 }
 
 /* Move Player FOV left or right */
-void	move_rotate(t_data *data, int key)
+static void	move_rotate(t_data *data, int key)
 {
 	if (key == XK_Left)
 	{

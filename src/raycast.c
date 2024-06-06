@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:49:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 14:36:03 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:38:34 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double	distance_between_points(double x1, double y1, double x2, double y2)
+static double	distance_between_points(double x1, double y1, double x2,
+	double y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-void	get_final_hit(t_data *data, t_rays *rays, double h_dist, double v_dist)
+static void	get_final_hit(t_data *data, t_rays *rays, double h_dist,
+	double v_dist)
 {
 	if (rays->hwall_hit)
 		h_dist = distance_between_points(data->player.px, \

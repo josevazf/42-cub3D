@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:37:56 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/06 12:16:45 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:29:44 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	run_game(t_data *data)
+static int	run_game(t_data *data)
 {
 	input_router(data);
 	cast_rays(data);
@@ -23,7 +23,7 @@ int	run_game(t_data *data)
 	return (SUCCESS);
 }
 
-void	load_textures(t_data *data, t_map *map)
+static void	load_textures(t_data *data, t_map *map)
 {
 	int	i;
 
@@ -47,7 +47,7 @@ void	load_textures(t_data *data, t_map *map)
 	}
 }
 
-void	init_mlx_textures(t_data *data, t_map *map)
+static void	init_mlx_textures(t_data *data, t_map *map)
 {
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)

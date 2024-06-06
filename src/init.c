@@ -6,22 +6,15 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:03:12 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/06 12:06:45 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:47:48 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		rgb_to_int(int *color)
-{
-	return ((color[0] << 16) | (color[1] << 8) | color[2]);
-}
-
 /* Initialize vars to standard values */
-void	init_data(t_data *data, t_map *map)
+static void	init_data(t_data *data)
 {
-	data->clr_ceiling = rgb_to_int(map->ceiling_color);
-	data->clr_floor = rgb_to_int(map->floor_color);
 	data->map_h = 0;
 	data->map_w = 0;
 	data->err = 0;
@@ -44,7 +37,7 @@ void	init_data(t_data *data, t_map *map)
 }
 
 /* Get outter dimensions of the map, w (width) and h (height)*/
-void	get_dimensions(char *file_name, t_data *data, t_map *map)
+static void	get_dimensions(char *file_name, t_data *data, t_map *map)
 {
 	int		i;
 	int		temp_width;
@@ -62,7 +55,7 @@ void	get_dimensions(char *file_name, t_data *data, t_map *map)
 }
 
 /* Create an empty matrix representation of the map */
-void	create_map(t_data *data)
+static void	create_map(t_data *data)
 {
 	int	i;
 
@@ -73,7 +66,7 @@ void	create_map(t_data *data)
 }
 
 /* Fill the matrix representation of the map with info for each cube */
-void	fill_map(t_cube *map, char *line, t_data *data, int i)
+static void	fill_map(t_cube *map, char *line, t_data *data, int i)
 {
 	while (++i < data->map_w)
 	{
@@ -105,7 +98,7 @@ void	process_map(char *file_name, t_data *data, t_map *map)
 
 	data->og_map = map;
 	i = -1;
-	init_data(data, map);
+	init_data(data);
 	get_dimensions(file_name, data, map);
 	create_map(data);
 	while (++i < data->map_h)
