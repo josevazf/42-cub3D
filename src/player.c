@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:31:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/05 14:32:41 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/07 12:15:57 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ enum e_cubeStart	get_player_start_dir(char dir, t_data *data)
 		data->player.rot_ang = (M_PI / 2) * 1;
 		return (S);
 	}
-	else if (dir == 'E')
-	{
-		data->player.rot_ang = (M_PI / 2) * 2;
-		return (E);
-	}
 	else if (dir == 'W')
 	{
-		data->player.rot_ang = 0;
+		data->player.rot_ang = M_PI;
 		return (W);
+	}
+	else if (dir == 'E')
+	{
+		data->player.rot_ang = 0.0;
+		return (E);
 	}
 	else
 		return (FALSE);

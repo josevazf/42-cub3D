@@ -1,7 +1,7 @@
-NO ./textures/ice.xpm
-SO   ./textures/lava.xpm
-WE ./textures/bricks.xpm
-EA         ./textures/leaves.xpm
+NO ./textures/cobblestone.xpm
+SO   ./textures/mossy_cobblestone1.xpm
+WE ./textures/mossy_cobblestone1.xpm
+EA         ./textures/cobblestone_02.xpm
 
 F     101,     183,65
 C  123,              211,234

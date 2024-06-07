@@ -1,12 +1,12 @@
-EA ./textures/leaves.xpm
+EA ./textures/bookshelf.xpm
 
-C 123,211,234
+C 147,130,101
 
-NO ./textures/ice.xpm
-WE ./textures/bricks.xpm
+NO ./textures/bookshelf_03.xpm
+WE ./textures/bookshelf_01.xpm
 
-F 101,183,65
-SO ./textures/lava.xpm
+F 61,53,41
+SO ./textures/bricks.xpm
 
 1111111111
 1000000001

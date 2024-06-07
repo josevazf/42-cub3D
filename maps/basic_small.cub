@@ -1,12 +1,12 @@
-NO ./textures/bricks.xpm
-SO ./textures/ice.xpm
-WE ./textures/lava.xpm
-EA ./textures/leaves.xpm
+NO ./textures/cobblestone.xpm
+SO ./textures/cobblestone_01.xpm
+WE ./textures/mossy_cobblestone1.xpm
+EA ./textures/cobblestone_02.xpm
 
-F 164,169,20
+F 66,40,14
 C 153,204,255
 
 111111111
 11001111111
-100000N11
+100000W11
 111111111

@@ -1,10 +1,10 @@
-NO ./textures/ice.xpm
-SO ./textures/lava.xpm
-WE ./textures/bricks.xpm
-EA ./textures/leaves.xpm
+NO ./textures/netherrack.xpm
+SO ./textures/netherrack_01.xpm
+WE ./textures/netherrack.xpm
+EA ./textures/netherrack_02.xpm
 
-F 101,183,65
-C 123,211,234
+F 81,27,41
+C 68,22,36
 
 1111111111111111111111111111111111111111
 1000000000000000000000000000000000000001
