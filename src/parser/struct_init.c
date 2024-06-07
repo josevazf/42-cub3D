@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:14:21 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/06 14:48:42 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:41:59 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	map_init(t_map	*map)
 
 void	map_fetch_struct_info(t_map	*map)
 {
-	map->north_wall = get_texture_path(map, NORTH);
-	map->south_wall = get_texture_path(map, SOUTH);
-	map->east_wall = get_texture_path(map, EAST);
-	map->west_wall = get_texture_path(map, WEST);
+	map->north_wall = get_texture_path(map, NORTH, 0);
+	map->south_wall = get_texture_path(map, SOUTH, 0);
+	map->east_wall = get_texture_path(map, EAST, 0);
+	map->west_wall = get_texture_path(map, WEST, 0);
 	map->floor = get_rgb(map, FLOOR_RGB);
 	map->ceiling = get_rgb(map, CEILING_RGB);
 	map->map_grid = create_map_grid_from_list(map);

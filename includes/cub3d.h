@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:40:54 by jrocha-v          #+#    #+#             */
-/*   Updated: 2024/06/06 22:11:16 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:42:13 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@
 # define CLR_NEON			0xFF10F0
 
 // WINDOW SETTINGS
-# define WIN_W 1024
-# define WIN_H 768
+//# define WIN_W 1024
+//# define WIN_H 768
+# define WIN_W 800
+# define WIN_H 600
 
 // GAME SETTINGS
 //# define data->mm_scale 0.1
@@ -68,8 +70,8 @@
 # define FOV_ANG 1.047197551
 # define NUM_RAYS WIN_W
 # define CLS_MARGIN 10.0
-# define MV_SPD 3
-# define ROT_SPD 2.0
+# define MV_SPD 2.5
+# define ROT_SPD 1.5
 
 typedef struct s_data	t_data;
 typedef struct s_map	t_map;
@@ -302,7 +304,7 @@ bool				is_map_closed(t_map *map);
 
 // visual_getters.c
 char				*set_direction(t_direction dir_code);
-char				*get_texture_path(t_map *map, t_direction dir_code);
+char				*get_texture_path(t_map *map, t_direction dir_code, int i);
 int					*get_rgb(t_map *map, t_direction dir_code);
 
 // map_creators.c
